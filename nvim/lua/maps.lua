@@ -10,7 +10,10 @@ keymap('n', '-', '<C-x>')
 
 keymap('n', 'dw', 'vb"_d')
 keymap('n', '<C-a>', 'gg<S-v>G')
-
+keymap('n', '<C-d>', '<C-d>zz')
+keymap('n', '<C-u>', '<C-u>zz')
+keymap('n', 'n', 'nzz')
+keymap('n', 'n', 'Nzz')
 
 keymap('n', 'te', ':tabedit<Return>', { silent = true })
 keymap('n', 'ss', ':split<Return><C-w>w', { silent = true })
