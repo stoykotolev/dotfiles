@@ -23,8 +23,8 @@ lspconfig.setup {
     'html',
     'cssls',
     'marksman',
-    'elixirls',
     'jsonls',
+    'rust_analyzer'
   },
   automatic_installation = true
 }
