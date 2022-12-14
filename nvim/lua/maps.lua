@@ -2,7 +2,6 @@ local keymap = vim.keymap.set
 local o = { silent = true }
 vim.g.mapleader = " "
 
-keymap('n', 'x', '"_x') -- Do not yank with x
 
 keymap('n', '+', '<C-a>')
 keymap('n', '-', '<C-x>')
@@ -37,6 +36,8 @@ keymap('n', '<C-w><down>', '<C-w>-')
 
 keymap('n', '<C-/>', ':s/^/#<CR>')
 
+keymap('n', 'x', '"_x', o) -- Do not yank with x
+keymap({ 'n', 'v', 'x' }, 'diw', '_diw', o) -- delete word without yanking
 keymap('n', 'cw', '"_ciw', o) -- change a word from anywhere without yanking
 keymap('n', 'cc', '"_cc', o) -- change line without yanking
 keymap('v', 'c', '"_c', o) -- change selection without yanking
