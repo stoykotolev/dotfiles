@@ -23,12 +23,13 @@ packer.startup(function(use)
     'svrana/neosolarized.nvim',
     requires = { 'tjdevries/colorbuddy.nvim' }
   }
-  use 'neovim/nvim-lspconfig'
+  -- use 'neovim/nvim-lspconfig'
+  use { 'neoclide/coc.nvim', branch = 'release' }
   use 'onsails/lspkind-nvim'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/nvim-cmp'
-  use 'L3MON4D3/LuaSnip'
+  -- use 'hrsh7th/cmp-buffer'
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- use 'hrsh7th/nvim-cmp'
+  -- use 'L3MON4D3/LuaSnip'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -49,8 +50,8 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
-  use { 'hrsh7th/vim-vsnip' }
-  use { 'hrsh7th/cmp-vsnip' }
+  -- use  'hrsh7th/vim-vsnip'
+  -- use  'hrsh7th/cmp-vsnip'
 
   use 'numToStr/Comment.nvim'
   use 'ThePrimeagen/vim-be-good'
