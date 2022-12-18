@@ -12,8 +12,8 @@ vim.g.mapleader = " "
 --   command_mode = "c",
 
 -- move line up/down
-map("n", "<leader>j", "ddp", { silent = true })
-map("n", "<leader>k", "ddkP", { silent = true })
+map("n", "<leader>j", "ddp", o)
+map("n", "<leader>k", "ddkP", o)
 
 
 map('n', '+', '<C-a>')
@@ -28,11 +28,11 @@ map('n', 'n', 'nzz')
 map('n', 'N', 'Nzz')
 
 -- tabs --
-map('n', 'te', ':tabedit<Return>', { silent = true }) -- opens a new tab
-map('n', 'tc', ':tabclose<Return>', { silent = true }) -- closes the tab but keeps it in the buffer
+map('n', 'te', ':tabedit<Return>', o) -- opens a new tab
+map('n', 'tc', ':tabclose<Return>', o) -- closes the tab but keeps it in the buffer
 
-map('n', 'ss', ':split<Return><C-w>w', { silent = true })
-map('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
+map('n', 'ss', ':split<Return><C-w>w', o)
+map('n', 'sv', ':vsplit<Return><C-w>w', o)
 
 map('n', '<Space>', '<C-w>w')
 map('', 's<left>', '<C-w>h')

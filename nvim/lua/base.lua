@@ -5,7 +5,6 @@ opt.shiftwidth = 2
 -- insert 2 spaces for tab while editing
 opt.tabstop = 2
 opt.softtabstop = 2
-opt.timeoutlen = 1000 -- time to wait for a mapped sequence to complete in milliseconds
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.termguicolors = true -- enable 2 bit RGB colors, most modern terminal emulators support this

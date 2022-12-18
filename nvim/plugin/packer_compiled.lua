@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
   ["cmp-vsnip"] = {
     loaded = true,
     path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
@@ -159,11 +164,6 @@ _G.packer_plugins = {
     path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
-    url = "https://github.com/norcalli/nvim-colorizer.lua"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -193,11 +193,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["prettier.nvim"] = {
-    loaded = true,
-    path = "/Users/stoyko/.local/share/nvim/site/pack/packer/start/prettier.nvim",
-    url = "https://github.com/MunifTanjim/prettier.nvim"
   },
   ["telescope-file-browser.nvim"] = {
     loaded = true,

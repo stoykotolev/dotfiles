@@ -1,18 +1,18 @@
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 
-    print("Installing packer...")
+		print("Installing packer...")
 
-    vim.cmd([[packadd packer.nvim]])
+		vim.cmd([[packadd packer.nvim]])
 
-    return true
-  end
+		return true
+	end
 
-  return false
+	return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -27,62 +27,77 @@ vim.cmd([[
 
 
 return require("packer").startup({
-  function(use)
-    use 'wbthomason/packer.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'hoob3rt/lualine.nvim'
-    -- use { 'folke/tokyonight.nvim', requires = { 'tjdevries/colorbuddy.nvim' } }
-    -- use {
-    --   'svrana/neosolarized.nvim',
-    --   requires = { 'tjdevries/colorbuddy.nvim' }
-    -- }
-    -- use({
-    --   'rose-pine/neovim',
-    --   as = 'rose-pine',
-    --   config = function()
-    --     vim.cmd('colorscheme rose-pine')
-    --   end
-    -- })
-    use 'kvrohit/mellow.nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'onsails/lspkind-nvim'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/nvim-cmp'
-    use 'L3MON4D3/LuaSnip'
-    use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
-    }
-    use 'windwp/nvim-ts-autotag'
-    use 'windwp/nvim-autopairs'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'nvim-telescope/telescope-file-browser.nvim'
-    use 'akinsho/bufferline.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'glepnir/lspsaga.nvim'
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'MunifTanjim/prettier.nvim'
-    use 'lewis6991/gitsigns.nvim'
-    use 'dinhhuy258/git.nvim'
+	function(use)
+		use 'wbthomason/packer.nvim'
 
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
+		-- colorschemes --
+		-- use { 'folke/tokyonight.nvim', requires = { 'tjdevries/colorbuddy.nvim' } }
+		-- use {
+		--   'svrana/neosolarized.nvim',
+		--   requires = { 'tjdevries/colorbuddy.nvim' }
+		-- }
+		use 'kvrohit/mellow.nvim'
 
-    use { 'hrsh7th/vim-vsnip' }
-    use { 'hrsh7th/cmp-vsnip' }
+		-- icons
+		use 'kyazdani42/nvim-web-devicons'
 
-    use 'numToStr/Comment.nvim'
-    use 'ThePrimeagen/vim-be-good'
+		-- statusline
+		use 'hoob3rt/lualine.nvim'
 
-    if packer_bootstrap then
-      require("packer").sync()
-    end
-  end,
-  config = {
-    display = {
-      open_fn = require("packer.util").float,
-    },
-  },
+		-- lsp block --
+		use 'neovim/nvim-lspconfig' -- lsp
+		use 'onsails/lspkind-nvim' --
+
+		use 'williamboman/mason.nvim' -- lsp installer
+		use 'williamboman/mason-lspconfig.nvim' -- implement with lspconfig
+		---------------
+
+		-- autocompletion
+		use 'hrsh7th/nvim-cmp'
+		use 'hrsh7th/cmp-buffer'
+		use 'hrsh7th/cmp-nvim-lsp'
+		use "hrsh7th/cmp-nvim-lua"
+		use 'hrsh7th/vim-vsnip'
+		use 'hrsh7th/cmp-vsnip'
+
+		-- snippets
+		use 'L3MON4D3/LuaSnip'
+
+		-- Treesitter
+		use {
+			'nvim-treesitter/nvim-treesitter',
+			run = ':TSUpdate'
+		}
+
+		use 'windwp/nvim-ts-autotag' -- close and rename html tabs
+		use 'windwp/nvim-autopairs' -- autoclose bracket pair
+
+		-- Telescope block --
+		use { 'nvim-telescope/telescope.nvim', tag = "0.1.0", requires = { 'nvim-lua/plenary.nvim' } }
+		use 'nvim-telescope/telescope-file-browser.nvim'
+		---------------------
+
+		use 'akinsho/bufferline.nvim' -- bufferline with icons, etc.
+
+		use 'glepnir/lspsaga.nvim'
+
+		use 'jose-elias-alvarez/null-ls.nvim' -- formatting, code actions and diagnostics
+
+		-- Git block --
+		use 'lewis6991/gitsigns.nvim'
+		use 'dinhhuy258/git.nvim'
+		---------------
+
+		use 'numToStr/Comment.nvim' -- add comments with keymap
+		use 'ThePrimeagen/vim-be-good' -- git gut in vim
+
+		if packer_bootstrap then
+			require("packer").sync()
+		end
+	end,
+	config = {
+		display = {
+			open_fn = require("packer.util").float,
+		},
+	},
 })
