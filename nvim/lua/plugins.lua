@@ -78,8 +78,9 @@ return require("packer").startup({
 		---------------------
 
 		use 'akinsho/bufferline.nvim' -- bufferline with icons, etc.
-
-		use 'glepnir/lspsaga.nvim'
+		use { "kylechui/nvim-surround",
+			tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		}
 
 		use 'jose-elias-alvarez/null-ls.nvim' -- formatting, code actions and diagnostics
 
