@@ -4,6 +4,7 @@ configstore
 
 
 # Vim
+packer_compiled.lua
 Session.vim
 .vim/bundle/
 .vimrc_sample
