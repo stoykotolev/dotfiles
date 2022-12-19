@@ -13,10 +13,20 @@
 --     floats = "transparent", -- style for floating windows
 --   },
 -- })
+-- ---------------------------
 
 -- Mellow theme configuration --
-vim.g.mellow_transparent = true
-vim.g.mellow_italic_functions = true
-vim.g.mellow_bold_functions = true
+-- vim.g.mellow_italic_functions = true
+-- vim.g.mellow_bold_functions = true
+--------------------------------
 
-vim.cmd [[colorscheme mellow]]
+
+function Colors(color)
+	color = color or 'rose-pine'
+	vim.cmd.colorscheme(color)
+
+	vim.api.nvim_set_hl(0, 'NormalFloat', { bg = "none" })
+	vim.api.nvim_set_hl(0, 'Normal', { bg = "none" })
+end
+
+Colors()
