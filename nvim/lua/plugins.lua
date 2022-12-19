@@ -46,7 +46,7 @@ return require("packer").startup({
 
 		-- lsp block --
 		use 'neovim/nvim-lspconfig' -- lsp
-		use 'onsails/lspkind-nvim' --
+		-- use 'onsails/lspkind-nvim'
 
 		use 'williamboman/mason.nvim' -- lsp installer
 		use 'williamboman/mason-lspconfig.nvim' -- implement with lspconfig

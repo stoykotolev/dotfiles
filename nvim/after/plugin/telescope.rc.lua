@@ -3,69 +3,94 @@ if not present then return end
 
 local actions = require('telescope.actions')
 local builtin = require('telescope.builtin')
+local fb_actions = telescope.extensions.file_browser.actions
 
 local function telescope_buffer_dir()
-  return vim.fn.expand('$:p:h')
+	return vim.fn.expand('$:p:h')
 end
 
-local fb_actions = require "telescope".extensions.file_browser.actions
-
 telescope.setup {
-  defaults = {
-    mappings = {
-      n = {
-        ['q'] = actions.close
-      }
-    }
-  },
-  extensions = {
-    file_browser = {
-      theme = 'dropdown',
-      hijack_netrw = true,
-      mappings = {
-        ['i'] = {
-          ['<C-w>'] = function() vim.cmd('normal vbd') end
-        },
-        ['n'] = {
-          ['N'] = fb_actions.create,
-          ['h'] = fb_actions.goto_parent_dir,
-          ['/'] = function()
-            vim.cmd('startinsert')
-          end
-        }
-      }
-    }
-  }
+	defaults = {
+		file_ignore_patterns = { ".git/", "node_modules" },
+		mappings = {
+			i = {
+				["<Down>"] = actions.cycle_history_next,
+				["<Up>"] = actions.cycle_history_prev,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-s>"] = actions.select_horizontal,
+				["<esc>"] = actions.close,
+			},
+			n = {
+				['q'] = actions.close
+			}
+		}
+	},
+	-- pickers = {
+	-- 	find_files = {
+	-- 		find_command = { "rg", "--type", "f", "--strip-cwd-prefix" },
+	-- 	},
+	-- },
+	extensions = {
+		file_browser = {
+			theme = 'dropdown',
+			hijack_netrw = true, -- disable netrw and uses the telescope file browser instead
+			mappings = {
+				['i'] = {
+					['<C-w>'] = function() vim.cmd('normal vbd') end,
+				},
+				['n'] = {
+					['N'] = fb_actions.create,
+					['h'] = fb_actions.goto_parent_dir,
+					['/'] = function()
+						vim.cmd('startinsert')
+					end
+				}
+			}
+		}
+	}
 }
 
 telescope.load_extension('file_browser')
 
-local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
 
-vim.keymap.set('n', '<leader>f',
-  '<cmd>lua require("telescope.builtin").find_files({no_ignore = false, hidden = true})<cr>', opts)
-vim.keymap.set('n', '<leader>r', function()
-  builtin.live_grep()
+map("n", ";f", function()
+	builtin.find_files({
+		no_ignore = false,
+		hidden = true
+	})
 end)
 
-vim.keymap.set('n', '\\\\', function()
-  builtin.buffers()
+map("n", ";r", function()
+	builtin.live_grep()
 end)
-vim.keymap.set('n', '<leader>t', function()
-  builtin.help_tags()
+
+map("n", "\\\\", function()
+	builtin.buffers()
 end)
-vim.keymap.set('n', '<leader>e', function()
-  builtin.diagnostics()
+
+map("n", ";t", function()
+	builtin.help_tags()
 end)
-vim.keymap.set("n", "sf", function()
-  telescope.extensions.file_browser.file_browser({
-    path = "%:p:h",
-    cwd = telescope_buffer_dir(),
-    respect_gitignore = false,
-    hidden = true,
-    grouped = true,
-    previewer = false,
-    initial_mode = "normal",
-    layout_config = { height = 40 }
-  })
+
+map("n", ";;", function()
+	builtin.resume()
+end)
+
+map("n", ";e", function()
+	builtin.diagnostics()
+end)
+
+map("n", "sf", function()
+	telescope.extensions.file_browser.file_browser({
+		path = "%:p:h",
+		cwd = telescope_buffer_dir(),
+		respect_gitignore = false,
+		hidden = true,
+		grouped = true,
+		previewer = false,
+		initial_mode = "normal",
+		layout_config = { height = 40 },
+	})
 end)

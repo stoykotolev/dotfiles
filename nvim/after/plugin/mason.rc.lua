@@ -1,30 +1,31 @@
-local present, mason = pcall(require, 'mason')
-if not present then return end
-local present2, lspconfig = pcall(require, 'mason-lspconfig')
-if not present2 then return end
+local mason_present, mason = pcall(require, 'mason')
+if not mason_present then return end
+local lspconfig_present, lspconfig = pcall(require, 'mason-lspconfig')
+if not lspconfig_present then return end
 
 mason.setup({
-  ui = {
-    border = "rounded",
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
+	ui = {
+		border = "rounded",
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
 
-    }
-  }
+		}
+	}
 })
 
 lspconfig.setup {
-  ensure_installed = {
-    'tailwindcss',
-    'sumneko_lua',
-    'tsserver',
-    'html',
-    'cssls',
-    'marksman',
-    'elixirls',
-    'jsonls',
-  },
-  automatic_installation = true
+	ensure_installed = {
+		'sumneko_lua',
+		'tsserver',
+		'tailwindcss',
+		'cssls',
+		'html',
+		'jsonls',
+		'marksman',
+		'emmet_ls',
+		'rust_analyzer',
+	},
+	automatic_installation = true
 }
