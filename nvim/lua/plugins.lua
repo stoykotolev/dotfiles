@@ -36,14 +36,14 @@ return require("packer").startup({
 		--   'svrana/neosolarized.nvim',
 		--   requires = { 'tjdevries/colorbuddy.nvim' }
 		-- }
-		-- use 'kvrohit/mellow.nvim'
-		use({
-			'rose-pine/neovim',
-			as = 'rose-pine',
-			config = function()
-				vim.cmd('colorscheme rose-pine')
-			end
-		})
+		use 'kvrohit/mellow.nvim'
+		-- use({
+		-- 	'rose-pine/neovim',
+		-- 	as = 'rose-pine',
+		-- 	config = function()
+		-- 		vim.cmd('colorscheme rose-pine')
+		-- 	end
+		-- })
 		-- icons
 		use 'kyazdani42/nvim-web-devicons'
 
