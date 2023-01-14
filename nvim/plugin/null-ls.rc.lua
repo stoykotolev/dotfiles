@@ -15,7 +15,11 @@ null_ls.setup({
 		formatting.prettierd,
 		formatting.prismafmt,
 		formatting.rustfmt,
-		diagnostics.eslint_d,
+		diagnostics.eslint_d.with({
+			condition = function(utils)
+				return utils.root_has_file({ ".eslintrc.*" })
+			end
+		}),
 		code_actions.eslint_d,
 	},
 	on_attach = function(client, bufnr)
