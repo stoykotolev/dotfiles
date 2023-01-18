@@ -3,7 +3,7 @@ local opt = vim.opt
 -- 2 spaces for each indentation
 opt.shiftwidth = 2
 -- insert 2 spaces for tab while editing
-opt.tabstop = 2
+-- opt.tabstop = 2
 opt.softtabstop = 2
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
@@ -22,7 +22,7 @@ opt.ignorecase = true -- ignore case while searching
 opt.smartcase = true -- ovveride ignore case if search pattern contains upper case characters
 opt.numberwidth = 4 -- number column width
 opt.pumheight = 10 -- height of pop up menu
-opt.scrolloff = 10 -- minimium number of lines above and below the cursor
+opt.scrolloff = 8 -- minimium number of lines above and below the cursor
 opt.sidescrolloff = 8 -- minimum number of columns on the left and right of the cursor
 opt.whichwrap:append("b,s,<,>,[,],h,l") -- allow for horizontal movement to go to next line
 opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard

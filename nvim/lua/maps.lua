@@ -31,8 +31,8 @@ map('n', 'N', 'Nzz')
 map('n', 'te', ':tabedit<Return>', o) -- opens a new tab
 map('n', 'tc', ':tabclose<Return>', o) -- closes the tab but keeps it in the buffer
 
-map('n', 'ss', ':split<Return><C-w>w', o)
-map('n', 'sv', ':vsplit<Return><C-w>w', o)
+map('n', 'ss', ':split<Return><C-w>w')
+map('n', 'sv', ':vsplit<Return><C-w>w')
 
 map('n', '<Space>', '<C-w>w')
 map('', 's<left>', '<C-w>h')

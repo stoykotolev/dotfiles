@@ -19,7 +19,6 @@ telescope.setup {
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-s>"] = actions.select_horizontal,
-				["<esc>"] = actions.close,
 			},
 			n = {
 				['q'] = actions.close
