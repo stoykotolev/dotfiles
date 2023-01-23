@@ -30,13 +30,14 @@ return require("packer").startup({
 	function(use)
 		use 'wbthomason/packer.nvim'
 
-		-- colorschemes --
+		-- COLORSCHEME --
 		-- use { 'folke/tokyonight.nvim', requires = { 'tjdevries/colorbuddy.nvim' } }
 		-- use {
 		--   'svrana/neosolarized.nvim',
 		--   requires = { 'tjdevries/colorbuddy.nvim' }
 		-- }
-		use 'kvrohit/mellow.nvim'
+		-- use 'kvrohit/mellow.nvim'
+		use { "catppuccin/nvim", as = "catppuccin" }
 		-- use({
 		-- 	'rose-pine/neovim',
 		-- 	as = 'rose-pine',
