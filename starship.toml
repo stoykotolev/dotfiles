@@ -32,7 +32,7 @@ vicmd_symbol = "[❮](green)"
 [git_branch]
 symbol = " "
 format = "[$symbol$branch]($style) "
-style = "bright-black"
+style = "red"
 
 [jobs]
 symbol = ""
