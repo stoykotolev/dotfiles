@@ -68,7 +68,9 @@ catppuccin.setup({
 	},
 	color_overrides = {
 		all = {
-			yellow = "#FFE338"
+			surface0 = "#feffed",
+			surface1 = "#feffed",
+			surface2 = "#feffed"
 		}
 	},
 	custom_highlights = {},
