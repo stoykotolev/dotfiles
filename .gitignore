@@ -1,7 +1,7 @@
 #MiscFolders
 karabiner/automatic_backups
 configstore
-
+gcloud
 
 # Vim
 packer_compiled.lua

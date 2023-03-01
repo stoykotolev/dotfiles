@@ -24,7 +24,6 @@
 
 --------------------------------
 
-
 -- Rose pine configuration --
 -- function Colors(color)
 -- 	color = color or 'rose-pine'
@@ -38,8 +37,10 @@
 ----------------------------
 
 -- Catppuccin configuration --
-local present, catppuccin = pcall(require, 'catppuccin')
-if not present then return end
+local present, catppuccin = pcall(require, "catppuccin")
+if not present then
+	return
+end
 
 catppuccin.setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -70,8 +71,8 @@ catppuccin.setup({
 		all = {
 			surface0 = "#feffed",
 			surface1 = "#feffed",
-			surface2 = "#feffed"
-		}
+			surface2 = "#feffed",
+		},
 	},
 	custom_highlights = {},
 	integrations = {
