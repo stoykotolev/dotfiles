@@ -1,7 +1,9 @@
-local present, nvim_lsp = pcall(require, 'lspconfig')
-if not present then return end
+local present, nvim_lsp = pcall(require, "lspconfig")
+if not present then
+	return
+end
 
-local protocol = require('vim.lsp.protocol')
+local protocol = require("vim.lsp.protocol")
 local options = { noremap = true, silent = true }
 
 -- local on_attach = function(client, bufnr)
@@ -27,8 +29,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<C-j>", "<Cmd>lua vim.diagnostic.goto_next()<CR>", options)
 	buf_set_keymap("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", options)
 end
-
-
 
 protocol.CompletionItemKind = {
 	"", -- Text
@@ -62,28 +62,28 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- TS
-nvim_lsp.tsserver.setup {
+nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	cmd = { "typescript-language-server", "--stdio" },
-	capabilities = capabilities
-}
+	capabilities = capabilities,
+})
 
 -- Lua
-nvim_lsp.lua_ls.setup {
+nvim_lsp.lua_ls.setup({
 	on_attach = on_attach,
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = { 'vim' } -- recognize the vim global var.
+				globals = { "vim" }, -- recognize the vim global var.
 			},
 
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true), -- neovim runtime files
-				checkThirdParty = false
-			}
-		}
-	}
-}
+				checkThirdParty = false,
+			},
+		},
+	},
+})
 
 -- Markdown files
 nvim_lsp.marksman.setup({})
@@ -105,7 +105,7 @@ nvim_lsp.cssls.setup({
 })
 
 nvim_lsp.emmet_ls.setup({
-	filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
 	-- on_attach = function(client, bufnr)
 	--   client.server_capabilities.hoverProvider = false
 	--   on_attach(client, bufnr)
@@ -115,18 +115,19 @@ nvim_lsp.emmet_ls.setup({
 -- PrismaORM
 nvim_lsp.prismals.setup({})
 
-
 -- Rust
 nvim_lsp.rust_analyzer.setup({
-	on_attach = on_attach
+	on_attach = on_attach,
 })
 
 nvim_lsp.graphql.setup({
 	on_attach = function(client, bufnr)
 		client.server_capabilities.hoverProvider = false
 		on_attach(client, bufnr)
-	end
+	end,
 })
+
+nvim_lsp.gopls.setup({})
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
