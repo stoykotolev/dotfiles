@@ -8,12 +8,12 @@ $git_status\
 $git_metrics\
 $fill\
 $nodejs\
-$cmd_duration $jobs $time\
+$rust\
+$golang\
+$memory_usage\
 $line_break\
 $character"""
 
-[nodejs]
-format = "[$symbol($version )]($style)"
 
 [fill]
 symbol = " "
@@ -59,7 +59,15 @@ style = "yellow"
 symbol = " "
 
 [rust]
+format = "[$symbol($version )]($style)"
 symbol = " "
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+
+[golang]
+format = "[$symbol($version )]($style)"
+symbol = " "
 
 [custom.stunnel]
 when = "ps aux | grep stunnel | grep -v grep"
