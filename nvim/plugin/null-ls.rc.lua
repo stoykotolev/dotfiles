@@ -1,6 +1,7 @@
 local status, null_ls = pcall(require, "null-ls")
-if (not status) then return end
-
+if not status then
+	return
+end
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -15,10 +16,11 @@ null_ls.setup({
 		formatting.prettierd,
 		formatting.prismafmt,
 		formatting.rustfmt,
+		formatting.gofmt,
 		diagnostics.eslint_d.with({
 			condition = function(utils)
 				return utils.root_has_file({ ".eslintrc.*" })
-			end
+			end,
 		}),
 		code_actions.eslint_d,
 	},
@@ -35,7 +37,7 @@ null_ls.setup({
 				end,
 			})
 		end
-	end
+	end,
 })
 
 -- vim.api.nvim_create_user_command(
