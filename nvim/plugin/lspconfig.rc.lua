@@ -21,13 +21,13 @@ local on_attach = function(client, bufnr)
 	end
 
 	buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", options)
-	buf_set_keymap("n", "gh", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
+	-- buf_set_keymap("n", "gh", "<Cmd>lua vim.lsp.buf.definition()<CR>", options)
 	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
-	buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
-	buf_set_keymap("n", "<leader>ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", options)
-	buf_set_keymap("n", "gr", "<Cmd>lua vim.lsp.buf.rename()<CR>", options)
-	buf_set_keymap("n", "<C-j>", "<Cmd>lua vim.diagnostic.goto_next()<CR>", options)
-	buf_set_keymap("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", options)
+	-- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", options)
+	-- buf_set_keymap("n", "<leader>ca", "<Cmd>lua vim.lsp.buf.code_action()<CR>", options)
+	-- buf_set_keymap("n", "gr", "<Cmd>lua vim.lsp.buf.rename()<CR>", options)
+	-- buf_set_keymap("n", "<C-j>", "<Cmd>lua vim.diagnostic.goto_next()<CR>", options)
+	-- buf_set_keymap("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", options)
 end
 
 protocol.CompletionItemKind = {

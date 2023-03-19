@@ -1,5 +1,9 @@
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+export CONFIG=$HOME/.config
+export ZSHRC=$CONFIG/zshrc
+export BREWFILE=$CONFIG/Brewfile
+
 ### This is needed because node-gyp
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -27,6 +31,7 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias regen="source ~/.zshrc"
+alias rmd='rm -rf'
 alias b='brew'
 alias bi='brew install'
 alias bic='brew install --cask'
@@ -34,8 +39,18 @@ alias cb="cargo build"
 alias cr="cargo run"
 alias build="npm run build"
 alias dev="npm run dev"
-alias mp='find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull'
-alias tb='tilt up backend'
+alias tu='tilt up --namespace=`./scripts/namespace.sh`'
+
+# Multipreplace
+function multireplace(){
+for file in $1 
+do 
+  mv "$file" "${file/$2/$3}"
+done
+
+}
+
+
 
 ### Git Aliases
 function __git_prompt_git() {
@@ -84,13 +99,6 @@ function git_develop_branch() {
   echo develop
 }
 
-# Remove all local docker images
-rd(){
-docker system prune -a
-docker image prune
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
-}
 
 ### Github aliases ###
 alias g="git"
@@ -109,7 +117,10 @@ alias gpsup='git push --set-upstream origin $(git_current_branch)'
 alias gf='git fetch'
 alias gco='git checkout'
 alias gdiff='git diff --name-only --diff-filter=U --relative'
-
+alias sb="find . -type d -name '.git' -exec echo {} \; -exec git -C {} branch \;"
+alias gmd='git fetch --all && git merge origin/develop'
+alias gmm='git fetch --all && git merge origin/master'
+alias mp='find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull'
 
 ### tmux aliases ###
 alias t='tmux'
@@ -123,11 +134,18 @@ alias dsa='tmux new -A -s dsa'
 alias work='tmux new -A -s work'
 
 
+# Remove all local docker images
+rd(){
+docker system prune -a
+docker image prune
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+}
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+export STARSHIP_CONFIG=$CONFIG/starship.toml
 eval "$(starship init zsh)"
 
 # place this after nvm initialization!
@@ -151,4 +169,5 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
 
