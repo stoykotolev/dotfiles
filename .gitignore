@@ -2,6 +2,7 @@
 karabiner/automatic_backups
 configstore
 gcloud
+gh/
 
 # Vim
 packer_compiled.lua
