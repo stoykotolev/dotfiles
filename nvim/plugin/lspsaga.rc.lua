@@ -16,9 +16,6 @@ saga.setup({
 		tabe = "<C-c>t",
 		quit = "q",
 	},
-	ui = {
-		kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-	},
 })
 
 local opts = { noremap = true, silent = true }
