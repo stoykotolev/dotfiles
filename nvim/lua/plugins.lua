@@ -25,10 +25,9 @@ vim.cmd([[
   augroup end
 ]])
 
-
 return require("packer").startup({
 	function(use)
-		use 'wbthomason/packer.nvim'
+		use("wbthomason/packer.nvim")
 
 		-- COLORSCHEME --
 		-- use { 'folke/tokyonight.nvim', requires = { 'tjdevries/colorbuddy.nvim' } }
@@ -37,7 +36,8 @@ return require("packer").startup({
 		--   requires = { 'tjdevries/colorbuddy.nvim' }
 		-- }
 		-- use 'kvrohit/mellow.nvim'
-		use { "catppuccin/nvim", as = "catppuccin" }
+		-- use({ "catppuccin/nvim", as = "catppuccin" })
+		use("rebelot/kanagawa.nvim")
 		-- use({
 		-- 	'rose-pine/neovim',
 		-- 	as = 'rose-pine',
@@ -46,58 +46,70 @@ return require("packer").startup({
 		-- 	end
 		-- })
 		-- icons
-		use 'kyazdani42/nvim-web-devicons'
+		use("kyazdani42/nvim-web-devicons")
 
 		-- statusline
-		use 'hoob3rt/lualine.nvim'
+		use("hoob3rt/lualine.nvim")
 
 		-- lsp block --
-		use 'neovim/nvim-lspconfig' -- lsp
+		use("neovim/nvim-lspconfig") -- lsp
 		-- use 'onsails/lspkind-nvim'
-
-		use 'williamboman/mason.nvim' -- lsp installer
-		use 'williamboman/mason-lspconfig.nvim' -- implement with lspconfig
+		use({
+			"glepnir/lspsaga.nvim",
+			branch = "main",
+			config = function()
+				require("lspsaga").setup({})
+			end,
+			requires = {
+				{ "nvim-tree/nvim-web-devicons" },
+				--Please make sure you install markdown and markdown_inline parser
+				{ "nvim-treesitter/nvim-treesitter" },
+			},
+		})
+		use("williamboman/mason.nvim") -- lsp installer
+		use("williamboman/mason-lspconfig.nvim") -- implement with lspconfig
 		---------------
 
 		-- autocompletion
-		use 'hrsh7th/nvim-cmp'
-		use 'hrsh7th/cmp-buffer'
-		use 'hrsh7th/cmp-nvim-lsp'
-		use "hrsh7th/cmp-nvim-lua"
-		use 'hrsh7th/vim-vsnip'
-		use 'hrsh7th/cmp-vsnip'
+		use("hrsh7th/nvim-cmp")
+		use("hrsh7th/cmp-buffer")
+		use("hrsh7th/cmp-nvim-lsp")
+		use("hrsh7th/cmp-nvim-lua")
+		use("hrsh7th/vim-vsnip")
+		use("hrsh7th/cmp-vsnip")
 
 		-- snippets
-		use 'L3MON4D3/LuaSnip'
+		use("L3MON4D3/LuaSnip")
 
 		-- Treesitter
-		use {
-			'nvim-treesitter/nvim-treesitter',
-			run = ':TSUpdate'
-		}
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate",
+		})
 
-		use 'windwp/nvim-ts-autotag' -- close and rename html tabs
-		use 'windwp/nvim-autopairs' -- autoclose bracket pair
+		use("windwp/nvim-ts-autotag") -- close and rename html tabs
+		use("windwp/nvim-autopairs") -- autoclose bracket pair
 
 		-- Telescope block --
-		use { 'nvim-telescope/telescope.nvim', tag = "0.1.0", requires = { 'nvim-lua/plenary.nvim' } }
-		use 'nvim-telescope/telescope-file-browser.nvim'
+		use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { "nvim-lua/plenary.nvim" } })
+		use("nvim-telescope/telescope-file-browser.nvim")
 		---------------------
 
-		use 'akinsho/bufferline.nvim' -- bufferline with icons, etc.
-		use { "kylechui/nvim-surround",
+		use("akinsho/bufferline.nvim") -- bufferline with icons, etc.
+		use({
+			"kylechui/nvim-surround",
 			tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-		}
+		})
 
-		use 'jose-elias-alvarez/null-ls.nvim' -- formatting, code actions and diagnostics
+		use("jose-elias-alvarez/null-ls.nvim") -- formatting, code actions and diagnostics
 
 		-- Git block --
-		use 'lewis6991/gitsigns.nvim'
-		use 'dinhhuy258/git.nvim'
+		use("lewis6991/gitsigns.nvim")
+		use("dinhhuy258/git.nvim")
 		---------------
 
-		use 'numToStr/Comment.nvim' -- add comments with keymap
-		use 'ThePrimeagen/vim-be-good' -- git gut in vim
+		use("numToStr/Comment.nvim") -- add comments with keymap
+		use("ThePrimeagen/vim-be-good") -- git gut in vim
 
 		if packer_bootstrap then
 			require("packer").sync()
