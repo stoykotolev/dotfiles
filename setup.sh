@@ -35,6 +35,10 @@ function log_end() {
     echo -e "${Green}$1${Color_Off}"
 }
 
+function eval_brew() {
+    eval "$(/opt/homebrew/bin/brew shellenv)" > /dev/null
+}
+
 CONFIG=$HOME/.config
 
 mkdir -p $CONFIG
@@ -54,7 +58,7 @@ if ! eval_brew; then
 else
     log_end 'Brew detected'
 fi
-brew bundle --file $DOT/Brewfile
+brew bundle --file $CONFIG/Brewfile
 echo
 
 osascript -e '
@@ -91,7 +95,7 @@ echo
 
 log_start "Configuring neovim"
 if ! test -e $CONFIG/nvim; then
-    symlink $DOT/nvim $CONFIG
+    symlink $CONFIG/nvim $CONFIG
     log_end "nvim config setup"
 else
     log_end "nvim config detected"
