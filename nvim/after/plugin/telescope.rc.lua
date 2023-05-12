@@ -1,15 +1,17 @@
-local present, telescope = pcall(require, 'telescope')
-if not present then return end
+local present, telescope = pcall(require, "telescope")
+if not present then
+	return
+end
 
-local actions = require('telescope.actions')
-local builtin = require('telescope.builtin')
+local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 local fb_actions = telescope.extensions.file_browser.actions
 
 local function telescope_buffer_dir()
-	return vim.fn.expand('$:p:h')
+	return vim.fn.expand("$:p:h")
 end
 
-telescope.setup {
+telescope.setup({
 	defaults = {
 		file_ignore_patterns = { ".git/", "node_modules" },
 		mappings = {
@@ -21,9 +23,9 @@ telescope.setup {
 				["<C-s>"] = actions.select_horizontal,
 			},
 			n = {
-				['q'] = actions.close
-			}
-		}
+				["q"] = actions.close,
+			},
+		},
 	},
 	-- pickers = {
 	-- 	find_files = {
@@ -32,32 +34,36 @@ telescope.setup {
 	-- },
 	extensions = {
 		file_browser = {
-			theme = 'dropdown',
+			theme = "dropdown",
 			hijack_netrw = true, -- disable netrw and uses the telescope file browser instead
 			mappings = {
-				['i'] = {
-					['<C-w>'] = function() vim.cmd('normal vbd') end,
+				["i"] = {
+					["<C-w>"] = function()
+						vim.cmd("normal vbd")
+					end,
 				},
-				['n'] = {
-					['N'] = fb_actions.create,
-					['h'] = fb_actions.goto_parent_dir,
-					['/'] = function()
-						vim.cmd('startinsert')
-					end
-				}
-			}
-		}
-	}
-}
+				["n"] = {
+					["N"] = fb_actions.create,
+					["h"] = fb_actions.goto_parent_dir,
+					["D"] = fb_actions.remove,
+					["R"] = fb_actions.rename,
+					["/"] = function()
+						vim.cmd("startinsert")
+					end,
+				},
+			},
+		},
+	},
+})
 
-telescope.load_extension('file_browser')
+telescope.load_extension("file_browser")
 
 local map = vim.keymap.set
 
 map("n", ";f", function()
 	builtin.find_files({
 		no_ignore = false,
-		hidden = true
+		hidden = true,
 	})
 end)
 
