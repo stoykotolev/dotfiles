@@ -32,7 +32,6 @@ tsitter.setup({
 		"html",
 		"javascript",
 		"json",
-		"help",
 		"lua",
 		"markdown",
 		"markdown_inline",
