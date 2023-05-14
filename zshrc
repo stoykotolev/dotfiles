@@ -118,8 +118,8 @@ alias gf='git fetch'
 alias gco='git checkout'
 alias gdiff='git diff --name-only --diff-filter=U --relative'
 alias sb="find . -type d -name '.git' -exec echo {} \; -exec git -C {} branch \;"
-alias gmd='git fetch --all && git merge origin/develop'
-alias gmm='git fetch --all && git merge origin/master'
+alias gmd='git fetch --all && git merge $(git_develop_branch)'
+alias gmm='git fetch --all && git merge $(git_main_branch)'
 alias mp='find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull'
 
 ### tmux aliases ###
