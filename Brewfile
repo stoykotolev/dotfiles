@@ -10,6 +10,8 @@ brew "fd"
 brew "rust-analyzer"
 brew "lazygit"
 brew "go"
+brew "exa"
+brew "zoxide"
 
 cask "discord"
 cask "slack"
