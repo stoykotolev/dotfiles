@@ -23,7 +23,9 @@ alias ......="cd ../../../../.."
 alias history='fc -l 1'
 alias l='ls -lah'
 alias la='ls -lAh'
-alias ll='ls -lh'
+# alias ll='ls -lh'
+alias l="exa -lah -g --icons --git"
+alias lt="exa -1 --icons --tree --git-ignore"
 alias ls='ls -G'
 alias lsa='ls -lah'
 alias md='mkdir -p'
@@ -118,8 +120,8 @@ alias gf='git fetch'
 alias gco='git checkout'
 alias gdiff='git diff --name-only --diff-filter=U --relative'
 alias sb="find . -type d -name '.git' -exec echo {} \; -exec git -C {} branch \;"
-alias gmd='git fetch --all && git merge origin/develop'
-alias gmm='git fetch --all && git merge origin/master'
+alias gmd='git fetch --all && git merge $(git_develop_branch)'
+alias gmm='git fetch --all && git merge $(git_main_branch)'
 alias mp='find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull'
 
 ### tmux aliases ###
@@ -147,6 +149,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 export STARSHIP_CONFIG=$CONFIG/starship.toml
 eval "$(starship init zsh)"
+
+# Zoxide
+eval "$(zoxide init zsh)"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook

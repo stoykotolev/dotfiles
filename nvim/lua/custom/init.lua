@@ -24,7 +24,7 @@ opt.numberwidth = 4 -- number column width
 opt.pumheight = 10 -- height of pop up menu
 opt.scrolloff = 8 -- minimium number of lines above and below the cursor
 opt.sidescrolloff = 8 -- minimum number of columns on the left and right of the cursor
-opt.whichwrap:append("b,s,<,>,[,],h,l") -- allow for horizontal movement to go to next line
+opt.whichwrap:append "b,s,<,>,[,],h,l" -- allow for horizontal movement to go to next line
 opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard
 opt.swapfile = false -- creates swap file
 opt.cursorline = true -- highlights the current line
@@ -36,21 +36,21 @@ opt.showcmd = true -- show partially the command that is being ran
 opt.cmdheight = 1 -- height of the command line in vim
 opt.laststatus = 2 -- always show the status bar
 opt.scrolloff = 10
-opt.shell = 'zsh'
+opt.shell = "zsh"
 
 -- backup configuration
 opt.backup = false
-opt.backupskip = '/tmp/*,/private/tmp/*'
+opt.backupskip = "/tmp/*,/private/tmp/*"
 
-opt.inccommand = 'split' -- show preview of results when replacing
+opt.inccommand = "split" -- show preview of results when replacing
 opt.breakindent = true -- continue indentation for lines that are breaking keeping readibility
-opt.backspace = 'start,eol,indent'
-opt.path:append { '**' } -- Finding files - Search down into subfolders
-opt.wildignore:append { '*/node_modules/*' } -- Ignore specific folder and file patterns
+opt.backspace = "start,eol,indent"
+opt.path:append { "**" } -- Finding files - Search down into subfolders
+opt.wildignore:append { "*/node_modules/*" } -- Ignore specific folder and file patterns
 
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = '*',
-	command = "set nopaste"
+  pattern = "*",
+  command = "set nopaste",
 })
 
-opt.formatoptions:append { 'r' } -- handling of automatic formatting
+opt.formatoptions:append { "r" } -- handling of automatic formatting
