@@ -3,6 +3,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export CONFIG=$HOME/.config
 export ZSHRC=$CONFIG/zshrc
 export BREWFILE=$CONFIG/Brewfile
+export PATH="${HOME}/bin:${PATH}"
 
 ### This is needed because node-gyp
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -42,6 +43,7 @@ alias cr="cargo run"
 alias build="npm run build"
 alias dev="npm run dev"
 alias tu='tilt up --namespace=`./scripts/namespace.sh`'
+alias d="z"
 
 # Multipreplace
 function multireplace(){
@@ -108,8 +110,8 @@ alias gst="git status"
 alias gcmsg="git commit -m"
 alias gsw='git switch'
 alias gswc='git switch --create'
-alias gswm='git switch $(git_main_branch)'
-alias gswd='git switch $(git_develop_branch)'
+alias gswm='git switch $(git_main_branch) && git pull'
+alias gswd='git switch $(git_develop_branch) && git pull'
 alias gac="git add -p"
 alias ga="git add"
 alias glog='git log --oneline --decorate --graph'
