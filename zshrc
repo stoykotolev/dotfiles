@@ -3,7 +3,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export CONFIG=$HOME/.config
 export ZSHRC=$CONFIG/zshrc
 export BREWFILE=$CONFIG/Brewfile
-export PATH="${HOME}/bin:${PATH}"
+
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
 
 ### This is needed because node-gyp
 if command -v pyenv 1>/dev/null 2>&1; then

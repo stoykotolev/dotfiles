@@ -14,6 +14,9 @@ local sources = {
     end,
   },
   formatting.eslint_d,
+  formatting.gofmt,
+  formatting.goimports_reviser,
+  formatting.golines,
 }
 
 null_ls.setup {
