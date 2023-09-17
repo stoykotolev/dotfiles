@@ -7,16 +7,11 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local sources = {
   formatting.prettierd,
   formatting.stylua,
-  formatting.prismafmt,
-  lint.eslint_d.with {
-    condition = function(utils)
-      return utils.root_has_file { ".eslintrc.*" }
-    end,
-  },
   formatting.eslint_d,
   formatting.gofmt,
   formatting.goimports_reviser,
   formatting.golines,
+  lint.eslint_d,
 }
 
 null_ls.setup {

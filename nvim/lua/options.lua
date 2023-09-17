@@ -15,19 +15,18 @@ opt.wrap = true -- wrap lines
 -- enable number lines and relative numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
-opt.cmdheight = 2 -- height of command bar
+opt.cmdheight = 4 -- height of command bar
 opt.fileencoding = "utf-8" -- encoding of files
-opt.mouse = "a" -- enable mouse in all modes / might disable this, don't know how I feel
+-- opt.mouse = "a" -- enable mouse in all modes / might disable this, don't know how I feel // Still not sure. Leaving it commented out for now
 opt.ignorecase = true -- ignore case while searching
 opt.smartcase = true -- ovveride ignore case if search pattern contains upper case characters
 opt.numberwidth = 4 -- number column width
 opt.pumheight = 10 -- height of pop up menu
-opt.scrolloff = 8 -- minimium number of lines above and below the cursor
 opt.sidescrolloff = 8 -- minimum number of columns on the left and right of the cursor
 opt.whichwrap:append "b,s,<,>,[,],h,l" -- allow for horizontal movement to go to next line
 opt.clipboard = "unnamedplus" -- sync clipboard with system clipboard
 opt.swapfile = false -- creates swap file
-opt.cursorline = true -- highlights the current line
+opt.cursorline = false -- highlights the current line
 opt.conceallevel = 0 -- to show text normally
 opt.hlsearch = false
 opt.undofile = true -- persistent undo
