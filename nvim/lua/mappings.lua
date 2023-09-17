@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 -- remaps
 map("n", "<leader>j", "ddp", opts)
 map("n", "<leader>k", "ddkP", opts)
-map("n", "<C-a>", "%y+", opts)
+map("n", "<C-a>", "gg<S-v>G", opts)
 map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 map("n", "n", "nzz", opts)
