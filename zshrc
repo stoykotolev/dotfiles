@@ -3,6 +3,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export CONFIG=$HOME/.config
 export ZSHRC=$CONFIG/zshrc
 export BREWFILE=$CONFIG/Brewfile
+export PATH="${HOME}/bin:${PATH}"
 
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
@@ -46,6 +47,7 @@ alias build="npm run build"
 alias dev="npm run dev"
 alias tu='tilt up --namespace=`./scripts/namespace.sh`'
 alias d="z"
+alias maelstrom="~/maelstrom/maelstrom"
 
 # Multipreplace
 function multireplace(){
@@ -123,7 +125,7 @@ alias gpsup='git push --set-upstream origin $(git_current_branch)'
 alias gf='git fetch'
 alias gco='git checkout'
 alias gdiff='git diff --name-only --diff-filter=U --relative'
-alias sb="find . -type d -name '.git' -exec echo {} \; -exec git -C {} branch \;"
+alias sb="find . -type d -name '.git' -exec echo {} \; -exec sh -c 'cd {} && git branch --show-current' \;"
 alias gmd='git fetch --all && git merge $(git_develop_branch)'
 alias gmm='git fetch --all && git merge $(git_main_branch)'
 alias mp='find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull'
@@ -136,6 +138,7 @@ alias config='tmux new -A -s config'
 alias mart='tmux new -A -s mart'
 alias personal='tmux new -A -s personal'
 alias rust='tmux new -A -s rust'
+alias tgo='tmux new -A -s tgo'
 alias dsa='tmux new -A -s dsa'
 alias work='tmux new -A -s work'
 
@@ -148,35 +151,36 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 }
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 export STARSHIP_CONFIG=$CONFIG/starship.toml
 eval "$(starship init zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# place this after nvm initialization!
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# fnm
+export PATH="/Users/stoykotolev/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
+
+export PATH="/Users/stoykotolev/Library/Caches/fnm_multishells/30942_1694371444668/bin":$PATH
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_COREPACK_ENABLED="false"
+export FNM_MULTISHELL_PATH="/Users/stoykotolev/Library/Caches/fnm_multishells/30942_1694371444668"
+export FNM_LOGLEVEL="info"
+export FNM_RESOLVE_ENGINES="false"
+export FNM_DIR="/Users/stoykotolev/Library/Application Support/fnm"
+export FNM_ARCH="arm64"
+export FNM_VERSION_FILE_STRATEGY="local"
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+_fnm_autoload_hook () {
+    if [[ -f .node-version || -f .nvmrc ]]; then
+    fnm use --silent-if-unchanged
+fi
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
+add-zsh-hook chpwd _fnm_autoload_hook \
+    && _fnm_autoload_hook
 
+rehash
