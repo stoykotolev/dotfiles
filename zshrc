@@ -5,8 +5,7 @@ export ZSHRC=$CONFIG/zshrc
 export BREWFILE=$CONFIG/Brewfile
 export PATH="${HOME}/bin:${PATH}"
 
-export GOPATH="$HOME/go"
-PATH="$GOPATH/bin:$PATH"
+export GO_PATH=~/go
 
 ### This is needed because node-gyp
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -142,6 +141,8 @@ alias tgo='tmux new -A -s tgo'
 alias dsa='tmux new -A -s dsa'
 alias work='tmux new -A -s work'
 
+## Rust Aliases ## 
+alias caf='cargo add $1 --features $2'
 
 # Remove all local docker images
 rd(){
@@ -184,3 +185,4 @@ add-zsh-hook chpwd _fnm_autoload_hook \
     && _fnm_autoload_hook
 
 rehash
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"

@@ -126,7 +126,7 @@ return {
 				options = {
 					mode = "tabs",
 					separator_style = "slant",
-					always_show_bufferline = false,
+					always_show_bufferline = true,
 					show_buffer_close_icons = false,
 					show_close_icon = false,
 					color_icons = true,
@@ -154,8 +154,22 @@ return {
 			})
 		end,
 	},
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	event = "VeryLazy",
+	-- },
 	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+	},
+	{
+		"rust-lang/rust.vim",
+		ft = "rust",
+		config = function()
+			vim.g.rustfmt_autosave = 1
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap",
 	},
 }

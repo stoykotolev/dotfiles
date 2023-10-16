@@ -36,3 +36,13 @@ map("n", "<leader>t", "<cmd> tabedit<CR>", opts)
 map("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", opts)
 map("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", opts)
 map("n", "<leader>x", "<cmd>bd<CR>", opts)
+
+-- Debugging --
+map("n", "<leader>rd", "<cmd> RustDebuggables <CR>")
+map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
+map("n", "<leader>dus", function()
+	local widgets = require("dap.ui.widgets")
+	local sidebar = widgets.sidebar(widgets.scopes)
+	sidebar.open()
+end)
+map("n", "<leader>dn", "<cmd>DapStepOver<CR>")
