@@ -91,6 +91,10 @@ map("n", "<leader>ht", function()
 	builtin.help_tags()
 end)
 
+map("n", "<leader>b", function()
+	builtin.buffers()
+end)
+
 map("n", "<leader>;", function()
 	builtin.resume()
 end)
