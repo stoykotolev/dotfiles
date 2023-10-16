@@ -1,4 +1,4 @@
-require("lsp_signature").setup({
+--[[ require("lsp_signature").setup({
 	debug = false,                                             -- set to true to enable debug logging
 	log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
 	-- default is  ~/.cache/nvim/lsp_signature.log
@@ -57,4 +57,4 @@ require("lsp_signature").setup({
 
 	select_signature_key = nil,              -- cycle to next signature, e.g. '<M-n>' function overloading
 	move_cursor_key = nil,                   -- imap, use nvim_set_current_win to move cursor between current win and floating
-})
+}) ]]
