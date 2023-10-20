@@ -114,21 +114,6 @@ require("mason-lspconfig").setup_handlers({
 			capabilities = capabilities,
 		})
 	end,
-	-- ["rust_analyzer"] = function()
-	-- 	lspconfig.rust_analyzer.setup({
-	-- 		on_attach = on_attach,
-	-- 		capabilities = capabilities,
-	-- 		filetypes = { "rust" },
-	-- 		root_dir = util.root_pattern("Cargo.toml"),
-	-- 		settings = {
-	-- 			["rust_analyzer"] = {
-	-- 				cargo = {
-	-- 					allFeatures = true,
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 	})
-	-- end,
 	["gopls"] = function()
 		lspconfig.gopls.setup({
 			on_attach = on_attach,
