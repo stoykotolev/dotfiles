@@ -1,6 +1,4 @@
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
 $git_state\
@@ -14,7 +12,6 @@ $memory_usage\
 $line_break\
 $character"""
 
-
 [fill]
 symbol = " "
 
@@ -23,6 +20,7 @@ style = "blue"
 read_only = " "
 truncation_length = 2
 truncate_to_repo = false
+fish_style_pwd_dir_length = 1
 
 [character]
 success_symbol = "[❯](purple)"
@@ -68,9 +66,3 @@ format = "[$symbol($version )]($style)"
 [golang]
 format = "[$symbol($version )]($style)"
 symbol = " "
-
-[custom.stunnel]
-when = "ps aux | grep stunnel | grep -v grep"
-command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
-style = "red"
-format = "[TUNNEL OPEN for $output]($style)"
