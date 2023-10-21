@@ -1,9 +1,7 @@
 # Set environment variables
+set -g fish_greeting ""
 set -gx TERM xterm-256color
 
-set -x CONFIG $HOME/.config
-set -x BREWFILE $CONFIG/Brewfile
-set -x PATH $HOME/bin $PATH
 set PATH $PATH ~/.cargo/bin
 set -x GO_PATH ~/go
 

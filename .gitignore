@@ -39,3 +39,4 @@ node_modules
 bower_components
 fishd.*
 
+fish/fish_variables

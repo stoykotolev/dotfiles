@@ -43,7 +43,6 @@ CONFIG=$HOME/.config
 
 mkdir -p $CONFIG
 
-symlink $CONFIG/zshrc $HOME/.zshrc
 symlink $CONFIG/tmux/tmux.conf $HOME/.tmux.conf
 log_end "Dotfile symlinks created"
 echo
@@ -64,7 +63,7 @@ echo
 osascript -e '
 tell application "System Events"
     tell dock preferences
-	set properties to {autohide:true,screen edge:bottom}
+	set properties to {autohide:true,screen edge:right}
     end tell
 end tell'
 defaults write com.apple.dock autohide-delay -float 0
@@ -83,16 +82,6 @@ fi
 
 echo
 
-log_start "Installing NodeJS"
-if ! command -v node &> /dev/null; then
-    fnm use 16 --install-if-missing
-    log_end "NodeJS installed"
-else
-    node -v
-    log_end "NodeJS detected"
-fi
-echo
-
 log_start "Configuring neovim"
 if ! test -e $CONFIG/nvim; then
     symlink $CONFIG/nvim $CONFIG
@@ -101,10 +90,3 @@ else
     log_end "nvim config detected"
 fi
 
-# Install packer
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &> /dev/null
-# Install plugins
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync' &> /dev/null
-log_end "packer.nvim plugins synced"
-
-echo
