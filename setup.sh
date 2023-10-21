@@ -67,6 +67,7 @@ tell application "System Events"
     end tell
 end tell'
 defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 killall Dock
 log_end "Dock configured"
 echo
