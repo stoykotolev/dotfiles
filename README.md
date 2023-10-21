@@ -2,6 +2,8 @@
 
 These are all of my dotfiles to configure my MacOS environment.
 
+![terminal screenshot](./images/dotfiles.png)
+
 ## Installation
 
 ```bash
