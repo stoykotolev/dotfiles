@@ -5,13 +5,12 @@ set -gx TERM xterm-256color
 set PATH $PATH ~/.cargo/bin
 set -x GO_PATH ~/go
 
-# Set OpenJDK path
-set -x PATH /opt/homebrew/opt/openjdk/bin $PATH
-
 # Check for pyenv and initialize if available
 if command -q pyenv
     eval (pyenv init - | source)
 end
+
+alias mydocker 'docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
 
 # General Aliases
 alias l "eza -lah -g --icons --git"
@@ -125,3 +124,22 @@ zoxide init fish | source
 
 # Starship
 starship init fish | source
+
+set -gx PATH "/Users/stoykotolev/Library/Caches/fnm_multishells/63072_1698222515583/bin" $PATH;
+set -gx FNM_MULTISHELL_PATH "/Users/stoykotolev/Library/Caches/fnm_multishells/63072_1698222515583";
+set -gx FNM_DIR "/Users/stoykotolev/Library/Application Support/fnm";
+set -gx FNM_VERSION_FILE_STRATEGY "local";
+set -gx FNM_COREPACK_ENABLED "false";
+set -gx FNM_RESOLVE_ENGINES "false";
+set -gx FNM_LOGLEVEL "info";
+set -gx FNM_NODE_DIST_MIRROR "https://nodejs.org/dist";
+set -gx FNM_ARCH "arm64";
+function _fnm_autoload_hook --on-variable PWD --description 'Change Node version on directory change'
+    status --is-command-substitution; and return
+    if test -f .node-version -o -f .nvmrc
+    fnm use --silent-if-unchanged
+end
+
+end
+
+_fnm_autoload_hook
