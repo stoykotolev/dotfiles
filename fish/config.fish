@@ -4,6 +4,7 @@ set -gx TERM xterm-256color
 
 set PATH $PATH ~/.cargo/bin
 set -x GO_PATH ~/go
+fish_add_path /opt/homebrew/bin
 
 # Check for pyenv and initialize if available
 if command -q pyenv
@@ -38,6 +39,10 @@ function dev
   else
       npm run dev
   end
+end
+
+function typeorm
+  npm run typeorm:$argv[1]
 end
 
 
@@ -143,3 +148,4 @@ end
 end
 
 _fnm_autoload_hook
+
