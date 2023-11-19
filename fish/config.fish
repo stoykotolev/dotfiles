@@ -4,6 +4,7 @@ set -gx TERM xterm-256color
 
 set PATH $PATH ~/.cargo/bin
 set -x GO_PATH ~/go
+set -Ux NPM_TOKEN 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
 fish_add_path /opt/homebrew/bin
 
 # Check for pyenv and initialize if available
@@ -149,3 +150,4 @@ end
 
 _fnm_autoload_hook
 
+source /Users/stoykotolev/.docker/init-fish.sh || true # Added by Docker Desktop
