@@ -1,3 +1,2 @@
-require("mappings")
-require("options")
-require("plugins")
+require("stoykotolev.config")
+require("stoykotolev.lazy")
