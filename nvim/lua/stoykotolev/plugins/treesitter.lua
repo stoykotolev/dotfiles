@@ -26,6 +26,7 @@ return {
 					"go",
 					"json",
 					"yaml",
+					"bash",
 
 					-- devops stuff
 					"dockerfile",
@@ -51,5 +52,15 @@ return {
 		config = function()
 			require("treesitter-context").setup()
 		end,
+	},
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = "VeryLazy",
+		commit = "92e688f013c69f90c9bbd596019ec10235bc51de",
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = "VeryLazy",
+		commit = "6be1192965df35f94b8ea6d323354f7dc7a557e4",
 	},
 }

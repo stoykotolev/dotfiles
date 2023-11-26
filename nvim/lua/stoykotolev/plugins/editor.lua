@@ -21,11 +21,11 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-		"hrsh7th/cmp-buffer", -- source for text in buffer
-		"hrsh7th/cmp-path", -- source for file system paths
-		"L3MON4D3/LuaSnip", -- snippet engine
-		"saadparwaiz1/cmp_luasnip", -- for autocompletion
-		"rafamadriz/friendly-snippets", -- useful snippets
+			"hrsh7th/cmp-buffer", -- source for text in buffer
+			"hrsh7th/cmp-path", -- source for file system paths
+			"L3MON4D3/LuaSnip", -- snippet engine
+			"saadparwaiz1/cmp_luasnip", -- for autocompletion
+			"rafamadriz/friendly-snippets", -- useful snippets
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -84,18 +84,13 @@ return {
 					{ name = "luasnip" }, -- snippets
 					{ name = "path" }, -- file system paths
 				}),
-
 			})
-
-
-
-		end
-
+		end,
 	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = function ()
+		config = function()
 			local npairs = require("nvim-autopairs")
 			local Rule = require("nvim-autopairs.rule")
 
@@ -105,31 +100,62 @@ return {
 					lua = { "string" },
 					japascript = { "template_string" },
 				},
-				enable_check_bracket_line = false
+				enable_check_bracket_line = false,
 			})
 
 			local ts_conds = require("nvim-autopairs.ts-conds")
 
 			-- press % => %% only while inside a comment or string
 			npairs.add_rules({
-				Rule("%", "%", "lua")
-					:with_pair(ts_conds.is_ts_node({ "string", "comment" })),
-				Rule("$", "$", "lua")
-					:with_pair(ts_conds.is_not_ts_node({ "function" }))
+				Rule("%", "%", "lua"):with_pair(ts_conds.is_ts_node({ "string", "comment" })),
+				Rule("$", "$", "lua"):with_pair(ts_conds.is_not_ts_node({ "function" })),
 			})
-		end
+		end,
 	},
 	{
 		"numToStr/Comment.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
-			opleader = {
-				line = "<leader>/",
+			toggler = {
+				---Line-comment toggle keymap
+				line = "gcc",
+				---Block-comment toggle keymap
+				block = "gbc",
 			},
+			opleader = {
+				---Line-comment keymap
+				line = "gc",
+				---Block-comment keymap
+				block = "gb",
+			},
+			---LHS of extra mappings
+			extra = {
+				---Add comment on the line above
+				above = "gcO",
+				---Add comment on the line below
+				below = "gco",
+				---Add comment at the end of line
+				eol = "gcA",
+			},
+			---Enable keybindings
+			---NOTE: If given `false` then the plugin won't create any mappings
+			mappings = {
+				---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+				basic = true,
+				---Extra mapping; `gco`, `gcO`, `gcA`
+				extra = true,
+			},
+			---Function to call before (un)comment
+			pre_hook = function(...)
+				local loaded, ts_comment = pcall(require, "ts_context_commentstring.integrations.comment_nvim")
+				if loaded and ts_comment then
+					return ts_comment.create_pre_hook()(...)
+				end
+			end,
+			---Function to call after (un)comment
+			post_hook = nil,
 		},
-		config = true
+		config = true,
 	},
-	{
-
-	}
+	{},
 }
