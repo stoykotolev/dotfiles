@@ -77,5 +77,10 @@ return {
 			"<cmd>Telescope oldfiles<cr>",
 			{ desc = "Fuzzy find recent files" },
 		},
+		{
+			"<leader>b",
+			"<cmd>Telescope buffers<cr>",
+			{ desc = "Show current open buffers" },
+		},
 	},
 }
