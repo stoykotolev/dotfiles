@@ -26,4 +26,4 @@ map("i", "<C-k>", "<Up>")
 map("i", "<C-j>", "<Down>")
 map("i", "<C-l>", "<Right>")
 
-map('i', '<leader>ds', "<cmd>vim.lsp.buf.signature_help()<CR>", {buffer=true})
+map("n", "<leader>x", "<cmd>bd<CR>", opts)

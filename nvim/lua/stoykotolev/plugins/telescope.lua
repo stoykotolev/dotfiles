@@ -15,12 +15,16 @@ return {
 				path_display = { "truncate " },
 				mappings = {
 					i = {
+						["<C-n>"] = actions.select_tab,
+						["<C-d>"] = require("telescope.actions").delete_buffer,
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 					n = {
 						["q"] = actions.close,
+						["dd"] = require("telescope.actions").delete_buffer,
+						["x"] = require("telescope.actions").delete_buffer,
 					},
 				},
 				sorting_strategy = "ascending",
