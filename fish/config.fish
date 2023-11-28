@@ -15,6 +15,9 @@ end
 alias mydocker 'docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
 
 # General Aliases
+alias .. "cd .."
+alias ... "cd ../../"
+alias .... "cd ../../../"
 alias l "eza -lah -g --icons --git"
 alias lt "eza -1 --icons --tree --git-ignore"
 alias ls "eza -G"
