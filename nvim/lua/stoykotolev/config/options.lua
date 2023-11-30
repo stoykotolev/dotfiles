@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.shiftwidth = 2 -- insert 2 spaces when tabbing/ default is 8
 opt.tabstop = 2 -- tabbing is 2 spaces / default is 8
+opt.expandtab = true -- use tabs
 opt.softtabstop = 2 -- control the above when deleting
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
@@ -38,7 +39,6 @@ opt.backupskip = "/tmp/*,/private/tmp/*"
 opt.inccommand = "split" -- show preview of results when replacing
 opt.breakindent = true -- continue indentation for lines that are breaking keeping readibility
 opt.backspace = "start,eol,indent" -- allow backspace to work in insert mode
-opt.expandtab = false -- use tabs
 opt.shortmess:append("c") -- see :help 'shortmess'
 
 -- Undercurl
