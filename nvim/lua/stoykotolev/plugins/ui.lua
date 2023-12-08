@@ -8,7 +8,7 @@ return {
 			require("onedark").setup({
 				style = "darker",
 				transparent = true, -- Show/hide background
-				term_colors = false, -- Change terminal color as per the selected theme style
+				term_colors = true, -- Change terminal color as per the selected theme style
 				colors = {
 					black = "#24292f",
 					bg0 = "#1f2329",
@@ -163,7 +163,7 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		keys = {
-			{ "<Tab>",   "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
+			{ "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
 			{ "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
 		},
 		opts = {

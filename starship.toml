@@ -9,6 +9,7 @@ $nodejs\
 $rust\
 $golang\
 $memory_usage\
+$cmd_duration\
 $line_break\
 $character"""
 
@@ -51,6 +52,7 @@ disabled = false
 
 [cmd_duration]
 format = "[$duration]($style)"
+min_time = 100
 style = "yellow"
 
 [memory_usage]
