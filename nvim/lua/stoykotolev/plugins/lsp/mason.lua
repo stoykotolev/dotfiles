@@ -16,7 +16,6 @@ return {
         },
       },
       ensure_installed = {
-        'typescript-language-server',
         'tailwindcss-language-server',
         'css-lsp',
         'html-lsp',
@@ -37,7 +36,6 @@ return {
     mason_lspconfig.setup {
       ensure_installed = {
         -- webdev
-        'tsserver',
         'tailwindcss',
         'cssls',
         'html',
