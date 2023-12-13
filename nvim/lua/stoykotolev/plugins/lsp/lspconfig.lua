@@ -129,6 +129,8 @@ return {
       capabilities = capabilities,
     }
 
+    lspconfig['rust_analyzer'].setup {}
+
     lspconfig['gopls'].setup {
       on_attach = on_attach,
       capabilities = capabilities,
