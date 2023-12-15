@@ -94,6 +94,7 @@ end
 alias g "git"
 alias gst "git status"
 alias gcmsg "git commit -m"
+alias gcan "git commit --amend --no-edit"
 alias gsw "git switch"
 alias gswc "git switch --create"
 alias gswm "git switch (git_main_branch) && git pull"
