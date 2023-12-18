@@ -23,4 +23,3 @@ cask "google-chrome"
 cask "notion"
 cask "raycast"
 cask "iterm2"
-
