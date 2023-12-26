@@ -1,51 +1,69 @@
 return {
   {
-    'navarasu/onedark.nvim',
-    lazy = false,
+    'sainnhe/gruvbox-material',
     priority = 1000,
-    opts = {},
     config = function()
-      require('onedark').setup {
-        style = 'darker',
-        transparent = true, -- Show/hide background
-        term_colors = true, -- Change terminal color as per the selected theme style
-        colors = {
-          black = '#24292f',
-          bg0 = '#1f2329',
-          bg1 = '#282c34',
-          bg2 = '#30363f',
-          bg3 = '#323641',
-          bg_d = '#181b20',
-          bg_blue = '#4f6286',
-          bg_yellow = '#e3786c',
-          fg = '#a0a8b7',
-          purple = '#a97594',
-          green = '#618774',
-          orange = '#cc9057',
-          blue = '#5c6b92',
-          yellow = '#e2b86b',
-          cyan = '#6ba5ab',
-          red = '#dc6f7a',
-          grey = '#535965',
-          light_grey = '#7a818e',
-          dark_cyan = '#4f8896',
-          dark_red = '#8b3434',
-          dark_yellow = '#835d1a',
-          dark_purple = '#b589a4',
-          diff_add = '#272e23',
-          diff_delete = '#2d2223',
-          diff_change = '#172a3a',
-          diff_text = '#274964',
-          diagnostics = {
-            darker = true, -- darker colors for diagnostic
-            undercurl = true, -- use undercurl instead of underline for diagnostics
-            background = true, -- use background color for virtual text
-          },
-        },
-      }
-      require('onedark').load()
+      vim.o.background = 'dark' -- or "light" for light mode
+      vim.cmd "let g:gruvbox_material_background= 'hard'"
+      vim.cmd 'let g:gruvbox_material_transparent_background=2'
+      vim.cmd 'let g:gruvbox_material_diagnostic_line_highlight=1'
+      vim.cmd "let g:gruvbox_material_diagnostic_virtual_text='colored'"
+      vim.cmd 'let g:gruvbox_material_enable_bold=1'
+      vim.cmd 'let g:gruvbox_material_enable_italic=1'
+      vim.cmd [[colorscheme gruvbox-material]] -- Set color scheme
+      -- changing bg and border colors
+      vim.api.nvim_set_hl(1, 'FloatBorder', { link = 'Normal' })
+      vim.api.nvim_set_hl(1, 'LspInfoBorder', { link = 'Normal' })
+      vim.api.nvim_set_hl(1, 'NormalFloat', { link = 'Normal' })
     end,
   },
+  -- {
+  --   'navarasu/onedark.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   config = function()
+  --     require('onedark').setup {
+  --       style = 'darker',
+  --       transparent = true, -- Show/hide background
+  --       term_colors = true, -- Change terminal color as per the selected theme style
+  --       colors = {
+  --         black = '#24292f',
+  --         bg0 = '#1f2329',
+  --         bg1 = '#282c34',
+  --         bg2 = '#30363f',
+  --         bg3 = '#323641',
+  --         bg_d = '#181b20',
+  --         bg_blue = '#4f6286',
+  --         bg_yellow = '#e3786c',
+  --         fg = '#a0a8b7',
+  --         purple = '#a97594',
+  --         green = '#618774',
+  --         orange = '#cc9057',
+  --         blue = '#5c6b92',
+  --         yellow = '#e2b86b',
+  --         cyan = '#6ba5ab',
+  --         red = '#dc6f7a',
+  --         grey = '#535965',
+  --         light_grey = '#7a818e',
+  --         dark_cyan = '#4f8896',
+  --         dark_red = '#8b3434',
+  --         dark_yellow = '#835d1a',
+  --         dark_purple = '#b589a4',
+  --         diff_add = '#272e23',
+  --         diff_delete = '#2d2223',
+  --         diff_change = '#172a3a',
+  --         diff_text = '#274964',
+  --         diagnostics = {
+  --           darker = true, -- darker colors for diagnostic
+  --           undercurl = true, -- use undercurl instead of underline for diagnostics
+  --           background = true, -- use background color for virtual text
+  --         },
+  --       },
+  --     }
+  --     require('onedark').load()
+  --   end,
+  -- },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
@@ -54,7 +72,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = 'onedark',
+          theme = 'gruvbox-material',
         },
       }
     end,
@@ -168,14 +186,19 @@ return {
     },
     opts = {
       options = {
-        mode = 'tabs',
-        -- separator_style = "slant",
-        show_buffer_close_icons = false,
+        offsets = {
+          {
+            filetype = 'NvimTree',
+            text = 'File Tree',
+            highlight = 'Directory',
+            separator = true, -- use a "true" to enable the default, or set your own character
+          },
+        },
+        diagnostics = 'nvim_lsp',
+        separator_style = { '', '' },
+        modified_icon = '●',
         show_close_icon = false,
-        diagnostics_indicator = function(count, level)
-          local icon = level:match 'error' and ' ' or ' '
-          return ' ' .. icon .. count
-        end,
+        show_buffer_close_icons = false,
       },
     },
   },
