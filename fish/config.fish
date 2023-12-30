@@ -49,6 +49,9 @@ function typeorm
   npm run typeorm:$argv[1]
 end
 
+function cat 
+  bat $argv
+end
 
 ### GIT ### 
 function git_current_branch

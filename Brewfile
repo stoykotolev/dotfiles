@@ -13,6 +13,7 @@ brew "go"
 brew "eza"
 brew "zoxide"
 brew "fish"
+brew "bat"
 
 cask "discord"
 cask "slack"
