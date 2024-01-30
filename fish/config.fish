@@ -7,11 +7,6 @@ set -x GO_PATH ~/go
 set -Ux NPM_TOKEN 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
 fish_add_path /opt/homebrew/bin
 
-# Check for pyenv and initialize if available
-if command -q pyenv
-    eval (pyenv init - | source)
-end
-
 alias mydocker 'docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
 
 # General Aliases
@@ -156,5 +151,3 @@ end
 end
 
 _fnm_autoload_hook
-
-source /Users/stoykotolev/.docker/init-fish.sh || true # Added by Docker Desktop
