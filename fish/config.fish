@@ -151,3 +151,7 @@ end
 end
 
 _fnm_autoload_hook
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
