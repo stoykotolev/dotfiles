@@ -29,3 +29,7 @@ map('i', '<C-j>', '<Down>')
 map('i', '<C-l>', '<Right>')
 
 map('n', '<leader>x', '<cmd>bd<CR>', opts)
+
+-- Move selected lines with shift+j or shift+k
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
