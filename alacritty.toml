@@ -1,0 +1,59 @@
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = "/opt/homebrew/bin/fish"
+
+[font]
+size = 14
+
+[font.bold]
+style = "Bold"
+
+[font.bold_italic]
+style = "Bold Italic"
+
+[font.italic]
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Medium"
+
+[scrolling]
+history = 0
+
+[window]
+decorations = "none"
+
+[window.dimensions]
+columns = 142
+lines = 42
+
+[colors.bright]
+black = "#5a524c"
+blue = "#7daea3"
+cyan = "#89b482"
+green = "#a9b665"
+magenta = "#d3869b"
+red = "#b85651"
+white = "#ddc7a1"
+yellow = "#d8a657"
+
+[colors.cursor]
+cursor = "#ddc7a1"
+text = "#272727"
+
+[colors.normal]
+black = "#3c3836"
+blue = "#68948a"
+cyan = "#72966c"
+green = "#8f9a52"
+magenta = "#ab6c7d"
+red = "#b85651"
+white = "#a89983"
+yellow = "#c18f41"
+
+[colors.primary]
+background = "#000000"
+foreground = "#d4be98"
