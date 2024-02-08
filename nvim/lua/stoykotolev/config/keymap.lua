@@ -14,7 +14,7 @@ map('n', 'yw', 'yiw', opts)
 map('n', 'x', '"_x', opts)
 map('n', '<leader>q', '<cmd>q<cr>')
 map('n', '<leader>w', '<cmd>w<cr>')
-map('n', '<leader>x', '<cmd>x<cr>')
+map('n', '<leader>e', '<cmd>x<cr>')
 
 -- move cursor in different windows
 map('', '<C-h>', '<C-w>h')
