@@ -14,7 +14,7 @@ map('n', 'yw', 'yiw', opts)
 map('n', 'x', '"_x', opts)
 map('n', '<leader>q', '<cmd>q<cr>')
 map('n', '<leader>w', '<cmd>w<cr>')
-map('n', '<leader>e', '<cmd>x<cr>')
+map('n', '<leader>x', '<cmd>x<cr>')
 
 -- move cursor in different windows
 map('', '<C-h>', '<C-w>h')
@@ -28,7 +28,7 @@ map('i', '<C-k>', '<Up>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-l>', '<Right>')
 
-map('n', '<leader>x', '<cmd>bd<CR>', opts)
+map('n', '<leader>e', '<cmd>bd<CR>', opts)
 
 -- Move selected lines with shift+j or shift+k
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
