@@ -214,4 +214,20 @@ return {
       }
     end,
   },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+    keys = {
+      { '<leader>S', '<cmd>lua require("spectre").toggle()<CR>' },
+      {
+        '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>'
+      },
+    },
+    config = function()
+      require('spectre').setup()
+    end
+
+  }
 }
