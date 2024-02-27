@@ -228,6 +228,5 @@ return {
     config = function()
       require('spectre').setup()
     end
-
   }
 }
