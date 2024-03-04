@@ -14,6 +14,7 @@ brew "eza"
 brew "zoxide"
 brew "fish"
 brew "bat"
+brew "gnu-sed"
 
 cask "discord"
 cask "slack"

@@ -25,6 +25,7 @@ return {
         'emmet-language-server',
         'eslint_d',
         'lua-language-server',
+        'stylua',
         'rust-analyzer',
         'gopls',
         'gofumpt',
