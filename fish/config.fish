@@ -155,3 +155,10 @@ _fnm_autoload_hook
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+
+
+## Local psql start
+function dpsql
+  docker run --name my-postgres -e POSTGRES_PASSWORD=$argv[2] -e POSTGRES_USER=$argv[1] -e POSTGRES_DB=$argv[3] -p 5432:5432 -v ~/apps/postgres:/var/lib/postgresql/data -d postgres:14-alpine
+end

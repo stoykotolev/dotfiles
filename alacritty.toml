@@ -27,8 +27,8 @@ history = 0
 decorations = "none"
 
 [window.dimensions]
-columns = 142
-lines = 42
+columns = 222
+lines = 72
 
 [colors.bright]
 black = "#5a524c"
