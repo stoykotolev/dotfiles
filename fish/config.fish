@@ -3,7 +3,6 @@ set -g fish_greeting ""
 set -gx TERM xterm-256color
 
 set PATH $PATH ~/.cargo/bin
-set -x GO_PATH ~/go
 set -Ux NPM_TOKEN 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
 fish_add_path /opt/homebrew/bin
 
