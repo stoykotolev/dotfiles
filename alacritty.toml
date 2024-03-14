@@ -26,6 +26,10 @@ history = 0
 [window]
 decorations = "none"
 
+[window.padding]
+x = 2
+y = 2
+
 [window.dimensions]
 columns = 222
 lines = 72
