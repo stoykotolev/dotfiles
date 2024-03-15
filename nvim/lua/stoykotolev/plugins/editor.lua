@@ -2,10 +2,10 @@ local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0
-    and vim.api
-        .nvim_buf_get_lines(0, line - 1, line, true)[1]
-        :sub(col, col)
-        :match '%s'
+      and vim.api
+      .nvim_buf_get_lines(0, line - 1, line, true)[1]
+      :sub(col, col)
+      :match '%s'
       == nil
 end
 
@@ -30,10 +30,10 @@ return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      'hrsh7th/cmp-buffer', -- source for text in buffer
-      'hrsh7th/cmp-path', -- source for file system paths
-      'L3MON4D3/LuaSnip', -- snippet engine
-      'saadparwaiz1/cmp_luasnip', -- for autocompletion
+      'hrsh7th/cmp-buffer',           -- source for text in buffer
+      'hrsh7th/cmp-path',             -- source for file system paths
+      'L3MON4D3/LuaSnip',             -- snippet engine
+      'saadparwaiz1/cmp_luasnip',     -- for autocompletion
       'rafamadriz/friendly-snippets', -- useful snippets
     },
     config = function()
@@ -63,7 +63,7 @@ return {
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
-          ['<C-e>'] = cmp.mapping.abort(), -- close completion window
+          ['<C-e>'] = cmp.mapping.abort(),        -- close completion window
           ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
@@ -93,9 +93,9 @@ return {
         },
         sources = cmp.config.sources {
           { name = 'nvim_lsp' },
-          { name = 'buffer' }, -- text within current buffer
+          { name = 'buffer' },  -- text within current buffer
           { name = 'luasnip' }, -- snippets
-          { name = 'path' }, -- file system paths
+          { name = 'path' },    -- file system paths
         },
       }
     end,
@@ -163,7 +163,7 @@ return {
       ---Function to call before (un)comment
       pre_hook = function(...)
         local loaded, ts_comment =
-          pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
+            pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
         if loaded and ts_comment then
           return ts_comment.create_pre_hook()(...)
         end
@@ -234,5 +234,22 @@ return {
         },
       },
     },
+  },
+  {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    keys = {
+      { "<leader>gsj", "<cmd> GoTagAdd json <CR>",
+        "Add json struct tags" },
+      { "<leader>gsy", "<cmd> GoTagAdd yaml <CR>",
+        "Add yaml struct tags"
+      }
+    },
+    config = function(_, opts)
+      require("gopher").setup(opts)
+    end,
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
+    end,
   },
 }
