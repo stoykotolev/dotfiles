@@ -5,9 +5,12 @@ vim.g.maplocalleader = ' '
 -- Avoid repetition of function
 local map = vim.keymap.set
 local opts = { silent = true }
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
+
+vim.o.termguicolors = true
 
 -- Make line numbers default
 vim.opt.number = true
@@ -99,7 +102,7 @@ map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
 --  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
@@ -126,7 +129,6 @@ require('lazy').setup {
       vim.cmd.hi 'Comment gui=none'
     end,
   },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -285,22 +287,24 @@ require('lazy').setup {
     build = ':TSUpdate',
     opts = {
       ensure_installed = {
-        'bash',
         'html',
         'lua',
         'luadoc',
         'markdown',
+        'markdown_inline',
+        'regex',
         'vim',
-        'vimdoc',
         'html',
         'css',
-        'dockerfile',
         'javascript',
         'typescript',
         'tsx',
         'graphql',
-
+        'json',
         -- General programing
+        'vimdoc',
+        'dockerfile',
+        'bash',
         'rust',
         'go',
         'json',
@@ -347,7 +351,7 @@ require('lazy').setup {
     },
 
     config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
+      autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
           local lsp_map = function(keys, func, desc)
@@ -402,12 +406,12 @@ require('lazy').setup {
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               callback = vim.lsp.buf.document_highlight,
             })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               callback = vim.lsp.buf.clear_references,
             })
@@ -442,25 +446,28 @@ require('lazy').setup {
             },
           },
         },
+        marksman = {},
+        emmet_language_server = {},
+        cssls = {},
+        jsonls = {},
+        html = {},
+        tailwindcss = {},
+        graphql = {},
       }
 
       require('mason').setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'tailwindcss-language-server',
-        'css-lsp',
-        'html-lsp',
-        'json-lsp',
-        'marksman',
+        'markdownlint',
         'prettierd',
-        'emmet-language-server',
         'eslint_d',
-        'lua-language-server',
         'stylua',
         'gofumpt',
         'golines',
         'goimports-reviser',
+        'graphql-language-service-cli',
+        'lua-language-server',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -522,7 +529,6 @@ require('lazy').setup {
   -- Linting
   {
     'mfussenegger/nvim-lint',
-    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
@@ -532,11 +538,7 @@ require('lazy').setup {
         javascriptreact = { 'eslint_d' },
         typescriptreact = { 'eslint_d' },
       }
-      -- Create autocommand which carries out the actual linting
-      -- on the specified events.
-      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
-        group = lint_augroup,
+      autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         callback = function()
           require('lint').try_lint()
         end,
@@ -758,9 +760,14 @@ require('lazy').setup {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     config = function()
-      local keymap = vim.keymap
-      keymap.set('n', '<leader>oi', '<cmd>TSToolsOrganizeImports<cr>')
-      keymap.set('n', '<leader>mi', '<cmd>TSToolsAddMissingImports<cr>')
+      autocmd('BufWritePre', {
+        pattern = '*.ts,*.tsx,*.jsx,*.js',
+        callback = function(args)
+          vim.cmd 'TSToolsAddMissingImports sync'
+          vim.cmd 'TSToolsOrganizeImports sync'
+          require('conform').format { bufnr = args.buf }
+        end,
+      })
 
       local api = require 'typescript-tools.api'
       require('typescript-tools').setup {
@@ -774,5 +781,10 @@ require('lazy').setup {
         },
       }
     end,
+  },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
   },
 }
