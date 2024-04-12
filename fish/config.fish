@@ -6,8 +6,6 @@ set PATH $PATH ~/.cargo/bin
 set -Ux NPM_TOKEN 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
 fish_add_path /opt/homebrew/bin
 
-alias mydocker 'docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
-
 # General Aliases
 alias .. "cd .."
 alias ... "cd ../../"
@@ -154,7 +152,6 @@ _fnm_autoload_hook
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
 
 
 ## Local psql start
