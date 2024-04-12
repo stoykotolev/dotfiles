@@ -17,8 +17,8 @@ style = "Bold Italic"
 style = "Italic"
 
 [font.normal]
-family = "FiraCode Nerd Font"
-style = "Medium"
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
 
 [scrolling]
 history = 0
