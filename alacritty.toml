@@ -34,30 +34,43 @@ y = 2
 columns = 222
 lines = 72
 
-[colors.bright]
-black = "#5a524c"
-blue = "#7daea3"
-cyan = "#89b482"
-green = "#a9b665"
-magenta = "#d3869b"
-red = "#b85651"
-white = "#ddc7a1"
-yellow = "#d8a657"
-
-[colors.cursor]
-cursor = "#ddc7a1"
-text = "#272727"
-
-[colors.normal]
-black = "#3c3836"
-blue = "#68948a"
-cyan = "#72966c"
-green = "#8f9a52"
-magenta = "#ab6c7d"
-red = "#b85651"
-white = "#a89983"
-yellow = "#c18f41"
-
+# TokyoNight Alacritty Colors
+# Default colors
 [colors.primary]
-background = "#282828"
-foreground = "#d4be98"
+background = '#1a1b26'
+foreground = '#c0caf5'
+
+#[colors.cursor]
+#cursor = '#c0caf5'
+#text = '#1a1b26'
+
+# Normal colors
+[colors.normal]
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
+
+# Bright colors
+[colors.bright]
+black = '#414868'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#c0caf5'
+
+# Indexed Colors
+[[colors.indexed_colors]]
+index = 16
+color = '#ff9e64'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#db4b4b'
