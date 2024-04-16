@@ -115,12 +115,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   {
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      vim.cmd.hi 'Comment gui=none'
+    'gambhirsharma/vesper.nvim',
+    lazy = false,
+    priority = 1000,
+    name = 'vesper',
+    config = function()
+      vim.cmd [[colorscheme vesper]]
     end,
   },
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
