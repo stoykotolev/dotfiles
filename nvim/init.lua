@@ -771,6 +771,7 @@ require('lazy').setup {
 
   {
     'pmizio/typescript-tools.nvim',
+    event = { 'BufReadPre *.ts,*.tsx,*.js,*.jsx', 'BufNewFile *.ts,*.tsx,*.js,*.jsx' },
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     config = function()
       autocmd('BufWritePre', {
@@ -790,6 +791,9 @@ require('lazy').setup {
         settings = {
           tsserver_file_preferences = {
             importModuleSpecifierPreference = 'non-relative',
+            includeInlayParameterNameHints = 'all',
+            includeInlayVariableTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
           },
         },
       }
