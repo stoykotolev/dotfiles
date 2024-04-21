@@ -64,6 +64,18 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
+vim.opt.foldmethod = 'expr'
+
+-- :h vim.treesitter.foldexpr()
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+-- ref: https://github.com/neovim/neovim/pull/20750
+vim.opt.foldtext = ''
+vim.opt.fillchars:append 'fold: '
+
+-- Open all folds by default, zm is not available
+vim.opt.foldlevelstart = 99
+
 -- [[ Basic Keymaps ]]
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<C-a>', 'gg<S-v>G', opts)
@@ -115,12 +127,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   {
-    'gambhirsharma/vesper.nvim',
+    'neanias/everforest-nvim',
+    version = false,
     lazy = false,
-    priority = 1000,
-    name = 'vesper',
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
     config = function()
-      vim.cmd [[colorscheme vesper]]
+      require('everforest').setup {
+        background = 'hard',
+      }
+      vim.cmd 'colorscheme everforest'
     end,
   },
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -824,12 +840,6 @@ require('lazy').setup {
           return { 'lsp', 'indent' }
         end,
       }
-      vim.o.foldcolumn = '1'
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-      vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
       vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
       vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
       vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
