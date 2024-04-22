@@ -325,6 +325,9 @@ require('lazy').setup {
       highlight = {
         enable = true,
       },
+      autotag = {
+        enable = true,
+      },
     },
     config = function(_, tsopts)
       ---@diagnostic disable-next-line: missing-fields
@@ -650,12 +653,12 @@ require('lazy').setup {
             if luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
             end
-          end, { 'i', 's' }),
+          end, { 'i' }),
           ['<C-h>'] = cmp.mapping(function()
             if luasnip.locally_jumpable(-1) then
               luasnip.jump(-1)
             end
-          end, { 'i', 's' }),
+          end, { 'i' }),
         },
         sources = {
           { name = 'nvim_lsp' },
