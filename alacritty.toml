@@ -5,7 +5,7 @@ TERM = "xterm-256color"
 program = "/opt/homebrew/bin/fish"
 
 [font]
-size = 14
+size = 16
 
 [font.bold]
 style = "Bold"
@@ -34,30 +34,31 @@ y = 2
 columns = 222
 lines = 72
 
-[colors.bright]
-black = "#5a524c"
-blue = "#7daea3"
-cyan = "#89b482"
-green = "#a9b665"
-magenta = "#d3869b"
-red = "#b85651"
-white = "#ddc7a1"
-yellow = "#d8a657"
+# Colors (Everforest Dark)
 
-[colors.cursor]
-cursor = "#ddc7a1"
-text = "#272727"
-
-[colors.normal]
-black = "#3c3836"
-blue = "#68948a"
-cyan = "#72966c"
-green = "#8f9a52"
-magenta = "#ab6c7d"
-red = "#b85651"
-white = "#a89983"
-yellow = "#c18f41"
-
+# Default colors
 [colors.primary]
-background = "#282828"
-foreground = "#d4be98"
+background = '#2d353b'
+foreground = '#d3c6aa'
+
+# Normal colors
+[colors.normal]
+black   = '#475258'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
+
+# Bright colors
+[colors.bright]
+black   = '#475258'
+red     = '#e67e80'
+green   = '#a7c080'
+yellow  = '#dbbc7f'
+blue    = '#7fbbb3'
+magenta = '#d699b6'
+cyan    = '#83c092'
+white   = '#d3c6aa'
