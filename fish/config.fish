@@ -22,20 +22,10 @@ alias bi "brew install"
 alias bic "brew install --cask"
 alias cb "cargo build"
 alias cr "cargo run"
-alias build "npm run build"
-alias dev "npm run dev"
 alias d "z"
 alias maelstrom "~/maelstrom/maelstrom"
 
 command -qv nvim && alias v nvim
-
-function dev
-  if test -n "$argv[1]" -a "$argv[1]" = "start"
-      npm run start:dev
-  else
-      npm run dev
-  end
-end
 
 function typeorm
   npm run typeorm:$argv[1]
