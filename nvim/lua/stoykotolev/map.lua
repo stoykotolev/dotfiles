@@ -1,4 +1,6 @@
-vim.g.leader = " " -- update the leader key
+-- Set <space> as the leader key
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 local map = vim.keymap.set
 
