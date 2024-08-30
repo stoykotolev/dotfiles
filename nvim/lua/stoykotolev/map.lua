@@ -23,3 +23,4 @@ map('i', '<C-k>', '<Up>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-l>', '<Right>')
 
+map('n', 'Y', 'yVaB') -- yank whole block
