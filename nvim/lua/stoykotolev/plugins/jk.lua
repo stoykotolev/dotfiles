@@ -1,0 +1,5 @@
+return {
+    {
+        "stoykotolev/jikan-kanshi",
+    },
+}
