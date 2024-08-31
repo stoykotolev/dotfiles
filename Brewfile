@@ -1,4 +1,5 @@
 brew "neovim"
+brew "neofetch"
 brew "gh"
 brew "git"
 brew "starship"
