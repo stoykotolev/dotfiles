@@ -16,4 +16,10 @@ return {
             vim.cmd([[colorscheme kanagawa-dragon]])
         end,
     },
+    -- {
+    --     "sainnhe/sonokai",
+    --     config = function()
+    --         vim.cmd([[colorscheme sonokai]])
+    --     end,
+    -- },
 }
