@@ -1,25 +1,41 @@
 return {
-    {
-        "rebelot/kanagawa.nvim",
-        config = function()
-            require("kanagawa").setup({
-                undercurl = true, -- enable undercurls
-                commentStyle = { italic = true },
-                functionStyle = {},
-                keywordStyle = { italic = true },
-                statementStyle = { bold = true },
-                typeStyle = {},
-                transparent = false, -- do not set background color
-                dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-                terminalColors = true, -- define vim.g.terminal_color_{0,17}
-            })
-            vim.cmd([[colorscheme kanagawa-dragon]])
-        end,
-    },
     -- {
-    --     "sainnhe/sonokai",
+    --     "rebelot/kanagawa.nvim",
     --     config = function()
-    --         vim.cmd([[colorscheme sonokai]])
+    --         require("kanagawa").setup({
+    --             undercurl = true, -- enable undercurls
+    --             commentStyle = { italic = true },
+    --             functionStyle = {},
+    --             keywordStyle = { italic = true },
+    --             statementStyle = { bold = true },
+    --             typeStyle = {},
+    --             transparent = false, -- do not set background color
+    --             dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+    --             terminalColors = true, -- define vim.g.terminal_color_{0,17}
+    --         })
+    --         vim.cmd([[colorscheme kanagawa-dragon]])
     --     end,
     -- },
+    -- {
+    --     "ferdinandrau/lavish.nvim",
+    --     priority = 1000,
+    --     config = function()
+    --         require("lavish").apply()
+    --     end,
+    -- },
+    {
+        "datsfilipe/vesper.nvim",
+        config = function()
+            require("vesper").setup({
+                transparent = true,
+                italics = {
+                    keywords = false,
+                    functions = false,
+                    strings = false,
+                    variables = false,
+                },
+            })
+            vim.cmd([[colorscheme vesper]])
+        end,
+    },
 }
