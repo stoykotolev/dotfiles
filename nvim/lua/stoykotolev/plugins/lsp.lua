@@ -82,6 +82,7 @@ return {
                     end
                 end,
             })
+
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = vim.tbl_deep_extend(
                 "force",
@@ -117,6 +118,75 @@ return {
                         },
                     },
                 },
+                html = {
+                    capabilities = capabilities,
+                    filetypes = {
+                        "html",
+                        "css",
+                        "javascriptreact",
+                        "typescriptreact",
+                        "javascript",
+                        "typescript",
+                        "jsx",
+                        "tsx",
+                    },
+                },
+                emmet_language_server = {
+                    capabilities = capabilities,
+                    filetypes = {
+                        "html",
+                        "css",
+                        "javascriptreact",
+                        "typescriptreact",
+                        "javascript",
+                        "typescript",
+                        "jsx",
+                        "tsx",
+                        "markdown",
+                    },
+                },
+                tailwindcss = {
+                    capabilities = capabilities,
+                    filetypes = {
+                        "html",
+                        "css",
+                        "javascriptreact",
+                        "typescriptreact",
+                        "javascript",
+                        "typescript",
+                        "jsx",
+                        "tsx",
+                    },
+                    root_dir = require("lspconfig").util.root_pattern(
+                        "tailwind.config.js",
+                        "tailwind.config.cjs",
+                        "tailwind.config.mjs",
+                        "tailwind.config.ts",
+                        "postcss.config.js",
+                        "postcss.config.cjs",
+                        "postcss.config.mjs",
+                        "postcss.config.ts",
+                        "package.json",
+                        "node_modules",
+                        ".git"
+                    ),
+                },
+                ["typescript-language-server"] = {
+                    cmd = { "typescript-language-server", "--stdio" },
+                    capabilties = capabilities,
+                    filetypes = {
+                        "javascript",
+                        "javascriptreact",
+                        "typescript",
+                        "typescriptreact",
+                        "html",
+                    },
+                    root_dir = require("lspconfig").util.root_pattern(
+                        "package.json",
+                        "tsconfig.json",
+                        ".git"
+                    ),
+                },
                 marksman = {},
             }
 
@@ -126,6 +196,13 @@ return {
             vim.list_extend(ensure_installed, {
                 "markdownlint",
                 "stylua",
+                "jsonls",
+                "prettierd",
+                "eslint_d",
+                "delve",
+                "dockerfile-language-server",
+                "helm-ls",
+                "yaml-language-server",
                 "gofumpt",
                 "golines",
                 "goimports-reviser",
