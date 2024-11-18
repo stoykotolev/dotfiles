@@ -16,19 +16,35 @@ return {
     },
     -- Linting
     {
-        "mfussenegger/nvim-lint",
+        'mfussenegger/nvim-lint',
         config = function()
-            local lint = require("lint")
-            lint.linters_by_ft = {
+            require('lint').linters_by_ft = {
                 markdown = { "markdownlint" },
+                javascript = { 'eslint_d' },
+                typescript = { 'eslint_d' },
+                javascriptreact = { 'eslint_d' },
+                typescriptreact = { 'eslint_d' },
             }
-            autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+            vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
                 callback = function()
-                    require("lint").try_lint()
+                    require('lint').try_lint()
                 end,
             })
         end,
     },
     "tpope/vim-sleuth",
-    { "numToStr/Comment.nvim", opts = {} },
+    {
+        'numToStr/Comment.nvim',
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        },
+        config = function()
+            require('ts_context_commentstring').setup {
+                enable_autocmd = false,
+            }
+            require('Comment').setup {
+                pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+            }
+        end,
+    }
 }

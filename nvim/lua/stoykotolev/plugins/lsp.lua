@@ -90,6 +90,13 @@ return {
                 require("cmp_nvim_lsp").default_capabilities()
             )
             local servers = {
+                graphql = {
+                    filetypes = {
+                        'graphql',
+                        'gql',
+                    },
+                    capabilities = capabilities,
+                },
                 lua_ls = {
                     settings = {
                         Lua = {
