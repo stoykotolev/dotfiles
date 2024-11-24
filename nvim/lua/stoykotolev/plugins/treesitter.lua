@@ -2,6 +2,10 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
+        dependencies = {
+            'windwp/nvim-ts-autotag',
+            'axelvc/template-string.nvim',
+        },
         opts = {
             ensure_installed = {
                 "lua",
@@ -18,6 +22,13 @@ return {
                 "go",
                 "json",
                 "yaml",
+                -- Webdev
+                "tsx",
+                "typescript",
+                "javascript",
+                "html",
+                "css",
+                "graphql",
             },
             auto_install = true,
             highlight = {
@@ -26,10 +37,22 @@ return {
             autotag = {
                 enable = true,
             },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = '<enter>',
+                    node_incremental = '<enter>',
+                    scope_incremental = false,
+                    node_decremental = '<bs>',
+                },
+            },
+
         },
         config = function(_, tsopts)
             ---@diagnostic disable-next-line: missing-fields
             require("nvim-treesitter.configs").setup(tsopts)
+            require("template-string").setup()
+            require("nvim-ts-autotag").setup()
         end,
     },
     {
