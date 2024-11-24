@@ -7,7 +7,16 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-            { "j-hui/fidget.nvim", opts = {} },
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    notification = {
+                        window = {
+                            winblend = 0
+                        }
+                    }
+                }
+            },
 
             { "folke/neodev.nvim", opts = {} },
         },
