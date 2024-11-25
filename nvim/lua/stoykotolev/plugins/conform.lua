@@ -3,10 +3,10 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = {
-                javascript = { "prettierdd", stop_after_first = true },
-                javascriptreact = { "prettierd", stop_after_first = true },
-                typescript = { "prettierd", stop_after_first = true },
-                typescriptreact = { "prettierd", stop_after_first = true },
+                javascript = { "prettierdd", },
+                javascriptreact = { "prettierd" },
+                typescript = { "prettierd" },
+                typescriptreact = { "prettierd" },
                 yaml = { "yamlfmt" },
                 html = { "prettierd" },
                 json = { "prettierd" },
