@@ -3,7 +3,7 @@ return {
     config = function()
         require("conform").setup({
             formatters_by_ft = {
-                javascript = { "prettierdd", },
+                javascript = { "prettierd", },
                 javascriptreact = { "prettierd" },
                 typescript = { "prettierd" },
                 typescriptreact = { "prettierd" },
