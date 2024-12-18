@@ -2,20 +2,24 @@ local autocmd = vim.api.nvim_create_autocmd
 return {
     {
         "stevearc/conform.nvim",
-        lazy = false,
-        opts = {
-            notify_on_error = false,
-            format_on_save = {
-                timeout_ms = 100,
-                lsp_fallback = true,
-            },
-            formatters_by_ft = {
-                lua = { "stylua" },
-                javascript = { "prettierd" },
-                typescript = { "prettierd" },
-                typescriptreact = { "prettierd" }
-            },
-        },
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    javascript = { "prettierd", },
+                    javascriptreact = { "prettierd" },
+                    typescript = { "prettierd" },
+                    typescriptreact = { "prettierd" },
+                    yaml = { "yamlfmt" },
+                    html = { "prettierd" },
+                    json = { "prettierd" },
+                    markdown = { "prettierd" },
+                },
+                format_on_save = {
+                    timeout_ms = 500,
+                    lsp_format = "fallback",
+                },
+            })
+        end,
     },
     -- Linting
     {
