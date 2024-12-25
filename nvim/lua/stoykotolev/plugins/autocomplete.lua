@@ -52,8 +52,8 @@ return {
                     fields = { "kind", "abbr", "menu" },
                     format = lspkind.cmp_format({
                         mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                        menu = { -- showing type in menu
+                        maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        menu = {              -- showing type in menu
                             nvim_lsp = "[LSP]",
                             path = "[Path]",
                             buffer = "[Buffer]",
@@ -88,7 +88,7 @@ return {
                             -- vim_item.kind = icons[vim_item.kind] and (icons[vim_item.kind] .. vim_item.kind) or vim_item.kind
                             -- or just show the icon
                             vim_item.kind = lspkind.symbolic(vim_item.kind)
-                                    and lspkind.symbolic(vim_item.kind)
+                                and lspkind.symbolic(vim_item.kind)
                                 or vim_item.kind
                             return vim_item
                         end,
