@@ -23,19 +23,28 @@ return {
     --         require("lavish").apply()
     --     end,
     -- },
+    -- {
+    --     "datsfilipe/vesper.nvim",
+    --     config = function()
+    --         require("vesper").setup({
+    --             transparent = true,
+    --             italics = {
+    --                 keywords = false,
+    --                 functions = false,
+    --                 strings = false,
+    --                 variables = false,
+    --             },
+    --         })
+    --         vim.cmd([[colorscheme vesper]])
+    --     end,
+    -- },
     {
-        "datsfilipe/vesper.nvim",
+        "sho-87/kanagawa-paper.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
         config = function()
-            require("vesper").setup({
-                transparent = true,
-                italics = {
-                    keywords = false,
-                    functions = false,
-                    strings = false,
-                    variables = false,
-                },
-            })
-            vim.cmd([[colorscheme vesper]])
-        end,
-    },
+            vim.cmd("colorscheme kanagawa-paper")
+        end
+    }
 }

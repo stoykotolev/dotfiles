@@ -199,6 +199,7 @@ return {
                 "jsonls",
                 "prettierd",
                 "eslint_d",
+                "golangci-lint",
                 "delve",
                 "dockerfile-language-server",
                 "helm-ls",

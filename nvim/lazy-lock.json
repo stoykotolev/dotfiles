@@ -10,6 +10,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "899e993850084ea33d001ec229d237bc020c19ae" },
   "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "jikan-kanshi": { "branch": "main", "commit": "9ab404c56fe01263a178df183f51401544750947" },
+  "kanagawa-paper.nvim": { "branch": "master", "commit": "74f911042c9901d8556fa7a5093912126cb3db2a" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lspkind.nvim": { "branch": "master", "commit": "cff4ae321a91ee3473a92ea1a8c637e3a9510aec" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "482350b050bd413931c2cdd4857443c3da7d57cb" },
@@ -45,6 +46,5 @@
   "template-string.nvim": { "branch": "main", "commit": "419bfb2e4d5f0e6ddd0d4435f85b69da0d88d524" },
   "todo-comments.nvim": { "branch": "main", "commit": "319c01b99b7a8c9ac2066bf0efd4d6ec68fef444" },
   "typescript-tools.nvim": { "branch": "master", "commit": "1edc5dcba8cb46e71feddde91c9c3d4bce77bec5" },
-  "vesper.nvim": { "branch": "main", "commit": "6fe842ceabe97e389cf00bd1f2da85b45b99a039" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" }
 }
