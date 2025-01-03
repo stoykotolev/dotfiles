@@ -38,13 +38,22 @@ return {
     --         vim.cmd([[colorscheme vesper]])
     --     end,
     -- },
+    -- {
+    --     "sho-87/kanagawa-paper.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
+    --     config = function()
+    --         vim.cmd("colorscheme kanagawa-paper")
+    --     end
+    -- }
+
     {
-        "sho-87/kanagawa-paper.nvim",
+        'AlexvZyl/nordic.nvim',
         lazy = false,
         priority = 1000,
-        opts = {},
         config = function()
-            vim.cmd("colorscheme kanagawa-paper")
+            require('nordic').load()
         end
     }
 }
