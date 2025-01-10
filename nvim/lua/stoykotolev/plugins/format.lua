@@ -41,6 +41,15 @@ return {
             })
         end,
     },
+    {
+        "stoykotolev/eslint-code-actions.nvim",
+        keys = {
+            {
+                "<leader>da", "<cmd>GetDiagnosics<CR>", "Show Eslint [D]iagnostics [A]ctions"
+            }
+        },
+        opts = {}
+    },
     "tpope/vim-sleuth",
     {
         'numToStr/Comment.nvim',
