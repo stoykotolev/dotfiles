@@ -264,5 +264,27 @@ return {
             })
         end,
 
+    },
+    {
+        "olexsmir/gopher.nvim",
+        ft = "go",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            { "<leader>gsj", "<cmd>GoTagAdd json<CR>", desc = "Add [J]son tags for [G]o [S]tructs" },
+            { "<leader>gsy", "<cmd>GoTagAdd yaml<CR>", desc = "Add [J]son tags for [G]o [S]tructs" }
+        },
+        -- (optional) will update plugin's deps on every update
+        build = function()
+            vim.cmd.GoInstallDeps()
+        end,
+        ---@type gopher.Config
+        opts = {
+            gotag = {
+                transform = "camelcase",
+            },
+        },
     }
 }
