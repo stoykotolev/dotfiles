@@ -21,16 +21,24 @@ return {
 
             vim.keymap.set("n", "<leader>h", function()
                 harpoon:list():select(1)
-            end)
+            end,{
+            desc: "Go to 1st harpoon file",
+        })
             vim.keymap.set("n", "<leader>j", function()
                 harpoon:list():select(2)
-            end)
+            end,{
+            desc: "Go to 2nd harpoon file",
+        })
             vim.keymap.set("n", "<leader>k", function()
                 harpoon:list():select(3)
-            end)
+            end,{
+            desc: "Go to 3rd harpoon file",
+        })
             vim.keymap.set("n", "<leader>l", function()
                 harpoon:list():select(4)
-            end)
+            end, {
+            desc: "Go to 4th harpoon file",
+        })
         end,
     },
 }
