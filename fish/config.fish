@@ -105,7 +105,7 @@ alias tls "tmux ls"
 alias tkl "tmux kill-server"
 alias config "tmux new -A -s config"
 alias mart "tmux new -A -s mart"
-alias personal "tmux new -A -s personal"
+alias p "tmux new -A -s personal"
 
 # Rust Aliases
 alias caf "cargo add $argv[1] --features $argv[2]"
