@@ -1,4 +1,21 @@
 local autocmd = vim.api.nvim_create_autocmd
+local linter_root_markers = {
+    biomejs = { "biome.json", "biome.jsonc" },
+    eslint_d = {
+        "eslint.config.js",
+        "eslint.config.mjs",
+        "eslint.config.cjs",
+        "eslint.config.ts",
+        "eslint.config.mts",
+        "eslint.config.cts",
+        -- deprecated
+        ".eslintrc.js",
+        ".eslintrc.cjs",
+        ".eslintrc.yaml",
+        ".eslintrc.yml",
+        ".eslintrc.json",
+    },
+}
 return {
     {
         "stevearc/conform.nvim",
@@ -25,18 +42,38 @@ return {
     -- Linting
     {
         'mfussenegger/nvim-lint',
-        config = function()
-            require('lint').linters_by_ft = {
+        opts = {
+            linters_by_ft = {
                 markdown = { "markdownlint" },
-                javascript = { 'eslint_d' },
-                typescript = { 'eslint_d' },
-                javascriptreact = { 'eslint_d' },
-                typescriptreact = { 'eslint_d' },
+                javascript = { 'eslint_d', 'biomejs' },
+                typescript = { 'eslint_d', 'biomejs' },
+                javascriptreact = { 'eslint_d', 'biomejs' },
+                typescriptreact = { 'eslint_d', 'biomejs' },
                 go = { "golangcilint" }
             }
-            vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        },
+        config = function(_, opts)
+            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+            autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+                group = lint_augroup,
                 callback = function()
-                    require('lint').try_lint()
+                    local lint = require('lint')
+                    if vim.opt_local.modifiable:get() then
+                        local names = opts.linters_by_ft[vim.bo.filetype]
+
+                        if names == nil then
+                            return
+                        end
+
+                        for _, name in pairs(names) do
+                            local next = next
+                            if
+                                linter_root_markers[name] == nil or next(vim.fs.find(linter_root_markers[name], { upward = true }))
+                            then
+                                lint.try_lint(name)
+                            end
+                        end
+                    end
                 end,
             })
         end,
