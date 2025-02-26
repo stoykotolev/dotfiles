@@ -16,6 +16,15 @@ hs.hotkey.bind({ "ctrl" }, "'", function()
 	end
 end)
 
+hs.hotkey.bind({ "option" }, "t", function()
+	local teams = hs.application.find("teams")
+	if teams:isFrontmost() then
+		teams:hide()
+	else
+		hs.application.launchOrFocus("/Applications/Microsoft Teams.app")
+	end
+end)
+
 hs.hotkey.bind({ "ctrl" }, "]", function()
 	local alacritty = hs.application.find('slack')
 	if alacritty:isFrontmost() then
