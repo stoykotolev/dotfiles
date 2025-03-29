@@ -3,6 +3,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            'saghen/blink.cmp',
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -96,7 +97,7 @@ return {
             capabilities = vim.tbl_deep_extend(
                 "force",
                 capabilities,
-                require("cmp_nvim_lsp").default_capabilities()
+                require('blink.cmp').get_lsp_capabilities()
             )
             local servers = {
                 graphql = {
