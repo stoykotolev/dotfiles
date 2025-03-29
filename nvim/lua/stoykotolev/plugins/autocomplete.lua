@@ -86,7 +86,19 @@ return {
                 use_nvim_cmp_as_default = true,
             },
             completion = {
+                documentation = {
+                    auto_show = true
+                },
+                menu = {
+                    draw = {
+                        columns = {
+                            { "label",     "label_description", gap = 1 },
+                            { "kind_icon", "kind" }
+                        },
+                    }
+                }
             },
+            signature = { enabled = true },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
