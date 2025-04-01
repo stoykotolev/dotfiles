@@ -80,6 +80,7 @@ return {
                 preset = 'default',
                 ["<C-j>"] = { 'select_next', 'fallback' },
                 ["<C-k>"] = { 'select_prev', 'fallback' },
+                ["<C-n>"] = { 'show', 'fallback' },
             },
             appearance = {
                 nerd_font_variant = 'mono',
