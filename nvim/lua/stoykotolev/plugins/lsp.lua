@@ -255,7 +255,6 @@ return {
                     },
                 },
             }
-            local autocmd = vim.api.nvim_create_autocmd
             autocmd('BufWritePre', {
                 pattern = '*.ts,*.tsx,*.jsx,*.js',
                 callback = function(args)
@@ -266,6 +265,29 @@ return {
             })
         end,
 
+    },
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        name = "tailwind-tools",
+        opts = {
+            server = {
+                settings = {
+                    experimental = {
+                        classRegex = {
+                            "tw`([^`]*)",
+                            'tw="([^"]*)',
+                            'tw={"([^"}]*)',
+                            "tw\\.\\w+`([^`]*)",
+                            "tw\\(.*?\\)`([^`]*)",
+                            { "clsx\\(([^)]*)\\)",       "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                            { "classnames\\(([^)]*)\\)", "'([^']*)'" },
+                            { "cva\\(([^)]*)\\)",        "[\"'`]([^\"'`]*).*?[\"'`]" },
+                            { "cn\\(([^)]*)\\)",         "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                        },
+                    },
+                },
+            },
+        },
     },
     {
         "olexsmir/gopher.nvim",
