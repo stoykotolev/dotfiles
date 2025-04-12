@@ -3,6 +3,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            'saghen/blink.cmp',
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -96,7 +97,7 @@ return {
             capabilities = vim.tbl_deep_extend(
                 "force",
                 capabilities,
-                require("cmp_nvim_lsp").default_capabilities()
+                require('blink.cmp').get_lsp_capabilities()
             )
             local servers = {
                 graphql = {
@@ -254,7 +255,6 @@ return {
                     },
                 },
             }
-            local autocmd = vim.api.nvim_create_autocmd
             autocmd('BufWritePre', {
                 pattern = '*.ts,*.tsx,*.jsx,*.js',
                 callback = function(args)
@@ -265,6 +265,29 @@ return {
             })
         end,
 
+    },
+    {
+        "luckasRanarison/tailwind-tools.nvim",
+        name = "tailwind-tools",
+        opts = {
+            server = {
+                settings = {
+                    experimental = {
+                        classRegex = {
+                            "tw`([^`]*)",
+                            'tw="([^"]*)',
+                            'tw={"([^"}]*)',
+                            "tw\\.\\w+`([^`]*)",
+                            "tw\\(.*?\\)`([^`]*)",
+                            { "clsx\\(([^)]*)\\)",       "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                            { "classnames\\(([^)]*)\\)", "'([^']*)'" },
+                            { "cva\\(([^)]*)\\)",        "[\"'`]([^\"'`]*).*?[\"'`]" },
+                            { "cn\\(([^)]*)\\)",         "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                        },
+                    },
+                },
+            },
+        },
     },
     {
         "olexsmir/gopher.nvim",

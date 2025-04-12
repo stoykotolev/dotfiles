@@ -1,6 +1,6 @@
 hs.hotkey.bind({ "ctrl" }, ";", function()
 	local alacritty = hs.application.find('alacritty')
-	if alacritty:isFrontmost() then
+	if alacritty and alacritty:isFrontmost() then
 		alacritty:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Alacritty.app")
@@ -9,7 +9,7 @@ end)
 
 hs.hotkey.bind({ "ctrl" }, "'", function()
 	local inkdrop = hs.application.find("inkdrop")
-	if inkdrop:isFrontmost() then
+	if inkdrop and inkdrop:isFrontmost() then
 		inkdrop:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Inkdrop.app")
@@ -18,7 +18,7 @@ end)
 
 hs.hotkey.bind({ "option" }, "t", function()
 	local teams = hs.application.find("teams")
-	if teams:isFrontmost() then
+	if teams and teams:isFrontmost() then
 		teams:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Microsoft Teams.app")
@@ -26,28 +26,37 @@ hs.hotkey.bind({ "option" }, "t", function()
 end)
 
 hs.hotkey.bind({ "ctrl" }, "]", function()
-	local alacritty = hs.application.find('slack')
-	if alacritty:isFrontmost() then
-		alacritty:hide()
+	local slack = hs.application.find('slack')
+	if slack and slack:isFrontmost() then
+		slack:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Slack.app")
 	end
 end)
 
 hs.hotkey.bind({ "ctrl" }, "[", function()
-	local alacritty = hs.application.find('discord')
-	if alacritty:isFrontmost() then
-		alacritty:hide()
+	local discord = hs.application.find('discord')
+	if discord and discord:isFrontmost() then
+		discord:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Discord.app")
 	end
 end)
 
 hs.hotkey.bind({ "ctrl" }, "b", function()
-	local alacritty = hs.application.find('arc')
-	if alacritty:isFrontmost() then
-		alacritty:hide()
+	local arc = hs.application.find('arc')
+	if arc and arc:isFrontmost() then
+		arc:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Arc.app")
+	end
+end)
+
+hs.hotkey.bind({ "option" }, "r", function()
+	local rider = hs.application.find("rider")
+	if rider and rider:isFrontmost() then
+		rider:hide()
+	else
+		hs.application.launchOrFocus("/Applications/Rider.app")
 	end
 end)
