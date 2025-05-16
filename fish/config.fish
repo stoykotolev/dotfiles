@@ -98,6 +98,9 @@ alias gmd "git fetch --all && git merge (git_develop_branch)"
 alias gmm "git fetch --all && git merge (git_main_branch)"
 alias mp "find . -maxdepth 3 -name .git -type d | rev | cut -c 6- | rev | xargs -I {} git -C {} pull"
 
+# Git CLI aliases
+alias gc "gh pr create"
+alias gcb "gh pr create -B"
 
 # Tmux Aliases
 alias t "tmux"
