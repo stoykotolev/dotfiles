@@ -3,7 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 local map = vim.keymap.set
-local opts = {silent = true}
+local opts = { silent = true }
 
 -- Standard remaps --
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -24,6 +24,10 @@ map('i', '<C-h>', '<Left>')
 map('i', '<C-k>', '<Up>')
 map('i', '<C-j>', '<Down>')
 map('i', '<C-l>', '<Right>')
+
+-- Kybinds for splitting
+map('n', '<leader>sv', '<C-w>v')
+map('n', '<leader>ss', '<C-w>s')
 
 -- Keybinds to make split navigation easier.
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })

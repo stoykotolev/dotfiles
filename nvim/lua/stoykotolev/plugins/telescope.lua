@@ -20,7 +20,7 @@ return {
             },
             { "nvim-telescope/telescope-ui-select.nvim" },
 
-            { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+            { "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
         },
         config = function()
             require("telescope").setup({
@@ -30,7 +30,7 @@ return {
                             ["<C-n>"] = require("telescope.actions").select_tab,
                             ["<C-d>"] = require("telescope.actions").delete_buffer,
                             ["<C-k>"] = require("telescope.actions").move_selection_previous, -- move to prev result
-                            ["<C-j>"] = require("telescope.actions").move_selection_next, -- move to next result
+                            ["<C-j>"] = require("telescope.actions").move_selection_next,     -- move to next result
                             ["<C-q>"] = require("telescope.actions").send_selected_to_qflist
                                 + require("telescope.actions").open_qflist,
                         },
@@ -78,10 +78,10 @@ return {
                         require("telescope.themes").get_dropdown(),
                     },
                     fzf = {
-                        fuzzy = true, -- false will only do exact matching
+                        fuzzy = true,                   -- false will only do exact matching
                         override_generic_sorter = true, -- override the generic sorter
-                        override_file_sorter = true, -- override the file sorter
-                        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                        override_file_sorter = true,    -- override the file sorter
+                        case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                         -- the default case_mode is "smart_case"
                     },
                     file_browser = {
@@ -114,9 +114,9 @@ return {
             )
             vim.keymap.set(
                 "n",
-                "<leader>ss",
+                "<leader>st",
                 builtin.builtin,
-                { desc = "[S]earch [S]elect Telescope" }
+                { desc = "[S]earch Select [T]elescope" }
             )
             vim.keymap.set(
                 "n",
