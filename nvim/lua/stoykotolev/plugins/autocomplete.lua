@@ -17,10 +17,13 @@ return {
                 use_nvim_cmp_as_default = true,
             },
             completion = {
+                trigger       = {
+                    show_on_insert_on_trigger_character = false
+                },
                 documentation = {
                     auto_show = true
                 },
-                menu = {
+                menu          = {
                     draw = {
                         columns = {
                             { "label",     "label_description", gap = 1 },
