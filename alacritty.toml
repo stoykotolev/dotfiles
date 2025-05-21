@@ -26,13 +26,17 @@ history = 0
 [window]
 decorations = "none"
 
+[window.position]
+y = 200
+x = 420
+
 [window.padding]
 x = 2
 y = 2
 
 [window.dimensions]
-columns = 222
-lines = 72
+columns = 120
+lines = 39
 
 # Colors (Kanagawa Dragon)
 # Source https//github.com/rebelot/kanagawa.nvim
