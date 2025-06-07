@@ -147,3 +147,7 @@ set --export PATH $BUN_INSTALL/bin $PATH
 function dpsql
   docker run --name my-postgres -e POSTGRES_PASSWORD=$argv[2] -e POSTGRES_USER=$argv[1] -e POSTGRES_DB=$argv[3] -p 5432:5432 -v ~/apps/postgres:/var/lib/postgresql/data -d postgres:14-alpine
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
