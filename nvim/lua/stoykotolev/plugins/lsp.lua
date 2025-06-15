@@ -1,4 +1,9 @@
 local autocmd = vim.api.nvim_create_autocmd
+
+vim.diagnostic.config({
+    virtual_lines = true
+})
+
 return {
     {
         "neovim/nvim-lspconfig",
@@ -18,8 +23,6 @@ return {
                     }
                 }
             },
-
-            { "folke/neodev.nvim", opts = {} },
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -217,12 +220,11 @@ return {
             })
 
             require("mason-lspconfig").setup({
+                automatic_enable = true,
+                ensure_installed = {},
                 handlers = {
                     function(server_name)
                         local server = servers[server_name] or {}
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for tsserver)
                         server.capabilities = vim.tbl_deep_extend(
                             "force",
                             {},
@@ -243,6 +245,7 @@ return {
     {
         'pmizio/typescript-tools.nvim',
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        ft = { "typescriptreact", "typescript" },
         config = function()
             local api = require 'typescript-tools.api'
             require('typescript-tools').setup {
@@ -268,6 +271,7 @@ return {
     },
     {
         "luckasRanarison/tailwind-tools.nvim",
+        ft = { "typescriptreact", "javascriptreact" },
         name = "tailwind-tools",
         opts = {
             server = {
@@ -298,5 +302,14 @@ return {
                 transform = "camelcase",
             },
         },
-    }
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
 }

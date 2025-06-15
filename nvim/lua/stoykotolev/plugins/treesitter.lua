@@ -48,7 +48,10 @@ return {
         config = function(_, tsopts)
             ---@diagnostic disable-next-line: missing-fields
             require("nvim-treesitter.configs").setup(tsopts)
-            require("template-string").setup()
+            require("template-string").setup({
+                filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+                jsx_brackets = true,
+            })
             require("nvim-ts-autotag").setup()
         end,
     },
