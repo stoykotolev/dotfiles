@@ -17,6 +17,14 @@ return {
                 use_nvim_cmp_as_default = true,
             },
             completion = {
+                accept        = {
+                    auto_brackets = {
+                        kind_resolution = {
+                            enabled = true
+                        }
+                    }
+                },
+
                 trigger       = {
                     show_on_insert_on_trigger_character = false
                 },
