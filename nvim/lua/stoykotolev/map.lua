@@ -36,7 +36,11 @@ map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Diagnostic keymaps
-map('n', '<C-p>', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-map('n', '<C-n>', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+map('n', '<C-p>', function()
+    vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = 'Go to previous [D]iagnostic message' })
+map('n', '<C-n>', function()
+    vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = 'Go to next [D]iagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 map('n', '<leader>oq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
