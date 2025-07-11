@@ -7,7 +7,7 @@ local opts = { silent = true }
 
 -- Standard remaps --
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
-map('n', '<C-a>', 'gg<S-v>G', opts)
+map('n', '<C-a>', 'gg<S-v>G')
 map('n', '<C-d>', '<C-d>zz', opts)
 map('n', '<C-u>', '<C-u>zz', opts)
 map('n', 'n', 'nzz', opts)

@@ -279,6 +279,11 @@ return {
                     classFunctions = { "cva", "cx" },
                 },
             },
+            keymaps = {
+                smart_increment = {
+                    enabled = false
+                }
+            }
         },
     },
     {
