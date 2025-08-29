@@ -4,6 +4,8 @@ set -gx TERM xterm-256color
 
 set PATH $PATH ~/.cargo/bin
 set -Ux NPM_TOKEN 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
+set -x JAVA_HOME (/usr/libexec/java_home -v 21)
+
 fish_add_path /opt/homebrew/bin
 
 # General Aliases
