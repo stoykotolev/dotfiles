@@ -60,3 +60,12 @@ hs.hotkey.bind({ "option" }, "r", function()
 		hs.application.launchOrFocus("/Applications/Rider.app")
 	end
 end)
+
+hs.hotkey.bind({ "ctrl" }, "s", function()
+	local spotify = hs.application.find('spotify')
+	if spotify and alacritty:isFrontmost() then
+		spotify:hide()
+	else
+		hs.application.launchOrFocus("/Applications/Spotify.app")
+	end
+end)
