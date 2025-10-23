@@ -21,15 +21,20 @@ return {
         "stevearc/conform.nvim",
         config = function()
             require("conform").setup({
+                formatters = {
+                    biome = {
+                        require_cwd = true
+                    }
+                },
                 formatters_by_ft = {
-                    javascript = { "prettierd", },
-                    javascriptreact = { "prettierd" },
-                    typescript = { "prettierd" },
-                    typescriptreact = { "prettierd" },
+                    javascript = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
+                    javascriptreact = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
+                    typescript = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
+                    typescriptreact = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
                     yaml = { "yamlfmt" },
                     html = { "prettierd" },
                     css = { "prettierd" },
-                    json = { "prettierd" },
+                    json = { "biome", "prettierd", stop_after_first = true },
                     markdown = { "prettierd" },
                 },
                 format_on_save = {
