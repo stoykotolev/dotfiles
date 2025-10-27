@@ -61,11 +61,20 @@ hs.hotkey.bind({ "option" }, "r", function()
 	end
 end)
 
-hs.hotkey.bind({ "ctrl" }, "s", function()
+hs.hotkey.bind({ "option" }, "s", function()
 	local spotify = hs.application.find('spotify')
 	if spotify and spotify:isFrontmost() then
 		spotify:hide()
 	else
 		hs.application.launchOrFocus("/Applications/Spotify.app")
+	end
+end)
+
+hs.hotkey.bind({ "option" }, "y", function()
+	local yaak = hs.application.find('yaak')
+	if yaak and yaak:isFrontmost() then
+		yaak:hide()
+	else
+		hs.application.launchOrFocus("/Applications/Yaak.app")
 	end
 end)
