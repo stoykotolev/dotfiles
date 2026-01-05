@@ -70,18 +70,6 @@ function setup_dock() {
     echo
 }
 
-function setup_rust() {
-    log_start "Installing Rust"
-    if ! command -v rustc &> /dev/null; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-        log_end "Rust installed"
-    else
-        rustc -V
-        log_end "Rust detected"
-    fi
-    echo
-}
-
 function setup_shell() {
     log_start "Setting up fish as default shell"
     if [ -x "/opt/homebrew/bin/fish" ]; then
@@ -119,4 +107,3 @@ echo
 setup_brew
 setup_dock
 setup_shell
-setup_rust
