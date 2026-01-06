@@ -19,6 +19,7 @@ brew "ripgrep"
 brew "rust-analyzer"
 brew "starship"
 brew "zoxide"
+brew "tree-sitter-cli"
 
 cask "alacritty"
 cask "aldente"
