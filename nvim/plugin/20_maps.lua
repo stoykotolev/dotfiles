@@ -1,0 +1,31 @@
+-- Keymaps
+local map = vim.keymap.set
+local opts = { silent = true }
+
+-- Standard remaps --
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', '<C-a>', 'gg<S-v>G')
+map('n', '<C-d>', '<C-d>zz', opts)
+map('n', '<C-u>', '<C-u>zz', opts)
+map('n', 'n', 'nzz', opts)
+map('n', 'N', 'Nzz', opts)
+map('n', 'yw', 'yiw', opts)
+map('n', 'x', '"_x', opts)
+map('n', '<leader>q', '<cmd>q<cr>')
+map('n', '<leader>w', '<cmd>w<cr>')
+map('n', '<leader>x', '<cmd>x<cr>')
+map('n', 'Y', 'yVaB') -- yank whole block
+
+-- Navigation
+map('i', '<C-h>', '<Left>')
+map('i', '<C-k>', '<Up>')
+map('i', '<C-j>', '<Down>')
+map('i', '<C-l>', '<Right>')
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Splitting
+map('n', '<leader>sv', '<C-w>v')
+map('n', '<leader>ss', '<C-w>s')
