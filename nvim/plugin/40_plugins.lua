@@ -2,24 +2,196 @@ local add, later = MiniDeps.add, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
 
 MiniDeps.now(function()
-	add('AlexvZyl/nordic.nvim')
-	vim.cmd.colorscheme('nordic')
+  add('AlexvZyl/nordic.nvim')
+  vim.cmd.colorscheme('nordic')
 end)
 
-add({
-	source = 'stevearc/oil.nvim',
-	depends = {'nvim-tree/nvim-web-devicons'},
-})
+later(function()
+  add({
+    source = 'stevearc/oil.nvim',
+    depends = { 'nvim-tree/nvim-web-devicons' },
+  })
+  require('oil').setup({
+    columns = { 'icon' },
+    keymaps = {
+      ['<C-h>'] = false,
+      ['<M-h>'] = 'actions.select_split',
+    },
+    view_options = {
+      show_hidden = true,
+    },
+  })
+end)
 
-later(function() 
-	require("oil").setup({
-                columns = { "icon" },
-                keymaps = {
-                    ["<C-h>"] = false,
-                    ["<M-h>"] = "actions.select_split",
-                },
-                view_options = {
-                    show_hidden = true,
-                },
-	})
+-- Treesitter
+now_if_args(function()
+  add({
+    source = 'nvim-treesitter/nvim-treesitter',
+    -- Update tree-sitter parser after plugin is updated
+    hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+  })
+  add({
+    source = 'nvim-treesitter/nvim-treesitter-textobjects',
+    checkout = 'main',
+  })
+
+  -- Define languages which will have parsers installed and auto enabled
+  local languages = {
+    'lua',
+    'luadoc',
+    'markdown',
+    'markdown_inline',
+    'regex',
+    'vim',
+    -- General programing
+    'vimdoc',
+    'dockerfile',
+    'bash',
+    'go',
+    'json',
+    'yaml',
+    -- Webdev
+    'tsx',
+    'typescript',
+    'javascript',
+    'html',
+    'css',
+    'graphql',
+  }
+  local isnt_installed = function(lang)
+    return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
+  end
+  local to_install = vim.tbl_filter(isnt_installed, languages)
+  if #to_install > 0 then require('nvim-treesitter').install(to_install) end
+
+  -- Enable tree-sitter after opening a file for a target language
+  local filetypes = {}
+  for _, lang in ipairs(languages) do
+    for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+      table.insert(filetypes, ft)
+    end
+  end
+  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
+  _G.Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
+end)
+
+-- TS Adjacent
+later(function()
+  add({
+    source = 'windwp/nvim-ts-autotag',
+  })
+  require('nvim-ts-autotag').setup()
+
+  add({
+    source = 'axelvc/template-string.nvim',
+  })
+  require('template-string').setup({
+    filetypes = {
+      'html',
+      'typescript',
+      'javascript',
+      'typescriptreact',
+      'javascriptreact',
+    },
+    jsx_brackets = true,
+  })
+  add({
+    source = 'nvim-treesitter/nvim-treesitter-context',
+  })
+  require('treesitter-context').setup({
+    max_lines = 1,
+  })
+end)
+
+-- LSP
+now_if_args(function()
+  add('neovim/nvim-lspconfig')
+  vim.lsp.enable({
+    'lua_ls',
+  })
+end)
+
+-- Mason
+now_if_args(function()
+  add('mason-org/mason.nvim')
+  require('mason').setup()
+end)
+
+-- Formatting
+later(function()
+  add('stevearc/conform.nvim')
+  require('conform').setup({
+    default_format_opts = {
+      lsp_format = 'fallback',
+    },
+    formatters_by_ft = { lua = { 'stylua' } },
+    format_on_save = {
+      timeout_ms = 500,
+    },
+  })
+end)
+
+later(function() add('rafamadriz/friendly-snippets') end)
+
+later(function()
+  add({
+    source = 'lewis6991/gitsigns.nvim',
+  })
+  require('gitsigns').setup({
+    signs = {
+      add = { text = '+' },
+      change = { text = '~' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked = { text = '│' },
+    },
+    current_line_blame = true,
+    current_line_blame_opts = {
+      virt_text = true,
+      virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+      delay = 1000,
+      ignore_whitespace = false,
+      virt_text_priority = 100,
+    },
+    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  })
+end)
+
+later(function()
+  add({
+    source = 'folke/noice.nvim',
+    depends = { 'MunifTanjim/nui.nvim' },
+  })
+  require('noice').setup({
+    lsp = {
+      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+      override = {
+        ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+        ['vim.lsp.util.stylize_markdown'] = true,
+        ['cmp.entry.get_documentation'] = true,
+      },
+      progress = {
+        enabled = false,
+      },
+      signature = {
+        enabled = false,
+      },
+    },
+    -- you can enable a preset for easier configuration
+    presets = {
+      bottom_search = true, -- use a classic bottom cmdline for search
+      long_message_to_split = true, -- long messages will be sent to a split
+      inc_rename = false, -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = false, -- add a border to hover docs and signature help
+    },
+    messages = {
+      enabled = false, -- enables the Noice messages UI
+      view = 'notify', -- default view for messages
+      view_error = 'notify', -- view for errors
+      view_warn = 'notify', -- view for warnings
+      view_history = 'messages', -- view for :messages
+      view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
+    },
+  })
 end)
