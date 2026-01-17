@@ -29,3 +29,6 @@ map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 -- Splitting
 map('n', '<leader>sv', '<C-w>v')
 map('n', '<leader>ss', '<C-w>s')
+
+map('n', '<leader>t', '<CMD>Oil<CR>', {desc = 'Open parent directory'})
+

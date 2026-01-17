@@ -5,3 +5,21 @@ MiniDeps.now(function()
 	add('AlexvZyl/nordic.nvim')
 	vim.cmd.colorscheme('nordic')
 end)
+
+add({
+	source = 'stevearc/oil.nvim',
+	depends = {'nvim-tree/nvim-web-devicons'},
+})
+
+later(function() 
+	require("oil").setup({
+                columns = { "icon" },
+                keymaps = {
+                    ["<C-h>"] = false,
+                    ["<M-h>"] = "actions.select_split",
+                },
+                view_options = {
+                    show_hidden = true,
+                },
+	})
+end)
