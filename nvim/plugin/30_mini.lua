@@ -24,7 +24,13 @@ later(function() require('mini.surround').setup() end)
 later(function() require('mini.extra').setup() end)
 now(function() require('mini.notify').setup() end)
 
-now(function() require('mini.statusline').setup() end)
+now(function()
+  local statusline = require('mini.statusline')
+  statusline.setup()
+
+  ---@diagnostic disable-next-line: duplicate-set-field
+  statusline.section_location = function() return '%2l:%-2v' end
+end)
 -- Snippets
 later(function()
   -- Define language patterns to work better with 'friendly-snippets'
