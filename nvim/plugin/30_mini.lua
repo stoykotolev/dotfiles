@@ -3,20 +3,17 @@ local now_if_args = _G.Config.now_if_args
 
 -- Icons
 now(function()
-  -- Set up to not prefer extension-based icon for some extensions
-  local ext3_blocklist = { scm = true, txt = true, yml = true }
-  local ext4_blocklist = { json = true, yaml = true }
   require('mini.icons').setup({
     use_file_extension = function(ext, _)
-      return not (ext3_blocklist[ext:sub(-3)] or ext4_blocklist[ext:sub(-4)])
+      local suf3, suf4 = ext:sub(-3), ext:sub(-4)
+      return suf3 ~= 'scm'
+        and suf3 ~= 'txt'
+        and suf3 ~= 'yml'
+        and suf4 ~= 'json'
+        and suf4 ~= 'yaml'
     end,
   })
-
-  -- Mock 'nvim-tree/nvim-web-devicons' for plugins without 'mini.icons' support.
-  -- Not needed for 'mini.nvim' or MiniMax, but might be useful for others.
   later(MiniIcons.mock_nvim_web_devicons)
-
-  -- Add LSP kind icons. Useful for 'mini.completion'.
   later(MiniIcons.tweak_lsp_kind)
 end)
 
@@ -75,31 +72,23 @@ later(function()
 end)
 
 later(function()
-  -- Customize post-processing of LSP responses for a better user experience.
-  -- Don't show 'Text' suggestions (usually noisy) and show snippets last.
   local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
   local process_items = function(items, base)
     return MiniCompletion.default_process_items(items, base, process_items_opts)
   end
   require('mini.completion').setup({
+    delay = { completion = 250 },
     lsp_completion = {
-      -- Without this config autocompletion is set up through `:h 'completefunc'`.
-      -- Although not needed, setting up through `:h 'omnifunc'` is cleaner
-      -- (sets up only when needed) and makes it possible to use `<C-u>`.
       source_func = 'omnifunc',
       auto_setup = false,
       process_items = process_items,
     },
   })
 
-  -- Set 'omnifunc' for LSP completion only when needed.
-  local on_attach = function(ev)
-    vim.bo[ev.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+  local on_attach = function(args)
+    vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
   end
-  _G.Config.new_autocmd('LspAttach', nil, on_attach, "Set 'omnifunc'")
-
-  -- Advertise to servers that Neovim now supports certain set of completion and
-  -- signature features through 'mini.completion'.
+  _G.Config.new_autocmd('LspAttach', '*', on_attach, 'Custom `on_attach`')
   vim.lsp.config('*', { capabilities = MiniCompletion.get_lsp_capabilities() })
 end)
 
