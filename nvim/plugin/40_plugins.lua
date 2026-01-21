@@ -110,7 +110,7 @@ end)
 
 --- End of TS Stuff
 -- Mason
-now_if_args(function()
+later(function()
   add('mason-org/mason.nvim')
   require('mason').setup()
 end)
