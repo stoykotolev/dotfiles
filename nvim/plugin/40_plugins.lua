@@ -23,6 +23,7 @@ later(function()
   })
 end)
 
+--- TreeSitter and TS adjacent things
 -- Treesitter
 now_if_args(function()
   add({
@@ -65,14 +66,18 @@ now_if_args(function()
   if #to_install > 0 then require('nvim-treesitter').install(to_install) end
 
   -- Enable tree-sitter after opening a file for a target language
-  local filetypes = {}
-  for _, lang in ipairs(languages) do
-    for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
-      table.insert(filetypes, ft)
-    end
-  end
+  local filetypes = vim
+    .iter(languages)
+    :map(vim.treesitter.language.get_filetypes)
+    :flatten()
+    :totable()
   local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-  _G.Config.new_autocmd('FileType', filetypes, ts_start, 'Start tree-sitter')
+  _G.Config.new_autocmd(
+    'FileType',
+    filetypes,
+    ts_start,
+    'Ensure enabled tree-sitter'
+  )
 end)
 
 -- TS Adjacent
@@ -103,14 +108,7 @@ later(function()
   })
 end)
 
--- LSP
-now_if_args(function()
-  add('neovim/nvim-lspconfig')
-  vim.lsp.enable({
-    'lua_ls',
-  })
-end)
-
+--- End of TS Stuff
 -- Mason
 now_if_args(function()
   add('mason-org/mason.nvim')
@@ -118,6 +116,7 @@ now_if_args(function()
 end)
 
 -- Formatting
+
 later(function()
   add('stevearc/conform.nvim')
   require('conform').setup({
@@ -131,6 +130,15 @@ later(function()
   })
 end)
 
+-- LSP and LSP adjacent things
+now_if_args(function()
+  add('neovim/nvim-lspconfig')
+  vim.lsp.enable({
+    'lua_ls',
+  })
+end)
+
+-- Snippets
 later(function() add('rafamadriz/friendly-snippets') end)
 
 later(function()
