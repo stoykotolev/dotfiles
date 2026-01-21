@@ -48,7 +48,7 @@ set.tabstop = 2 -- Show tab as this number of spaces
 set.virtualedit = 'block' -- Allow going past end of line in blockwise mode
 set.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 set.complete = '.,w,b,kspell' -- Use less sources
-set.completeopt = 'menuone,fuzzy,nosort' -- Use custom behavior
+vim.o.completeopt = 'menuone,noselect,fuzzy,nosort'
 
 MiniDeps.later(function()
   vim.diagnostic.config({
