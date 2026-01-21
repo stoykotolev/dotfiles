@@ -17,7 +17,18 @@ now(function()
   later(MiniIcons.tweak_lsp_kind)
 end)
 
-later(function() require('mini.surround').setup() end)
+later(function()
+  require('mini.surround').setup({
+    mappings = {
+      add = '<leader>sa', -- Add surrounding in Normal and Visual modes
+      delete = '<leader>sd', -- Delete surrounding
+      find = '<leader>sf', -- Find surrounding (to the right)
+      find_left = '<leader>sF', -- Find surrounding (to the left)
+      highlight = '<leader>sh', -- Highlight surrounding
+      replace = '<leader>sr', -- Replace surrounding
+    },
+  })
+end)
 later(function() require('mini.extra').setup() end)
 now(function() require('mini.notify').setup() end)
 
@@ -77,7 +88,6 @@ later(function()
     return MiniCompletion.default_process_items(items, base, process_items_opts)
   end
   require('mini.completion').setup({
-    delay = { completion = 250 },
     lsp_completion = {
       source_func = 'omnifunc',
       auto_setup = false,
