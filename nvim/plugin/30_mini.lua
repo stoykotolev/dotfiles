@@ -57,7 +57,20 @@ later(function()
   MiniSnippets.start_lsp_server()
 end)
 
-later(function() require('mini.pick').setup() end)
+later(
+  function()
+    require('mini.pick').setup({
+      mappings = {
+        move_up = '<C-k>',
+        move_down = '<C-j>',
+        toggle_preview = '<C-p>',
+        toggle_info = '<C-i>',
+        scroll_up = '<C-u>',
+        scroll_down = '<C-d>',
+      },
+    })
+  end
+)
 
 later(function()
   -- Create pairs not only in Insert, but also in Command line mode

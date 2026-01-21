@@ -2,6 +2,10 @@
 local map = vim.keymap.set
 local opts = { silent = true }
 
+local nmap_leader = function(suffix, rhs, desc)
+  map('n', '<Leader>' .. suffix, rhs, { desc = desc })
+end
+
 -- Standard remaps --
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 map('n', '<C-a>', 'gg<S-v>G')
@@ -11,9 +15,9 @@ map('n', 'n', 'nzz', opts)
 map('n', 'N', 'Nzz', opts)
 map('n', 'yw', 'yiw', opts)
 map('n', 'x', '"_x', opts)
-map('n', '<leader>q', '<cmd>q<cr>')
-map('n', '<leader>w', '<cmd>w<cr>')
-map('n', '<leader>x', '<cmd>x<cr>')
+nmap_leader('q', '<cmd>q<cr>')
+nmap_leader('w', '<cmd>w<cr>')
+nmap_leader('x', '<cmd>x<cr>')
 map('n', 'Y', 'yVaB') -- yank whole block
 
 -- Navigation
@@ -27,8 +31,14 @@ map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Splitting
-map('n', '<leader>sv', '<C-w>v')
-map('n', '<leader>ss', '<C-w>s')
+nmap_leader('sv', '<C-w>v')
+nmap_leader('ss', '<C-w>s')
+nmap_leader('t', '<CMD>Oil<CR>', 'Open parent directory')
 
-map('n', '<leader>t', '<CMD>Oil<CR>', {desc = 'Open parent directory'})
-
+-- Picks
+nmap_leader('ff', '<Cmd>Pick files<CR>', 'Files')
+nmap_leader('<leader>', '<Cmd>Pick buffers<CR>', 'Files')
+nmap_leader('fD', '<Cmd>Pick diagnostic scope="all"<CR>', 'Diagnostic workspace')
+nmap_leader('fd', '<Cmd>Pick diagnostic scope="current"<CR>', 'Diagnostic buffer')
+nmap_leader('fw', '<Cmd>Pick grep_live<CR>', 'Grep live')
+nmap_leader('fcw', '<Cmd>Pick grep pattern="<cword>"<CR>', 'Grep current word')
