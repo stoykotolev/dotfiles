@@ -24,7 +24,7 @@ style = "Regular"
 history = 0
 
 [window]
-decorations = "none"
+decorations = "None"
 
 [window.position]
 y = 200
