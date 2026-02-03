@@ -109,6 +109,8 @@ later(function()
 end)
 
 --- End of TS Stuff
+
+-- LSP and LSP adjacent things
 -- Mason
 later(function()
   add('mason-org/mason.nvim')
@@ -130,7 +132,6 @@ later(function()
   })
 end)
 
--- LSP and LSP adjacent things
 now_if_args(function()
   add('neovim/nvim-lspconfig')
   vim.lsp.enable({
