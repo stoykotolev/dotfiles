@@ -118,7 +118,6 @@ later(function()
 end)
 
 -- Formatting
-
 later(function()
   add('stevearc/conform.nvim')
   require('conform').setup({
@@ -132,6 +131,7 @@ later(function()
   })
 end)
 
+-- LSP Config enable
 now_if_args(function()
   add('neovim/nvim-lspconfig')
   vim.lsp.enable({
