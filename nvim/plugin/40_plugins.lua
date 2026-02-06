@@ -114,7 +114,14 @@ end)
 -- Mason
 later(function()
   add('mason-org/mason.nvim')
+  add('mason-org/mason-lspconfig.nvim')
   require('mason').setup()
+  require('mason-lspconfig').setup({
+    ensure_installed = {
+      'lua_ls',
+      'stylua',
+    },
+  })
 end)
 
 -- Formatting
