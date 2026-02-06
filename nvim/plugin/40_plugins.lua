@@ -147,9 +147,13 @@ later(function()
       html = { 'prettierd' },
       css = { 'prettierd' },
     },
-    format_on_save = {
-      timeout_ms = 500,
-    },
+    format_on_save = function(bufnr)
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if bufname:match('/node_modules/') then return end
+      return {
+        timeout_ms = 500,
+      }
+    end,
   })
 
   require('lint').linters_by_ft = {
@@ -171,6 +175,7 @@ now_if_args(function()
   add('neovim/nvim-lspconfig')
   vim.lsp.enable({
     'lua_ls',
+    'tsgo',
   })
 end)
 
