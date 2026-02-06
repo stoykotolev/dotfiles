@@ -1,7 +1,7 @@
-local add, later = MiniDeps.add, MiniDeps.later
+local now, add, later = MiniDeps.now, MiniDeps.add, MiniDeps.later
 local now_if_args = _G.Config.now_if_args
 
-MiniDeps.now(function()
+now(function()
   add('AlexvZyl/nordic.nvim')
   vim.cmd.colorscheme('nordic')
 end)
@@ -112,14 +112,20 @@ end)
 
 -- LSP and LSP adjacent things
 -- Mason
-later(function()
+now(function()
   add('mason-org/mason.nvim')
-  add('mason-org/mason-lspconfig.nvim')
+  add('WhoIsSethDaniel/mason-tool-installer.nvim')
   require('mason').setup()
-  require('mason-lspconfig').setup({
+  require('mason-tool-installer').setup({
     ensure_installed = {
-      'lua_ls',
+      -- LSPs
+      'lua-language-server',
+      'tsgo',
+      -- Linters
+      'eslint_d',
       'stylua',
+      -- Formatters
+      'prettierd',
     },
   })
 end)
