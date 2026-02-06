@@ -133,15 +133,37 @@ end)
 -- Formatting
 later(function()
   add('stevearc/conform.nvim')
+  add('mfussenegger/nvim-lint')
   require('conform').setup({
     default_format_opts = {
       lsp_format = 'fallback',
     },
-    formatters_by_ft = { lua = { 'stylua' } },
+    formatters_by_ft = {
+      lua = { 'stylua' },
+      javascript = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
+      typescript = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
+      html = { 'prettierd' },
+      css = { 'prettierd' },
+    },
     format_on_save = {
       timeout_ms = 500,
     },
   })
+
+  require('lint').linters_by_ft = {
+    javascript = { 'eslint_d' },
+    typescript = { 'eslint_d' },
+    javascriptreact = { 'eslint_d' },
+    typescriptreact = { 'eslint_d' },
+  }
+
+  _G.Config.new_autocmd(
+    'BufWritePost',
+    '*',
+    function() require('lint').try_lint() end
+  )
 end)
 
 -- LSP Config enable
