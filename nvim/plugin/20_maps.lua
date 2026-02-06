@@ -44,18 +44,13 @@ nmap_leader('fw', '<Cmd>Pick grep_live<CR>', 'Grep live')
 nmap_leader('fcw', '<Cmd>Pick grep pattern="<cword>"<CR>', 'Grep current word')
 
 -- LSP
-nmap_leader('ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', 'Actions')
-nmap_leader('e', '<Cmd>lua vim.diagnostic.open_float()<CR>', 'Diagnostic popup')
-nmap_leader('K', '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Hover')
-nmap_leader('gr', '<Cmd>lua vim.lsp.buf.references()<CR>', 'References')
-nmap_leader('rn', '<Cmd>lua vim.lsp.buf.rename()<CR>', 'Rename')
-
 local lsp_map = function(keys, func, desc)
   vim.keymap.set('n', keys, func, { desc = 'LSP: ' .. desc })
 end
 lsp_map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
 lsp_map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
 lsp_map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+lsp_map('<leader>e', vim.diagnostic.open_float, 'Diagnostic popup')
 lsp_map('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 lsp_map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
 lsp_map('<leader>ws', vim.lsp.buf.workspace_symbol, '[W]orkspace [S]ymbols')
@@ -63,3 +58,13 @@ lsp_map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
 lsp_map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 lsp_map('K', vim.lsp.buf.hover, 'Hover Documentation')
 lsp_map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+lsp_map(
+  '<C-n>',
+  function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  'Go to next [D]iagnostic message'
+)
+lsp_map(
+  '<C-p>',
+  function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  'Go to previous [D]iagnostic message'
+)
