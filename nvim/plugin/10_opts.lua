@@ -50,21 +50,13 @@ set.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 set.complete = '.,w,b,kspell' -- Use less sources
 vim.o.completeopt = 'menuone,noselect,fuzzy,nosort'
 
-MiniDeps.later(function()
-  vim.diagnostic.config({
-    -- Show signs on top of any other sign, but only for warnings and errors
-    signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
-
-    underline = { severity = { min = 'HINT', max = 'ERROR' } },
-
-    -- Show more details immediately for errors on the current line
-    virtual_lines = false,
-    virtual_text = {
-      current_line = true,
-      severity = { min = 'ERROR', max = 'ERROR' },
-    },
-
-    -- Don't update diagnostics when typing
-    update_in_insert = false,
-  })
-end)
+MiniDeps.later(
+  function()
+    vim.diagnostic.config({
+      signs = { priority = 9999, severity = { min = 'WARN', max = 'ERROR' } },
+      underline = { severity = { min = 'HINT', max = 'ERROR' } },
+      virtual_lines = true,
+      update_in_insert = false,
+    })
+  end
+)
