@@ -124,7 +124,6 @@ now(function()
     ensure_installed = {
       -- LSPs
       'lua-language-server',
-      'tsgo',
       -- Linters
       'eslint_d',
       'stylua',
@@ -179,7 +178,6 @@ now_if_args(function()
   add('neovim/nvim-lspconfig')
   vim.lsp.enable({
     'lua_ls',
-    'tsgo',
   })
 end)
 
@@ -246,5 +244,30 @@ later(function()
       view_history = 'messages', -- view for :messages
       view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
     },
+  })
+end)
+
+later(function()
+  add({
+    source = 'pmizio/typescript-tools.nvim',
+    depends = {
+      'nvim-lua/plenary.nvim',
+      'neovim/nvim-lspconfig',
+    },
+  })
+  local api = require('typescript-tools.api')
+  require('typescript-tools').setup({
+    handlers = {
+      ['textDocument/publishDiagnostics'] = api.filter_diagnostics({ 6133 }),
+    },
+    settings = {
+      tsserver_file_preferences = {
+        importModuleSpecifierPreference = 'non-relative',
+      },
+    },
+  })
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.ts,*.tsx,*.jsx,*.js',
+    callback = function() vim.cmd('TSToolsAddMissingImports sync') end,
   })
 end)
