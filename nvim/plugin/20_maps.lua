@@ -68,3 +68,6 @@ lsp_map(
   function() vim.diagnostic.jump({ count = -1, float = true }) end,
   'Go to previous [D]iagnostic message'
 )
+
+-- Noice
+nmap_leader('na', '<Cmd>Noice<CR>', 'Noice all')

@@ -124,6 +124,11 @@ now(function()
     ensure_installed = {
       -- LSPs
       'lua-language-server',
+      'tailwindcss-language-server',
+      'emmet-language-server',
+      'html-lsp',
+      'css-lsp',
+      'graphql-language-service-cli',
       -- Linters
       'eslint_d',
       'stylua',
@@ -178,6 +183,11 @@ now_if_args(function()
   add('neovim/nvim-lspconfig')
   vim.lsp.enable({
     'lua_ls',
+    'tailwindcss-language-server',
+    'emmet_language_server',
+    'html',
+    'cssls',
+    'graphql',
   })
 end)
 
