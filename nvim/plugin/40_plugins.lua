@@ -119,11 +119,16 @@ now(function()
       'html-lsp',
       'css-lsp',
       'graphql-language-service-cli',
+      'gopls',
       -- Linters
       'eslint_d',
       'stylua',
+      'golangci-lint',
       -- Formatters
       'prettierd',
+      'gofumpt',
+      'golines',
+      'goimports-reviser',
     },
   })
 end)
@@ -178,6 +183,7 @@ now_if_args(function()
     'html',
     'cssls',
     'graphql',
+    'gopls',
   })
 end)
 
@@ -209,43 +215,43 @@ later(function()
   })
 end)
 
-later(function()
-  add({
-    source = 'folke/noice.nvim',
-    depends = { 'MunifTanjim/nui.nvim' },
-  })
-  require('noice').setup({
-    lsp = {
-      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-      override = {
-        ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-        ['vim.lsp.util.stylize_markdown'] = true,
-        ['cmp.entry.get_documentation'] = true,
-      },
-      progress = {
-        enabled = false,
-      },
-      signature = {
-        enabled = false,
-      },
-    },
-    -- you can enable a preset for easier configuration
-    presets = {
-      bottom_search = true, -- use a classic bottom cmdline for search
-      long_message_to_split = true, -- long messages will be sent to a split
-      inc_rename = false, -- enables an input dialog for inc-rename.nvim
-      lsp_doc_border = false, -- add a border to hover docs and signature help
-    },
-    messages = {
-      enabled = false, -- enables the Noice messages UI
-      view = 'notify', -- default view for messages
-      view_error = 'notify', -- view for errors
-      view_warn = 'notify', -- view for warnings
-      view_history = 'messages', -- view for :messages
-      view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
-    },
-  })
-end)
+-- later(function()
+--   add({
+--     source = 'folke/noice.nvim',
+--     depends = { 'MunifTanjim/nui.nvim' },
+--   })
+--   require('noice').setup({
+--     lsp = {
+--       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+--       override = {
+--         ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+--         ['vim.lsp.util.stylize_markdown'] = true,
+--         ['cmp.entry.get_documentation'] = true,
+--       },
+--       progress = {
+--         enabled = false,
+--       },
+--       signature = {
+--         enabled = false,
+--       },
+--     },
+--     -- you can enable a preset for easier configuration
+--     presets = {
+--       bottom_search = true, -- use a classic bottom cmdline for search
+--       long_message_to_split = true, -- long messages will be sent to a split
+--       inc_rename = false, -- enables an input dialog for inc-rename.nvim
+--       lsp_doc_border = false, -- add a border to hover docs and signature help
+--     },
+--     messages = {
+--       enabled = false, -- enables the Noice messages UI
+--       view = 'notify', -- default view for messages
+--       view_error = 'notify', -- view for errors
+--       view_warn = 'notify', -- view for warnings
+--       view_history = 'messages', -- view for :messages
+--       view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
+--     },
+--   })
+-- end)
 
 later(function()
   add({
@@ -270,4 +276,79 @@ later(function()
     pattern = '*.ts,*.tsx,*.jsx,*.js',
     callback = function() vim.cmd('TSToolsAddMissingImports sync') end,
   })
+end)
+
+-- Debugging
+later(function()
+  add({
+    source = 'mfussenegger/nvim-dap',
+    depends = {
+      'rcarriga/nvim-dap-ui',
+      'nvim-neotest/nvim-nio',
+      'williamboman/mason.nvim',
+      'jay-babu/mason-nvim-dap.nvim',
+      'theHamsta/nvim-dap-virtual-text',
+      'leoluz/nvim-dap-go',
+    },
+  })
+  local dapui = require('dapui')
+
+  require('mason-nvim-dap').setup({
+    -- Makes a best effort to setup the various debuggers with
+    -- reasonable debug configurations
+    automatic_setup = true,
+
+    -- You can provide additional configuration to the handlers,
+    -- see mason-nvim-dap README for more information
+    handlers = {},
+
+    -- You'll need to check that you have the required things installed
+    -- online, please don't ask me how to install them :)
+    ensure_installed = {
+      -- Update this to ensure that you have the debuggers for the langs you want
+      'delve',
+    },
+  })
+  dapui.setup({
+    icons = {
+      expanded = '▾',
+      collapsed = '▸',
+      current_frame = '*',
+    },
+    controls = {
+      icons = {
+        pause = '⏸',
+        play = '▶',
+        step_into = '⏎',
+        step_over = '⏭',
+        step_out = '⏮',
+        step_back = 'b',
+        run_last = '▶▶',
+        terminate = '⏹',
+        disconnect = '⏏',
+      },
+    },
+  })
+
+  local dap = require('dap')
+  dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+  dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+  dap.listeners.before.event_exited['dapui_config'] = dapui.close
+  require('dap-go').setup()
+
+  local nmap_leader = function(suffix, rhs, desc)
+    vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
+  end
+  nmap_leader('dc', dap.continue, '[D]ebug: Start/[C]ontinue')
+  nmap_leader('dsi', dap.step_into, '[D]ebug: [S]tep [I]nto')
+  nmap_leader('dso', dap.step_over, '[D]ebug: [S]tep [O]ver')
+  nmap_leader('dsu', dap.step_out, '[D]ebug: [S]tep O[u]t')
+  nmap_leader('b', dap.toggle_breakpoint, 'Debug: Toggle [B]reakpoint')
+  nmap_leader(
+    'B',
+    function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+    'Debug: Set Breakpoint'
+  )
+
+  nmap_leader('du', require('dapui').toggle, 'Debug: See last session result.')
 end)
