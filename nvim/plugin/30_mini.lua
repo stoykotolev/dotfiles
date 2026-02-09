@@ -1,5 +1,4 @@
 local now, later = MiniDeps.now, MiniDeps.later
-local now_if_args = _G.Config.now_if_args
 
 -- Icons
 now(function()
@@ -95,7 +94,7 @@ later(function()
   })
 end)
 
-now_if_args(function()
+later(function()
   local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
   local process_items = function(items, base)
     return MiniCompletion.default_process_items(items, base, process_items_opts)

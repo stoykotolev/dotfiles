@@ -21,7 +21,6 @@ set.inccommand = 'split' -- preview text replace live
 set.cursorline = true -- indicate where the cursor is
 set.scrolloff = 10 -- at least 10 lines above and below curr line
 set.hlsearch = true -- highlight on search
-set.formatoptions:remove('o') -- making new line with "o" will not add the comment line syntax
 set.shada = "'100,<50,s10,:1000,/100,@100,h" -- Limit ShaDa file (for startup)
 set.colorcolumn = '+1' -- Draw column on the right of maximum width
 set.list = true
@@ -49,6 +48,7 @@ set.virtualedit = 'block' -- Allow going past end of line in blockwise mode
 set.iskeyword = '@,48-57,_,192-255,-' -- Treat dash as `word` textobject part
 set.complete = '.,w,b,kspell' -- Use less sources
 vim.o.completeopt = 'menuone,noselect,fuzzy,nosort'
+vim.o.shortmess = 'CFOSWaco'
 
 MiniDeps.later(
   function()

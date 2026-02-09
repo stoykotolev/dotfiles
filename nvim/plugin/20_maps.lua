@@ -71,3 +71,6 @@ lsp_map(
 
 -- Noice
 nmap_leader('na', '<Cmd>Noice<CR>', 'Noice all')
+
+-- Completion
+map('i', '<C-n>', '<C-x><C-o>', { desc = 'Trigger completion' })
