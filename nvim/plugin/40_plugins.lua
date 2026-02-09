@@ -25,63 +25,53 @@ end)
 
 --- TreeSitter and TS adjacent things
 -- Treesitter
-now_if_args(function()
+later(function()
   add({
     source = 'nvim-treesitter/nvim-treesitter',
-    -- Update tree-sitter parser after plugin is updated
+    -- Use 'master' while monitoring updates in 'main'
+    checkout = 'master',
+    monitor = 'main',
+    -- Perform action after every checkout
     hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
+    depends = {
+      'windwp/nvim-ts-autotag',
+      'axelvc/template-string.nvim',
+    },
   })
-  add({
-    source = 'nvim-treesitter/nvim-treesitter-textobjects',
-    checkout = 'main',
-  })
-
-  -- Define languages which will have parsers installed and auto enabled
-  local languages = {
-    'lua',
-    'luadoc',
-    'markdown',
-    'markdown_inline',
-    'regex',
-    'vim',
+  require('nvim-treesitter.configs').setup({
+  --stylua: ignore
+    ensure_installed = {
+    'lua', 'luadoc', 'markdown', 'markdown_inline', 'regex', 'vim',
     -- General programing
-    'vimdoc',
-    'dockerfile',
-    'bash',
-    'go',
-    'gomod',
-    'gowork',
-    'json',
-    'yaml',
-    'toml',
+    'vimdoc', 'dockerfile', 'bash', 'go', 'gomod', 'gowork', 'json', 'yaml', 'toml',
     -- Webdev
-    'tsx',
-    'typescript',
-    'jsx',
-    'javascript',
-    'html',
-    'css',
-    'graphql',
-  }
-  local isnt_installed = function(lang)
-    return #vim.api.nvim_get_runtime_file('parser/' .. lang .. '.*', false) == 0
-  end
-  local to_install = vim.tbl_filter(isnt_installed, languages)
-  if #to_install > 0 then require('nvim-treesitter').install(to_install) end
-
-  -- Enable tree-sitter after opening a file for a target language
-  local filetypes = vim
-    .iter(languages)
-    :map(vim.treesitter.language.get_filetypes)
-    :flatten()
-    :totable()
-  local ts_start = function(ev) vim.treesitter.start(ev.buf) end
-  _G.Config.new_autocmd(
-    'FileType',
-    filetypes,
-    ts_start,
-    'Ensure enabled tree-sitter'
-  )
+    'typescript', 'javascript', 'html', 'css', 'graphql',
+  },
+    auto_install = true,
+    highlight = {
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<enter>',
+        node_incremental = '<enter>',
+        scope_incremental = false,
+        node_decremental = '<bs>',
+      },
+    },
+  })
+  require('template-string').setup({
+    filetypes = {
+      'html',
+      'typescript',
+      'javascript',
+      'typescriptreact',
+      'javascriptreact',
+    },
+    jsx_brackets = true,
+  })
+  require('nvim-ts-autotag').setup()
 end)
 
 -- TS Adjacent
