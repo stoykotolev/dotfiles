@@ -21,6 +21,9 @@ now(function()
   })
   vim.api.nvim_create_autocmd('BufWritePre', {
     pattern = '*.ts,*.tsx,*.jsx,*.js',
-    callback = function() vim.cmd('TSToolsAddMissingImports sync') end,
+    callback = function()
+      vim.cmd('TSToolsRemoveUnusedImports')
+      vim.cmd('TSToolsAddMissingImports sync')
+    end,
   })
 end)
