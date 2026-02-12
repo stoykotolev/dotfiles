@@ -160,17 +160,52 @@ later(function()
     end,
   })
 
-  require('lint').linters_by_ft = {
+  local ft_linters = {
     javascript = { 'eslint_d' },
     typescript = { 'eslint_d' },
     javascriptreact = { 'eslint_d' },
     typescriptreact = { 'eslint_d' },
   }
+  local linter_root_markers = {
+    biomejs = { 'biome.json', 'biome.jsonc' },
+    eslint_d = {
+      'eslint.config.js',
+      'eslint.config.mjs',
+      'eslint.config.cjs',
+      'eslint.config.ts',
+      'eslint.config.mts',
+      'eslint.config.cts',
+      -- deprecated
+      '.eslintrc.js',
+      '.eslintrc.cjs',
+      '.eslintrc.yaml',
+      '.eslintrc.yml',
+      '.eslintrc.json',
+    },
+  }
+  require('lint').linters_by_ft = ft_linters
 
   _G.Config.new_autocmd(
-    'BufWritePost',
+    { 'BufEnter', 'BufWritePost', 'InsertLeave' },
     '*',
-    function() require('lint').try_lint() end
+    function()
+      local lint = require('lint')
+      if vim.opt_local.modifiable:get() then
+        local names = ft_linters[vim.bo.filetype]
+
+        if names == nil then return end
+
+        for _, name in pairs(names) do
+          local next = next
+          if
+            linter_root_markers[name] == nil
+            or next(vim.fs.find(linter_root_markers[name], { upward = true }))
+          then
+            lint.try_lint(name)
+          end
+        end
+      end
+    end
   )
 end)
 
