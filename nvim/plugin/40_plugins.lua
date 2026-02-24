@@ -149,6 +149,7 @@ later(function()
       typescriptreact = { 'prettierd' },
       html = { 'prettierd' },
       css = { 'prettierd' },
+      graphql = { 'prettierd' },
     },
     format_on_save = function(bufnr)
       local bufname = vim.api.nvim_buf_get_name(bufnr)
