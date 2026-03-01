@@ -383,7 +383,7 @@ later(function()
   add({
     source = 'saghen/blink.cmp',
     depends = { 'rafamadriz/friendly-snippets' },
-    hooks = { post_checkout = function() vim.fn.system('cargo build --release') end },
+    checkout = 'v1.9.1',
   })
   require('blink.cmp').setup({
     keymap = {
@@ -423,7 +423,12 @@ later(function()
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
-    fuzzy = { implementation = 'prefer_rust_with_warning' },
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
+      prebuilt_binaries = {
+        force_version = 'v1.9.1',
+      },
+    },
   })
 end)
 
