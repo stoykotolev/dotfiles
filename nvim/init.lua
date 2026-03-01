@@ -11,6 +11,7 @@ end
 require('mini.deps').setup()
 
 _G.Config = {}
+_G.Maps = {}
 
 local gr = vim.api.nvim_create_augroup('stoykotolev', {})
 _G.Config.new_autocmd = function(event, pattern, callback, desc)
@@ -20,10 +21,10 @@ end
 
 _G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later
 
-_G.maps.leader = function(suffix, rhs, desc)
+_G.Maps.leader = function(suffix, rhs, desc)
   vim.keymap.set('n', '<Leader>' .. suffix, rhs, { desc = desc })
 end
 
-_G.maps.lsp = function(keys, func, desc)
+_G.Maps.lsp = function(keys, func, desc)
   vim.keymap.set('n', keys, func, { desc = 'LSP: ' .. desc })
 end
