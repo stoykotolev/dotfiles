@@ -150,6 +150,7 @@ later(function()
       html = { 'prettierd' },
       css = { 'prettierd' },
       graphql = { 'prettierd' },
+      json = { 'prettierd' },
     },
     format_on_save = function(bufnr)
       local bufname = vim.api.nvim_buf_get_name(bufnr)
@@ -223,9 +224,6 @@ now_if_args(function()
     'gopls',
   })
 end)
-
--- Snippets
-later(function() add('rafamadriz/friendly-snippets') end)
 
 later(function()
   add({
@@ -378,4 +376,150 @@ end)
 later(function()
   -- Create pairs not only in Insert, but also in Command line mode
   require('mini.pairs').setup({ modes = { command = true } })
+end)
+
+-- Completion
+later(function()
+  add({
+    source = 'saghen/blink.cmp',
+    depends = { 'rafamadriz/friendly-snippets' },
+    hooks = { post_checkout = function() vim.fn.system('cargo build --release') end },
+  })
+  require('blink.cmp').setup({
+    keymap = {
+      preset = 'default',
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-n>'] = { 'show', 'fallback' },
+      ['<C-l>'] = { 'snippet_forward', 'fallback' },
+      ['<C-h>'] = { 'snippet_backward', 'fallback' },
+    },
+    appearance = {
+      nerd_font_variant = 'mono',
+      use_nvim_cmp_as_default = true,
+    },
+    completion = {
+      trigger = {
+        show_on_insert_on_trigger_character = false,
+      },
+      documentation = {
+        auto_show = true,
+      },
+      accept = {
+        auto_brackets = {
+          enabled = false,
+        },
+      },
+      menu = {
+        draw = {
+          columns = {
+            { 'label', 'label_description', gap = 1 },
+            { 'kind_icon', 'kind' },
+          },
+        },
+      },
+    },
+    signature = { enabled = true },
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
+  })
+end)
+
+-- Telescope
+later(function()
+  add({
+    source = 'nvim-telescope/telescope-fzf-native.nvim',
+    hooks = { post_checkout = function() vim.fn.system('make') end },
+  })
+  add({
+    source = 'nvim-telescope/telescope.nvim',
+    depends = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+  })
+  require('telescope').setup({
+    defaults = {
+      mappings = {
+        i = {
+          ['<C-n>'] = require('telescope.actions').select_tab,
+          ['<C-d>'] = require('telescope.actions').delete_buffer,
+          ['<C-k>'] = require('telescope.actions').move_selection_previous,
+          ['<C-j>'] = require('telescope.actions').move_selection_next,
+          ['<C-q>'] = require('telescope.actions').send_selected_to_qflist
+            + require('telescope.actions').open_qflist,
+        },
+        n = {
+          ['q'] = require('telescope.actions').close,
+          ['dd'] = require('telescope.actions').delete_buffer,
+          ['x'] = require('telescope.actions').delete_buffer,
+        },
+      },
+      sorting_strategy = 'ascending',
+      layout_strategy = 'horizontal',
+      layout_config = {
+        horizontal = {
+          prompt_position = 'top',
+          preview_width = 0.55,
+          results_width = 0.8,
+        },
+        vertical = { mirror = false },
+        width = 0.87,
+        height = 0.80,
+        preview_cutoff = 120,
+      },
+      border = {},
+      borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+      color_devicons = true,
+      use_less = true,
+      set_env = { ['COLORTERM'] = 'truecolor' },
+      file_previewer = require('telescope.previewers').vim_buffer_cat.new,
+      grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+      qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+    },
+    extensions = {
+      ['ui-select'] = {
+        require('telescope.themes').get_dropdown(),
+      },
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = 'smart_case',
+      },
+    },
+  })
+
+  pcall(require('telescope').load_extension, 'fzf')
+  pcall(require('telescope').load_extension, 'ui-select')
+
+  local builtin = require('telescope.builtin')
+  _G.Maps.leader('sh', builtin.help_tags, '[S]earch [H]elp')
+  _G.Maps.leader('sk', builtin.keymaps, '[S]earch [K]eymaps')
+  _G.Maps.leader('ff', builtin.find_files, '[F]ind [F]iles')
+  _G.Maps.leader('st', builtin.builtin, '[S]earch Select [T]elescope')
+  _G.Maps.leader('fcw', builtin.grep_string, '[F]ind [C]urrent [W]ord')
+  _G.Maps.leader('fw', builtin.live_grep, '[F]ind by [W]ord')
+  _G.Maps.leader('sd', builtin.diagnostics, '[S]earch [D]iagnostics')
+  _G.Maps.leader('sr', builtin.resume, '[S]earch [R]esume')
+  _G.Maps.leader('s.', builtin.oldfiles, '[S]earch Recent Files ("." for repeat)')
+  _G.Maps.leader('<leader>', builtin.buffers, '[ ] Find existing buffers')
+  _G.Maps.leader(
+    's/',
+    function()
+      builtin.live_grep({
+        grep_open_files = true,
+        prompt_title = 'Live Grep in Open Files',
+      })
+    end,
+    '[S]earch [/] in Open Files'
+  )
+  _G.Maps.leader(
+    'sn',
+    function() builtin.find_files({ cwd = vim.fn.stdpath('config') }) end,
+    '[S]earch [N]eovim files'
+  )
 end)
