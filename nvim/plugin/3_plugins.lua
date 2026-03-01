@@ -226,6 +226,17 @@ now_if_args(function()
 end)
 
 later(function()
+  add('j-hui/fidget.nvim')
+  require('fidget').setup({
+    notification = {
+      window = {
+        winblend = 0,
+      },
+    },
+  })
+end)
+
+later(function()
   add({
     source = 'lewis6991/gitsigns.nvim',
   })
@@ -273,6 +284,32 @@ later(function()
     pattern = '*.ts,*.tsx,*.jsx,*.js',
     callback = function() vim.cmd('TSToolsAddMissingImports sync') end,
   })
+end)
+
+later(function()
+  add({ source = 'luckasRanarison/tailwind-tools.nvim' })
+  require('tailwind-tools').setup({
+    server = {
+      settings = {
+        classFunctions = { 'cva', 'cx' },
+      },
+    },
+    keymaps = {
+      smart_increment = { enabled = false },
+    },
+  })
+end)
+
+later(function()
+  add({
+    source = 'olexsmir/gopher.nvim',
+    depends = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
+  })
+  require('gopher').setup({
+    gotag = { transform = 'camelcase' },
+  })
+  _G.Maps.leader('gsj', '<cmd>GoTagAdd json<CR>', 'Add [J]son tags for [G]o [S]tructs')
+  _G.Maps.leader('gsy', '<cmd>GoTagAdd yaml<CR>', 'Add [Y]aml tags for [G]o [S]tructs')
 end)
 
 -- Debugging
@@ -355,6 +392,38 @@ now(function()
   ---@diagnostic disable-next-line: duplicate-set-field
   statusline.section_location = function() return '%2l:%-2v' end
 end)
+
+later(function()
+  require('mini.ai').setup({ n_lines = 500 })
+end)
+
+later(function()
+  require('mini.surround').setup({
+    mappings = {
+      add = '<leader>as',
+      delete = '<leader>ds',
+      find = '<leader>fs',
+      find_left = 'sF',
+      highlight = '<leader>hs',
+      replace = '<leader>rs',
+      update_n_lines = 'sn',
+    },
+  })
+end)
+
+later(function()
+  local hipatterns = require('mini.hipatterns')
+  hipatterns.setup({
+    highlighters = {
+      fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+      hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+      todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+      note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+      hex_color = hipatterns.gen_highlighter.hex_color(),
+    },
+  })
+end)
+
 -- Snippets
 later(function()
   -- Define language patterns to work better with 'friendly-snippets'
