@@ -266,7 +266,6 @@ later(function()
     source = 'pmizio/typescript-tools.nvim',
     depends = {
       'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig',
     },
   })
   local api = require('typescript-tools.api')
@@ -308,8 +307,16 @@ later(function()
   require('gopher').setup({
     gotag = { transform = 'camelcase' },
   })
-  _G.Maps.leader('gsj', '<cmd>GoTagAdd json<CR>', 'Add [J]son tags for [G]o [S]tructs')
-  _G.Maps.leader('gsy', '<cmd>GoTagAdd yaml<CR>', 'Add [Y]aml tags for [G]o [S]tructs')
+  _G.Maps.leader(
+    'gsj',
+    '<cmd>GoTagAdd json<CR>',
+    'Add [J]son tags for [G]o [S]tructs'
+  )
+  _G.Maps.leader(
+    'gsy',
+    '<cmd>GoTagAdd yaml<CR>',
+    'Add [Y]aml tags for [G]o [S]tructs'
+  )
 end)
 
 -- Debugging
@@ -393,23 +400,23 @@ now(function()
   statusline.section_location = function() return '%2l:%-2v' end
 end)
 
-later(function()
-  require('mini.ai').setup({ n_lines = 500 })
-end)
+later(function() require('mini.ai').setup({ n_lines = 500 }) end)
 
-later(function()
-  require('mini.surround').setup({
-    mappings = {
-      add = '<leader>as',
-      delete = '<leader>ds',
-      find = '<leader>fs',
-      find_left = 'sF',
-      highlight = '<leader>hs',
-      replace = '<leader>rs',
-      update_n_lines = 'sn',
-    },
-  })
-end)
+later(
+  function()
+    require('mini.surround').setup({
+      mappings = {
+        add = '<leader>as',
+        delete = '<leader>ds',
+        find = '<leader>fs',
+        find_left = 'sF',
+        highlight = '<leader>hs',
+        replace = '<leader>rs',
+        update_n_lines = 'sn',
+      },
+    })
+  end
+)
 
 later(function()
   local hipatterns = require('mini.hipatterns')
