@@ -45,7 +45,7 @@ later(function()
     -- General programing
     'vimdoc', 'dockerfile', 'bash', 'go', 'gomod', 'gowork', 'json', 'yaml', 'toml',
     -- Webdev
-    'typescript', 'javascript', 'html', 'css', 'graphql',
+    'typescript', 'javascript', 'html', 'css', 'graphql', 'astro'
   },
     auto_install = true,
     highlight = {
@@ -113,6 +113,7 @@ now(function()
   require('mason-tool-installer').setup({
     ensure_installed = {
       -- LSPs
+      'astro-language-server',
       'lua-language-server',
       'tailwindcss-language-server',
       'emmet-language-server',
@@ -222,6 +223,7 @@ now_if_args(function()
     'cssls',
     'graphql',
     'gopls',
+    'astro',
   })
 end)
 
