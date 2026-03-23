@@ -27,15 +27,16 @@ return {
                     }
                 },
                 formatters_by_ft = {
-                    javascript = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
-                    javascriptreact = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
-                    typescript = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
-                    typescriptreact = { "biome", "biome-organize-imports", "prettierd", stop_after_first = true },
+                    javascript = { "prettierd", stop_after_first = true },
+                    javascriptreact = { "prettierd", stop_after_first = true },
+                    typescript = { "prettierd", stop_after_first = true },
+                    typescriptreact = { "prettierd", stop_after_first = true },
                     yaml = { "yamlfmt" },
                     html = { "prettierd" },
                     css = { "prettierd" },
                     json = { "biome", "prettierd", stop_after_first = true },
                     markdown = { "prettierd" },
+                    graphql = { "prettierd" }
                 },
                 format_on_save = {
                     timeout_ms = 500,
