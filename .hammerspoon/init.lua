@@ -78,3 +78,12 @@ hs.hotkey.bind({ "option" }, "y", function()
 		hs.application.launchOrFocus("/Applications/Yaak.app")
 	end
 end)
+
+hs.hotkey.bind({ "ctrl" }, "i", function()
+	local intellij = hs.application.find('intellij')
+	if intellij and intellij:isFrontmost() then
+		intellij:hide()
+	else
+		hs.application.launchOrFocus("/Applications/IntelliJ Idea.app")
+	end
+end)
