@@ -103,6 +103,9 @@ return {
                 require('blink.cmp').get_lsp_capabilities()
             )
             local servers = {
+                astro = {
+                    capabilities = capabilities,
+                },
                 graphql = {
                     filetypes = {
                         'graphql',
@@ -163,6 +166,7 @@ return {
                         "jsx",
                         "tsx",
                         "markdown",
+                        "astro",
                     },
                 },
                 tailwindcss = {
@@ -176,6 +180,7 @@ return {
                         "typescript",
                         "jsx",
                         "tsx",
+                        "astro",
                     },
                     root_dir = require("lspconfig").util.root_pattern(
                         "tailwind.config.js",
@@ -271,7 +276,7 @@ return {
     },
     {
         "luckasRanarison/tailwind-tools.nvim",
-        ft = { "typescriptreact", "javascriptreact" },
+        ft = { "typescriptreact", "javascriptreact", "astro" },
         name = "tailwind-tools",
         opts = {
             server = {

@@ -23,6 +23,7 @@ return {
                 "json",
                 "yaml",
                 -- Webdev
+                "astro",
                 "tsx",
                 "typescript",
                 "javascript",
@@ -49,7 +50,7 @@ return {
             ---@diagnostic disable-next-line: missing-fields
             require("nvim-treesitter.configs").setup(tsopts)
             require("template-string").setup({
-                filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+                filetypes = { 'html', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact', 'astro' },
                 jsx_brackets = true,
             })
             require("nvim-ts-autotag").setup()

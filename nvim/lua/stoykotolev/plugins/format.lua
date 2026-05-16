@@ -36,7 +36,8 @@ return {
                     css = { "prettierd" },
                     json = { "biome", "prettierd", stop_after_first = true },
                     markdown = { "prettierd" },
-                    graphql = { "prettierd" }
+                    graphql = { "prettierd" },
+                    astro = { "prettierd" }
                 },
                 format_on_save = {
                     timeout_ms = 500,
@@ -55,6 +56,7 @@ return {
                 typescript = { 'eslint_d', 'biomejs' },
                 javascriptreact = { 'eslint_d', 'biomejs' },
                 typescriptreact = { 'eslint_d', 'biomejs' },
+                astro = { 'eslint_d' },
                 go = { "golangcilint" }
             }
         },
