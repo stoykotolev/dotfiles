@@ -49,8 +49,12 @@ return {
             },
             signature = { enabled = true },
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+                default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'env' },
                 providers = {
+                    env = {
+                        name = 'Env',
+                        module = 'stoykotolev.blink-cmp-env',
+                    },
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
