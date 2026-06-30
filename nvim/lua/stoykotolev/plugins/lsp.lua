@@ -299,8 +299,8 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         keys = {
-            { "<leader>gsj", "<cmd>GoTagAdd json<CR>", desc = "Add [J]son tags for [G]o [S]tructs" },
-            { "<leader>gsy", "<cmd>GoTagAdd yaml<CR>", desc = "Add [J]son tags for [G]o [S]tructs" }
+            { "<leader>jgs", "<cmd>GoTagAdd json<CR>", desc = "Add [J]son tags for [G]o [S]tructs" },
+            { "<leader>ygs", "<cmd>GoTagAdd yaml<CR>", desc = "Add [Y]aml tags for [G]o [S]tructs" }
         },
         -- (optional) will update plugin's deps on every update
         build = function()
