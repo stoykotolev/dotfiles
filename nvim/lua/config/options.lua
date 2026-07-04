@@ -29,8 +29,8 @@ vim.opt.cursorline = true    -- indicate where the cursor is
 vim.opt.scrolloff = 10       -- at least 10 lines above and below curr line
 vim.opt.hlsearch = true      -- highlight on search
 
--- Folding
+-- Folding (VISION.md D5): open by default; foldmethod is set per-window by
+-- the treesitter FileType autocmd (expr with a parser, indent without).
 vim.opt.fillchars = { fold = " " }
-vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
