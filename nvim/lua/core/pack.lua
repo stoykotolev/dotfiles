@@ -57,6 +57,7 @@ vim.pack.add({
     -- UI
     "https://github.com/folke/todo-comments.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+    "https://github.com/j-hui/fidget.nvim",
 
     -- Testing
     "https://github.com/nvim-neotest/nvim-nio",
