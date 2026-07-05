@@ -1,0 +1,14 @@
+local statusline = require("mini.statusline")
+statusline.setup({ use_icons = vim.g.have_nerd_font })
+
+---@diagnostic disable-next-line: duplicate-set-field
+statusline.section_location = function()
+    return "%2l:%-2v"
+end
+
+require("todo-comments").setup({ signs = false })
+
+-- In-buffer markdown rendering, quiet
+require("render-markdown").setup({
+    latex = { enabled = false },
+})
