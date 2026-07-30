@@ -54,6 +54,9 @@ vim.pack.add({
     -- Git
     "https://github.com/lewis6991/gitsigns.nvim",
 
+    -- Go
+    "https://github.com/olexsmir/gopher.nvim",
+
     -- UI
     "https://github.com/folke/todo-comments.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",

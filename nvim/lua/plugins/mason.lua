@@ -22,6 +22,11 @@ local tools = {
     -- Debug adapters
     "js-debug-adapter",
     "delve",
+    -- Go tools (gopher.nvim)
+    "gomodifytags",
+    "gotests",
+    "impl",
+    "iferr",
 }
 
 local function ensure_installed()
