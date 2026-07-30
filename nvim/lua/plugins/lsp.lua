@@ -8,10 +8,36 @@ autocmd("LspAttach", {
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
         local builtin = require("telescope.builtin")
-        lsp_map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
+
+        -- Goto pickers: tsserver reports library .d.ts sites alongside your
+        -- own code, so prefer project results — but fall back to the library
+        -- ones when they're all there is (e.g. gd on createServerFn itself).
+        local goto_prefer_project = function(lsp_goto)
+            return function()
+                lsp_goto({
+                    on_list = function(options)
+                        local project = vim.tbl_filter(function(item)
+                            return not item.filename:find("node_modules", 1, true)
+                        end, options.items)
+                        local items = #project > 0 and project or options.items
+                        if #items == 0 then
+                            return
+                        end
+                        vim.fn.setqflist({}, " ", { title = options.title, items = items })
+                        if #items == 1 then
+                            vim.cmd.cfirst()
+                        else
+                            builtin.quickfix()
+                        end
+                    end,
+                })
+            end
+        end
+
+        lsp_map("gd", goto_prefer_project(vim.lsp.buf.definition), "[G]oto [D]efinition")
         lsp_map("gr", builtin.lsp_references, "[G]oto [R]eferences")
-        lsp_map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
-        lsp_map("<leader>D", builtin.lsp_type_definitions, "Type [D]efinition")
+        lsp_map("gI", goto_prefer_project(vim.lsp.buf.implementation), "[G]oto [I]mplementation")
+        lsp_map("<leader>D", goto_prefer_project(vim.lsp.buf.type_definition), "Type [D]efinition")
         lsp_map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
         lsp_map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
         lsp_map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")

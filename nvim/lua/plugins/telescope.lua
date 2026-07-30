@@ -41,12 +41,9 @@ require("telescope").setup({
         qflist_previewer = previewers.vim_buffer_qflist.new,
     },
     pickers = {
-        -- tsserver reports library .d.ts declaration sites alongside your own
-        -- code for symbols typed by a library (e.g. TanStack server functions);
-        -- keep node_modules out of the goto pickers.
-        lsp_definitions = { file_ignore_patterns = { "node_modules" } },
-        lsp_type_definitions = { file_ignore_patterns = { "node_modules" } },
-        lsp_implementations = { file_ignore_patterns = { "node_modules" } },
+        -- node_modules hits in a references list are pure noise; the goto
+        -- keymaps (gd/gI/<leader>D) do their own project-first filtering with
+        -- a library fallback, so only references gets the hard filter.
         lsp_references = { file_ignore_patterns = { "node_modules" } },
     },
     extensions = {
