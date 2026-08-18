@@ -1,4 +1,30 @@
--- Phase stub — filled in a later phase.
 return function(p)
-    return {}
+    return {
+        OilDir = { fg = p.foam, bold = true },
+        OilDirIcon = { fg = p.foam },
+        OilFile = { fg = p.text },
+        OilLink = { fg = p.iris },
+        OilLinkTarget = { fg = p.muted },
+        OilSocket = { fg = p.iris },
+        OilSize = { fg = p.muted },
+        OilMtime = { fg = p.muted },
+        OilCreate = { fg = p.teal },
+        OilDelete = { fg = p.love },
+        OilMove = { fg = p.gold },
+        OilCopy = { fg = p.foam },
+        OilChange = { fg = p.gold },
+        OilRestore = { fg = p.teal },
+        OilPurge = { fg = p.love },
+        OilTrash = { fg = p.love },
+        OilTrashSourcePath = { fg = p.muted },
+        OilPermissionRead = { fg = p.gold },
+        OilPermissionWrite = { fg = p.love },
+        OilPermissionExecute = { fg = p.teal },
+        OilPermissionNone = { fg = p.faint },
+        OilTypeDir = { fg = p.foam },
+        OilTypeFile = { fg = p.muted },
+        OilTypeLink = { fg = p.iris },
+        OilTypeSocket = { fg = p.iris },
+        OilTypeFifo = { fg = p.iris },
+    }
 end
