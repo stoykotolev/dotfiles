@@ -1,4 +1,42 @@
--- Phase stub — filled in a later phase.
+-- Heading backgrounds are very subtle tints of each heading colour.
 return function(p)
-    return {}
+    return {
+        RenderMarkdownH1 = { link = "@markup.heading.1" },
+        RenderMarkdownH2 = { link = "@markup.heading.2" },
+        RenderMarkdownH3 = { link = "@markup.heading.3" },
+        RenderMarkdownH4 = { link = "@markup.heading.4" },
+        RenderMarkdownH5 = { link = "@markup.heading.5" },
+        RenderMarkdownH6 = { link = "@markup.heading.6" },
+        RenderMarkdownH1Bg = { bg = "#2A1F24" },
+        RenderMarkdownH2Bg = { bg = "#2A2419" },
+        RenderMarkdownH3Bg = { bg = "#1B2530" },
+        RenderMarkdownH4Bg = { bg = "#1B262A" },
+        RenderMarkdownH5Bg = { bg = "#232030" },
+        RenderMarkdownH6Bg = { bg = "#22252E" },
+
+        RenderMarkdownCode = { bg = p.surface },
+        RenderMarkdownCodeInline = { fg = p.teal, bg = p.surface },
+        RenderMarkdownCodeBorder = { bg = "#1A1D26" },
+        RenderMarkdownBullet = { fg = p.rose },
+        RenderMarkdownDash = { fg = p.high },
+        RenderMarkdownQuote = { fg = p.muted },
+        RenderMarkdownTableHead = { fg = p.rose },
+        RenderMarkdownTableRow = { fg = p.subtle },
+        RenderMarkdownTableFill = { fg = p.high },
+        RenderMarkdownLink = { fg = p.foam },
+        RenderMarkdownWikiLink = { fg = p.iris },
+        RenderMarkdownSign = { fg = p.faint },
+        RenderMarkdownUnchecked = { fg = p.muted },
+        RenderMarkdownChecked = { fg = p.teal },
+        RenderMarkdownTodo = { fg = p.gold },
+        RenderMarkdownSuccess = { fg = p.teal },
+        RenderMarkdownInfo = { fg = p.foam },
+        RenderMarkdownHint = { fg = p.teal },
+        RenderMarkdownWarn = { fg = p.gold },
+        RenderMarkdownError = { fg = p.love },
+        RenderMarkdownInlineHighlight = { fg = p.gold, bg = p.surface },
+        RenderMarkdownHtmlComment = { fg = p.faint, italic = true },
+        RenderMarkdownIndent = { fg = p.faint },
+        RenderMarkdownMath = { fg = p.iris },
+    }
 end
