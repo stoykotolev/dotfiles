@@ -8,20 +8,21 @@ return {
     med = "#2E3548",
     high = "#3A4152",
 
-    -- Foregrounds
-    text = "#C8D0E0",
-    iron = "#B3BDD1",
-    subtle = "#9AA5BC",
-    muted = "#6E7791",
+    -- Foregrounds (dimmed 2026-08-19: original set was too bright for
+    -- long sessions; targets now ~5.5-8.8 vs base instead of 6.8-11.0)
+    text = "#B2BACC", -- prev: #C8D0E0
+    iron = "#A2ABBE", -- prev: #B3BDD1
+    subtle = "#8F99AF", -- prev: #9AA5BC
+    muted = "#666F87", -- prev: #6E7791
     faint = "#4A5164",
 
     -- Accents (exactly 6 hues)
-    rose = "#D9909B", -- keywords
-    gold = "#E3B778", -- string-literals, warnings
-    foam = "#8EC2D8", -- callables, info
-    teal = "#8FBCBB", -- types, additions, hints
-    iris = "#B4A0DC", -- meta & non-text literals
-    love = "#DF6A72", -- errors only, never syntax
+    rose = "#C98995", -- keywords; prev: #D9909B
+    gold = "#CFA875", -- string-literals, warnings; prev: #E3B778
+    foam = "#7FAEC4", -- callables, info; prev: #8EC2D8
+    teal = "#82ABAA", -- types, additions, hints; prev: #8FBCBB
+    iris = "#A492C9", -- meta & non-text literals; prev: #B4A0DC
+    love = "#C96A70", -- errors only, never syntax; prev: #DF6A72
 
     -- Derived tints
     git_add_bg = "#1C2A2B",

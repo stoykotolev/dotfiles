@@ -10,14 +10,14 @@ function M.apply(p)
     vim.g.terminal_color_6 = p.rose
     vim.g.terminal_color_7 = p.text
     vim.g.terminal_color_8 = p.muted
-    -- Bright variants: hand-tuned lightened accents.
-    vim.g.terminal_color_9 = "#EA8189"
-    vim.g.terminal_color_10 = "#A3CCCB"
-    vim.g.terminal_color_11 = "#EFCB94"
-    vim.g.terminal_color_12 = "#A6D2E4"
-    vim.g.terminal_color_13 = "#C6B6E8"
-    vim.g.terminal_color_14 = "#E7ABB4"
-    vim.g.terminal_color_15 = "#E2E8F2"
+    -- Bright variants: lighten(accent, 0.12); 15 = lighten(text, 0.48).
+    vim.g.terminal_color_9 = "#CF7C81"
+    vim.g.terminal_color_10 = "#91B5B4"
+    vim.g.terminal_color_11 = "#D5B286"
+    vim.g.terminal_color_12 = "#8EB8CB"
+    vim.g.terminal_color_13 = "#AF9FCF"
+    vim.g.terminal_color_14 = "#CF97A2"
+    vim.g.terminal_color_15 = "#D7DBE4"
 end
 
 return M

@@ -2,9 +2,9 @@
 -- text, so blame must be the dimmest thing on screen.
 return function(p)
     -- Dimmed accents: blend(accent, base, 0.6) precomputed as literals.
-    local teal_dim = "#607C7F" -- blend(teal, base, 0.6)
-    local gold_dim = "#927956" -- blend(gold, base, 0.6)
-    local love_dim = "#904B53" -- blend(love, base, 0.6)
+    local teal_dim = "#587274" -- blend(teal, base, 0.6)
+    local gold_dim = "#867055" -- blend(gold, base, 0.6)
+    local love_dim = "#834B52" -- blend(love, base, 0.6)
     local faint_dim = "#363C4A" -- blend(faint, base, 0.6)
 
     return {
