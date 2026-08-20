@@ -24,7 +24,11 @@ return function(p)
         ["@lsp.type.type"] = { fg = p.teal },
         ["@lsp.type.typeParameter"] = { fg = p.teal, italic = true },
         ["@lsp.type.enumMember"] = { fg = p.iris },
-        ["@lsp.type.namespace"] = { fg = p.iris }, -- gopls package names
+        ["@lsp.type.namespace"] = { fg = p.iris },
+        -- gopls also tags import-path *contents* as namespace, splitting the
+        -- string's color from its quotes; treesitter's @module already covers
+        -- package names in code, so let it win everywhere in Go.
+        ["@lsp.type.namespace.go"] = {},
         ["@lsp.type.decorator"] = { fg = p.iris },
         ["@lsp.type.macro"] = { fg = p.iris },
         ["@lsp.type.event"] = { fg = p.iris },
