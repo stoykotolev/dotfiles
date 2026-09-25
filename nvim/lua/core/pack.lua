@@ -17,9 +17,6 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 vim.pack.add({
-    -- Theme
-    "https://github.com/AlexvZyl/nordic.nvim",
-
     -- Treesitter (main branch: new API, per-filetype vim.treesitter.start)
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     "https://github.com/nvim-treesitter/nvim-treesitter-context",

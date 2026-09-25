@@ -1,4 +1,5 @@
--- Live-reload plumbing while the scheme is being tuned.
+-- Opt-in tuning tools: live reload, :YugureContrast, :YugureAudit.
+-- Enable with `vim.g.yugure_dev = true` before the colorscheme loads.
 local function reload()
     -- pcall so a syntax error mid-edit doesn't leave a cleared UI.
     local ok, err = pcall(vim.cmd.colorscheme, "yugure")
@@ -19,20 +20,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 vim.api.nvim_create_user_command("YugureReload", reload, {
     desc = "Reload the yugure colorscheme",
-})
-
--- A/B comparison against nordic.
-local function ab_toggle()
-    local target = vim.g.colors_name == "yugure" and "nordic" or "yugure"
-    vim.cmd.colorscheme(target)
-end
-
-vim.api.nvim_create_user_command("YugureAB", ab_toggle, {
-    desc = "Toggle between yugure and nordic",
-})
-
-vim.keymap.set("n", "<leader>uc", ab_toggle, {
-    desc = "Toggle yugure/nordic colorscheme",
 })
 
 local ns = vim.api.nvim_create_namespace("yugure-dev")

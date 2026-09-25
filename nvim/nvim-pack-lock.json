@@ -53,10 +53,6 @@
       "rev": "ab5a73d6ec9d33e807d6c67ce5169c4ca4a5d7f3",
       "src": "https://github.com/marilari88/neotest-vitest"
     },
-    "nordic.nvim": {
-      "rev": "9fb62116b891184049c50ca6ffb0d3bc100a1a6e",
-      "src": "https://github.com/AlexvZyl/nordic.nvim"
-    },
     "nvim-dap": {
       "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap"
