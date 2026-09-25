@@ -8,22 +8,22 @@ gui:
       - "#7FAEC4" # foam
       - bold
     inactiveBorderColor:
-      - "#3A4152" # high
+      - "#373E4F" # high
     searchingActiveBorderColor:
       - "#CFA875" # gold
       - bold
     optionsTextColor:
       - "#7FAEC4" # foam
     selectedLineBgColor:
-      - "#2E3548" # med
+      - "#2B3245" # med
     inactiveViewSelectedLineBgColor:
-      - "#242833" # overlay
+      - "#1F232E" # overlay
     cherryPickedCommitFgColor:
-      - "#191C24" # base
+      - "#14171F" # base
     cherryPickedCommitBgColor:
       - "#A492C9" # iris
     markedBaseCommitFgColor:
-      - "#191C24" # base
+      - "#14171F" # base
     markedBaseCommitBgColor:
       - "#CFA875" # gold
     unstagedChangesColor:

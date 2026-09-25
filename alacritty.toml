@@ -39,74 +39,75 @@ columns = 120
 lines = 39
 
 # Colors (Yūgure) — mirrors nvim/lua/yugure/palette.lua and terminal.lua.
-# Keep the two in sync: ANSI 0-15 here == vim.g.terminal_color_0..15.
+# Default fg sits one tier below nvim's Normal (iron, not text) and the
+# bright-white slot is text: terminal prose is dimmer than code on purpose.
 
 [colors.primary]
-background = '#191C24'
-foreground = '#B2BACC'
+background = '#14171F'
+foreground = '#A2ABBE'
 dim_foreground = '#8F99AF'
-bright_foreground = '#D7DBE4'
+bright_foreground = '#B2BACC'
 
 [colors.cursor]
-text = '#191C24'
-cursor = '#B2BACC'
+text = '#14171F'
+cursor = '#A2ABBE'
 
 [colors.vi_mode_cursor]
-text = '#191C24'
+text = '#14171F'
 cursor = '#CFA875'
 
 [colors.search.matches]
-foreground = '#B2BACC'
-background = '#2F4256'
+foreground = '#A2ABBE'
+background = '#2C3F53'
 
 [colors.search.focused_match]
-foreground = '#191C24'
+foreground = '#14171F'
 background = '#CFA875'
 
 [colors.footer_bar]
 foreground = '#8F99AF'
-background = '#242833'
+background = '#1F232E'
 
 [colors.hints.start]
-foreground = '#191C24'
+foreground = '#14171F'
 background = '#CFA875'
 
 [colors.hints.end]
-foreground = '#191C24'
+foreground = '#14171F'
 background = '#7FAEC4'
 
 [colors.selection]
 text = 'CellForeground'
-background = '#2E3548'
+background = '#2B3245'
 
 [colors.normal]
-black = '#242833'
+black = '#1F232E'
 red = '#C96A70'
 green = '#82ABAA'
 yellow = '#CFA875'
 blue = '#7FAEC4'
 magenta = '#A492C9'
 cyan = '#C98995'
-white = '#B2BACC'
+white = '#A2ABBE'
 
 [colors.bright]
-black = '#666F87'
+black = '#4A5164'
 red = '#CF7C81'
 green = '#91B5B4'
 yellow = '#D5B286'
 blue = '#8EB8CB'
 magenta = '#AF9FCF'
 cyan = '#CF97A2'
-white = '#D7DBE4'
+white = '#B2BACC'
 
 [colors.dim]
-black = '#1E212B'
+black = '#191C26'
 red = '#A45A5F'
 green = '#6B8C8B'
 yellow = '#A98A62'
 blue = '#698FA1'
 magenta = '#8778A5'
 cyan = '#A5717B'
-white = '#8F99AF'
+white = '#666F87'
 
 [terminal]

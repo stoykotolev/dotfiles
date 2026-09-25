@@ -16,13 +16,15 @@
 --
 -- Keep it that way: a new colour is a new role, not a new shade.
 return {
-    -- Backgrounds
-    base = "#191C24",
-    low = "#20242F",
-    surface = "#1E212B",
-    overlay = "#242833",
-    med = "#2E3548",
-    high = "#3A4152",
+    -- Backgrounds (darkened 2026-09-25: whole ladder pulled down ~5/ch on
+    -- the low layers, ~3/ch on med/high and tints, after the alacritty
+    -- switch showed base reading lighter than the old terminal bg)
+    base = "#14171F", -- prev: #191C24
+    low = "#1B1F2A", -- prev: #20242F
+    surface = "#191C26", -- prev: #1E212B
+    overlay = "#1F232E", -- prev: #242833
+    med = "#2B3245", -- prev: #2E3548
+    high = "#373E4F", -- prev: #3A4152
 
     -- Foregrounds (dimmed 2026-08-19: original set was too bright for
     -- long sessions; targets now ~5.5-8.8 vs base instead of 6.8-11.0)
@@ -41,10 +43,10 @@ return {
     love = "#C96A70", -- errors only, never syntax; prev: #DF6A72
 
     -- Derived tints
-    git_add_bg = "#1C2A2B",
-    git_change_bg = "#1E2533",
-    git_del_bg = "#2A1D22",
-    diff_text_bg = "#2E3B52",
-    search_bg = "#2F4256",
-    err_bg = "#2A1E24",
+    git_add_bg = "#192728", -- prev: #1C2A2B
+    git_change_bg = "#1B2230", -- prev: #1E2533
+    git_del_bg = "#271A1F", -- prev: #2A1D22
+    diff_text_bg = "#2B384F", -- prev: #2E3B52
+    search_bg = "#2C3F53", -- prev: #2F4256
+    err_bg = "#271B21", -- prev: #2A1E24
 }
