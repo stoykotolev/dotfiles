@@ -25,6 +25,7 @@ return function(p)
         RenderMarkdownTableFill = { fg = p.high },
         RenderMarkdownLink = { fg = p.foam },
         RenderMarkdownWikiLink = { fg = p.iris },
+        RenderMarkdownLinkTitle = { fg = p.subtle },
         RenderMarkdownSign = { fg = p.faint },
         RenderMarkdownUnchecked = { fg = p.muted },
         RenderMarkdownChecked = { fg = p.teal },

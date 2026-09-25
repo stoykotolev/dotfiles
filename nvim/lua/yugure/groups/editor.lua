@@ -7,6 +7,8 @@ return function(p)
         FloatBorder = { fg = p.high, bg = p.surface },
         FloatTitle = { fg = p.gold, bg = p.surface, bold = true },
         FloatFooter = { fg = p.muted, bg = p.surface },
+        FloatShadow = { bg = p.base, blend = 80 },
+        FloatShadowThrough = { bg = p.base, blend = 100 },
         Cursor = { fg = p.base, bg = p.text },
         lCursor = { link = "Cursor" },
         CursorIM = { link = "Cursor" },

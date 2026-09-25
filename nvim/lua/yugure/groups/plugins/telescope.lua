@@ -34,5 +34,7 @@ return function(p)
         TelescopeResultsDiffChange = { fg = p.gold },
         TelescopeResultsDiffDelete = { fg = p.love },
         TelescopeResultsComment = { fg = p.muted },
+        TelescopeResultsMethod = { fg = p.foam },
+        TelescopeResultsStruct = { fg = p.teal },
     }
 end

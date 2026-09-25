@@ -1,4 +1,20 @@
--- Yūgure palette. Literal values only — no runtime computation.
+-- Yūgure (夕暮れ) palette. Literal values only — no runtime computation.
+--
+-- Layers, dark to light:
+--   base    editor background            surface  floats, popups, inactive statusline
+--   low     cursorline, scrollbar track  overlay  active statusline, terminal black
+--   med     visual, pmenu selection      high     borders, matchparen bg, faint fills
+--
+-- Foreground tiers (contrast vs base, after the 2026-08-19 dim):
+--   text ~8.8 body   iron ~7.4 secondary   subtle ~6.1 UI text
+--   muted ~3.9 comments/hints   faint ~2.2 line numbers, whitespace
+--
+-- Exactly six accent hues, each with one job:
+--   rose  keywords, tags, bullets      gold  strings, warnings, cursor line nr
+--   foam  functions, links, info       teal  types, additions, hints, success
+--   iris  meta, attributes, literals   love  errors and deletions only, never syntax
+--
+-- Keep it that way: a new colour is a new role, not a new shade.
 return {
     -- Backgrounds
     base = "#191C24",
