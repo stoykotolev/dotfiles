@@ -1,0 +1,32 @@
+# Symlinked from ~/Library/Application Support/lazygit/config.yml.
+# Theme hexes mirror nvim/lua/yugure/palette.lua.
+gui:
+  nerdFontsVersion: "3"
+  mouseEvents: false
+  theme:
+    activeBorderColor:
+      - "#7FAEC4" # foam
+      - bold
+    inactiveBorderColor:
+      - "#3A4152" # high
+    searchingActiveBorderColor:
+      - "#CFA875" # gold
+      - bold
+    optionsTextColor:
+      - "#7FAEC4" # foam
+    selectedLineBgColor:
+      - "#2E3548" # med
+    inactiveViewSelectedLineBgColor:
+      - "#242833" # overlay
+    cherryPickedCommitFgColor:
+      - "#191C24" # base
+    cherryPickedCommitBgColor:
+      - "#A492C9" # iris
+    markedBaseCommitFgColor:
+      - "#191C24" # base
+    markedBaseCommitBgColor:
+      - "#CFA875" # gold
+    unstagedChangesColor:
+      - "#C96A70" # love
+    defaultFgColor:
+      - "#B2BACC" # text
