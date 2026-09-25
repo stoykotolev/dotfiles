@@ -43,71 +43,71 @@ lines = 39
 # bright-white slot is text: terminal prose is dimmer than code on purpose.
 
 [colors.primary]
-background = '#14171F'
-foreground = '#A2ABBE'
-dim_foreground = '#8F99AF'
-bright_foreground = '#B2BACC'
+background = '#141518'
+foreground = '#8F97A6'
+dim_foreground = '#7F8797'
+bright_foreground = '#9DA4B2'
 
 [colors.cursor]
-text = '#14171F'
-cursor = '#A2ABBE'
+text = '#141518'
+cursor = '#8F97A6'
 
 [colors.vi_mode_cursor]
-text = '#14171F'
-cursor = '#CFA875'
+text = '#141518'
+cursor = '#BFA077'
 
 [colors.search.matches]
-foreground = '#A2ABBE'
-background = '#2C3F53'
+foreground = '#8F97A6'
+background = '#2C3745'
 
 [colors.search.focused_match]
-foreground = '#14171F'
-background = '#CFA875'
+foreground = '#141518'
+background = '#BFA077'
 
 [colors.footer_bar]
-foreground = '#8F99AF'
-background = '#1F232E'
+foreground = '#7F8797'
+background = '#1F2026'
 
 [colors.hints.start]
-foreground = '#14171F'
-background = '#CFA875'
+foreground = '#141518'
+background = '#BFA077'
 
 [colors.hints.end]
-foreground = '#14171F'
-background = '#7FAEC4'
+foreground = '#141518'
+background = '#7AA3B5'
 
 [colors.selection]
 text = 'CellForeground'
-background = '#2B3245'
+background = '#2A2C34'
 
 [colors.normal]
-black = '#1F232E'
-red = '#C96A70'
-green = '#82ABAA'
-yellow = '#CFA875'
-blue = '#7FAEC4'
-magenta = '#A492C9'
-cyan = '#C98995'
-white = '#A2ABBE'
+black = '#1F2026'
+red = '#BA6B70'
+green = '#7BA09F'
+yellow = '#BFA077'
+blue = '#7AA3B5'
+magenta = '#9A8EB9'
+cyan = '#B98590'
+white = '#8F97A6'
 
 [colors.bright]
-black = '#4A5164'
-red = '#CF7C81'
-green = '#91B5B4'
-yellow = '#D5B286'
-blue = '#8EB8CB'
-magenta = '#AF9FCF'
-cyan = '#CF97A2'
-white = '#B2BACC'
+black = '#454A58'
+red = '#C27D81'
+green = '#8BABAB'
+yellow = '#C7AB87'
+blue = '#8AAEBE'
+magenta = '#A69CC1'
+cyan = '#C1949D'
+white = '#9DA4B2'
 
 [colors.dim]
-black = '#191C26'
-red = '#A45A5F'
-green = '#6B8C8B'
-yellow = '#A98A62'
-blue = '#698FA1'
-magenta = '#8778A5'
-cyan = '#A5717B'
-white = '#666F87'
+black = '#18191D'
+red = '#95565A'
+green = '#62807F'
+yellow = '#99805F'
+blue = '#628291'
+magenta = '#7B7294'
+cyan = '#946A73'
+white = '#5E6577'
 
 [terminal]

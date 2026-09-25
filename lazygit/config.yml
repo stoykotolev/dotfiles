@@ -5,28 +5,28 @@ gui:
   mouseEvents: false
   theme:
     activeBorderColor:
-      - "#7FAEC4" # foam
+      - "#7AA3B5" # foam
       - bold
     inactiveBorderColor:
-      - "#373E4F" # high
+      - "#383A43" # high
     searchingActiveBorderColor:
-      - "#CFA875" # gold
+      - "#BFA077" # gold
       - bold
     optionsTextColor:
-      - "#7FAEC4" # foam
+      - "#7AA3B5" # foam
     selectedLineBgColor:
-      - "#2B3245" # med
+      - "#2A2C34" # med
     inactiveViewSelectedLineBgColor:
-      - "#1F232E" # overlay
+      - "#1F2026" # overlay
     cherryPickedCommitFgColor:
-      - "#14171F" # base
+      - "#141518" # base
     cherryPickedCommitBgColor:
-      - "#A492C9" # iris
+      - "#9A8EB9" # iris
     markedBaseCommitFgColor:
-      - "#14171F" # base
+      - "#141518" # base
     markedBaseCommitBgColor:
-      - "#CFA875" # gold
+      - "#BFA077" # gold
     unstagedChangesColor:
-      - "#C96A70" # love
+      - "#BA6B70" # love
     defaultFgColor:
-      - "#B2BACC" # text
+      - "#9DA4B2" # text

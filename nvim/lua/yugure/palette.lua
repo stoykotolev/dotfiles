@@ -16,37 +16,38 @@
 --
 -- Keep it that way: a new colour is a new role, not a new shade.
 return {
-    -- Backgrounds (darkened 2026-09-25: whole ladder pulled down ~5/ch on
-    -- the low layers, ~3/ch on med/high and tints, after the alacritty
-    -- switch showed base reading lighter than the old terminal bg)
-    base = "#14171F", -- prev: #191C24
-    low = "#1B1F2A", -- prev: #20242F
-    surface = "#191C26", -- prev: #1E212B
-    overlay = "#1F232E", -- prev: #242833
-    med = "#2B3245", -- prev: #2E3548
-    high = "#373E4F", -- prev: #3A4152
+    -- Backgrounds (2026-09-25: blue-grey ground replaced by a neutral
+    -- near-black ladder; the cool tint was reading as a white cast on the
+    -- text. Earlier the same day the blue ladder had been darkened ~5/ch.)
+    base = "#141518", -- prev: #0E0F12, #14171F
+    low = "#1B1C21", -- prev: #16171C, #1B1F2A
+    surface = "#18191D", -- prev: #131418, #191C26
+    overlay = "#1F2026", -- prev: #1A1B21, #1F232E
+    med = "#2A2C34", -- prev: #26282F, #2B3245
+    high = "#383A43", -- prev: #34363E, #373E4F
 
-    -- Foregrounds (dimmed 2026-08-19: original set was too bright for
-    -- long sessions; targets now ~5.5-8.8 vs base instead of 6.8-11.0)
-    text = "#B2BACC", -- prev: #C8D0E0
-    iron = "#A2ABBE", -- prev: #B3BDD1
-    subtle = "#8F99AF", -- prev: #9AA5BC
-    muted = "#666F87", -- prev: #6E7791
-    faint = "#4A5164",
+    -- Foregrounds (muted again 2026-09-25 together with a greyer ground:
+    -- text ~7, iron ~6, subtle ~5 vs base; first dimmed 2026-08-19 from
+    -- the 6.8-11.0 originals)
+    text = "#9DA4B2", -- prev: #A8B0C0, #B2BACC, #C8D0E0
+    iron = "#8F97A6", -- prev: #A2ABBE, #B3BDD1
+    subtle = "#7F8797", -- prev: #8F99AF, #9AA5BC
+    muted = "#5E6577", -- prev: #666F87, #6E7791
+    faint = "#454A58", -- prev: #4A5164
 
-    -- Accents (exactly 6 hues)
-    rose = "#C98995", -- keywords; prev: #D9909B
-    gold = "#CFA875", -- string-literals, warnings; prev: #E3B778
-    foam = "#7FAEC4", -- callables, info; prev: #8EC2D8
-    teal = "#82ABAA", -- types, additions, hints; prev: #8FBCBB
-    iris = "#A492C9", -- meta & non-text literals; prev: #B4A0DC
-    love = "#C96A70", -- errors only, never syntax; prev: #DF6A72
+    -- Accents (exactly 6 hues; desaturated + dimmed 2026-09-25, ~5-6.5 vs base)
+    rose = "#B98590", -- keywords; prev: #C98995, #D9909B
+    gold = "#BFA077", -- string-literals, warnings; prev: #CFA875, #E3B778
+    foam = "#7AA3B5", -- callables, info; prev: #7FAEC4, #8EC2D8
+    teal = "#7BA09F", -- types, additions, hints; prev: #82ABAA, #8FBCBB
+    iris = "#9A8EB9", -- meta & non-text literals; prev: #A492C9, #B4A0DC
+    love = "#BA6B70", -- errors only, never syntax; prev: #C96A70, #DF6A72
 
     -- Derived tints
-    git_add_bg = "#192728", -- prev: #1C2A2B
-    git_change_bg = "#1B2230", -- prev: #1E2533
-    git_del_bg = "#271A1F", -- prev: #2A1D22
-    diff_text_bg = "#2B384F", -- prev: #2E3B52
-    search_bg = "#2C3F53", -- prev: #2F4256
-    err_bg = "#271B21", -- prev: #2A1E24
+    git_add_bg = "#182421", -- prev: #14201F, #192728
+    git_change_bg = "#1B1F28", -- prev: #171B24, #1B2230
+    git_del_bg = "#261B1E", -- prev: #22161A, #271A1F
+    diff_text_bg = "#2B343F", -- prev: #273240, #2B384F
+    search_bg = "#2C3745", -- prev: #283645, #2C3F53
+    err_bg = "#271C1F", -- prev: #23181C, #271B21
 }

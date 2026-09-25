@@ -16,7 +16,7 @@ return function(p)
 
         RenderMarkdownCode = { bg = p.surface },
         RenderMarkdownCodeInline = { fg = p.teal, bg = p.surface },
-        RenderMarkdownCodeBorder = { bg = "#161920" },
+        RenderMarkdownCodeBorder = { bg = "#161719" },
         RenderMarkdownBullet = { fg = p.rose },
         RenderMarkdownDash = { fg = p.high },
         RenderMarkdownQuote = { fg = p.muted },
