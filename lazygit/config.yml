@@ -14,10 +14,10 @@ gui:
       - bold
     optionsTextColor:
       - "#7AA3B5" # foam
-    selectedLineBgColor:
-      - "#2A2C34" # med
-    inactiveViewSelectedLineBgColor:
+    selectedLineBgColor: # one step above base, like CursorLine in nvim
       - "#1F2026" # overlay
+    inactiveViewSelectedLineBgColor:
+      - "#1B1C21" # low
     cherryPickedCommitFgColor:
       - "#141518" # base
     cherryPickedCommitBgColor:
