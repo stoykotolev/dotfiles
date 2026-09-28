@@ -3,4 +3,5 @@
 
 complete -c switch-to-main -s n -l dry-run           -d 'Preview changes; make none'
 complete -c switch-to-main -s u -l include-untracked -d 'Also stash untracked files'
+complete -c switch-to-main -s P -l no-pull           -d 'Switch branches only; skip the pull'
 complete -c switch-to-main -s h -l help              -d 'Show this help'

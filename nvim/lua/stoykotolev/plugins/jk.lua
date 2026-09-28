@@ -1,5 +1,0 @@
-return {
-    {
-        "stoykotolev/jikan-kanshi",
-    },
-}
