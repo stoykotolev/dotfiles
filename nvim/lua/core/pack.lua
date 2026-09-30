@@ -54,6 +54,10 @@ vim.pack.add({
     -- Go
     "https://github.com/olexsmir/gopher.nvim",
 
+    -- Rust (zero-config ftplugin: it owns the rust-analyzer client, so
+    -- rust_analyzer must never be added to vim.lsp.enable in plugins/lsp.lua)
+    { src = "https://github.com/mrcjkb/rustaceanvim", version = vim.version.range("9.*") },
+
     -- UI
     "https://github.com/folke/todo-comments.nvim",
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",

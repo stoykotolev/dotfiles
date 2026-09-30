@@ -17,6 +17,7 @@ conform.setup({
         graphql = { "prettierd" },
         markdown = { "prettierd" },
         go = { "goimports", "gofumpt" },
+        rust = { "rustfmt" },
         lua = { "stylua" },
     },
 })

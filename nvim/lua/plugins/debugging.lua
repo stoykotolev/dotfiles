@@ -45,6 +45,9 @@ require("nvim-dap-virtual-text").setup({})
 -- Go: delve via nvim-dap-go (also provides debug-nearest-test)
 require("dap-go").setup()
 
+-- Rust: nothing to configure here. rustaceanvim finds Mason's codelldb and
+-- loads the crate's debuggables into dap.configurations.rust on LSP attach.
+
 -- JS/TS: js-debug-adapter from Mason
 dap.adapters["pwa-node"] = {
     type = "server",

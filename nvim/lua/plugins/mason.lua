@@ -2,6 +2,8 @@ require("mason").setup()
 
 -- Everything external lives in Mason: LSP servers, formatters, linters,
 -- debug adapters. Installed automatically when missing.
+-- Exception: rust-analyzer, rustfmt and clippy come from rustup, so they
+-- always match the project's toolchain (`rustup component add rust-analyzer`).
 local tools = {
     -- LSP servers
     "vtsls",
@@ -22,6 +24,7 @@ local tools = {
     -- Debug adapters
     "js-debug-adapter",
     "delve",
+    "codelldb",
     -- Go tools (gopher.nvim)
     "gomodifytags",
     "gotests",

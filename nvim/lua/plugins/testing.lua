@@ -4,6 +4,7 @@ neotest.setup({
     adapters = {
         require("neotest-vitest"),
         require("neotest-golang")({ dap_go_enabled = true }),
+        require("rustaceanvim.neotest"),
         require("neotest-playwright").adapter({
             options = {
                 persist_project_selection = true,

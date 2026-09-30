@@ -18,6 +18,8 @@ local langs = {
     "markdown_inline",
     "query",
     "regex",
+    "rust",
+    "toml",
     "tsx",
     "typescript",
     "vim",
