@@ -3,7 +3,7 @@ local opts = { silent = true }
 
 -- Remove the 0.11+ default LSP maps so `gr` (references) fires without
 -- waiting for a second key
-for _, lhs in ipairs({ "grn", "grr", "gri", "gra", "grt" }) do
+for _, lhs in ipairs({ "grn", "grr", "gri", "gra", "grt", "grx" }) do
     pcall(vim.keymap.del, "n", lhs)
 end
 pcall(vim.keymap.del, "x", "gra")
@@ -45,5 +45,15 @@ end, { desc = "Go to previous [D]iagnostic message" })
 map("n", "<C-n>", function()
     vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next [D]iagnostic message" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-map("n", "<leader>oq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map(
+    "n",
+    "<leader>e",
+    vim.diagnostic.open_float,
+    { desc = "Show diagnostic [E]rror messages" }
+)
+map(
+    "n",
+    "<leader>oq",
+    vim.diagnostic.setloclist,
+    { desc = "Open diagnostic [Q]uickfix list" }
+)
