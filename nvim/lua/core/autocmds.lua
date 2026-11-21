@@ -17,6 +17,22 @@ autocmd("TextYankPost", {
     end,
 })
 
+-- End the snippet session when returning to normal mode, so the
+-- SnippetTabstop highlight doesn't linger after accepting a completion
+autocmd("ModeChanged", {
+    desc = "Stop active snippet on leaving insert/select mode",
+    group = vim.api.nvim_create_augroup("snippet-stop", { clear = true }),
+    pattern = "[is]:n",
+    callback = function()
+        -- Scheduled: tabstop jumps pass briefly through normal mode
+        vim.schedule(function()
+            if vim.fn.mode() == "n" and vim.snippet.active() then
+                vim.snippet.stop()
+            end
+        end)
+    end,
+})
+
 -- close quickfix menu after selecting choice
 autocmd("FileType", {
     pattern = { "qf" },
